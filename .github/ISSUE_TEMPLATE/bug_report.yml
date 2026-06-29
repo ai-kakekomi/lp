@@ -1,0 +1,18 @@
+name: "バグ報告"
+description: "表示崩れ・動作不具合などの報告"
+title: "[バグ] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 何が起きましたか？
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: 端末・ブラウザ
+      placeholder: "例: iPhone 15 / Safari"
+    validations:
+      required: false

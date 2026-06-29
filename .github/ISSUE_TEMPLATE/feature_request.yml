@@ -1,0 +1,18 @@
+name: "機能提案"
+description: "LPに追加してほしい機能や改善案"
+title: "[提案] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: どんな改善がほしいですか？
+      placeholder: "例: 活動実績のセクションを追加したい"
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: なぜその改善があると嬉しいですか？
+    validations:
+      required: false
