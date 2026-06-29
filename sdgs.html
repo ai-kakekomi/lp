@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDGsへの取り組み | AIかけこみ寺</title>
+<meta name="description" content="AIかけこみ寺のSDGs（持続可能な開発目標）への取り組み。質の高い教育、働きがい、不平等の解消に向けた市民活動を紹介します。">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2D6A4F;
+  --primary-light: #52B788;
+  --primary-pale: #D8F3DC;
+  --accent: #E76F51;
+  --accent-light: #F4A261;
+  --warm-bg: #FDF8F0;
+  --warm-bg-alt: #FFF5E8;
+  --text: #2C2C2C;
+  --text-light: #5A5A5A;
+  --white: #FFFFFF;
+  --shadow-soft: 0 4px 24px rgba(45, 106, 79, 0.08);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.06);
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: var(--warm-bg);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-label {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+/* ===== HEADER NAV ===== */
+.site-header {
+  background: var(--white);
+  padding: 16px 0;
+  box-shadow: var(--shadow-soft);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header-logo {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.site-header-logo span {
+  color: var(--accent);
+}
+
+.site-header-back {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 8px 18px;
+  border: 1.5px solid var(--primary-pale);
+  border-radius: 40px;
+  transition: all 0.3s ease;
+}
+
+.site-header-back:hover {
+  background: var(--primary-pale);
+}
+
+/* ===== PAGE HERO ===== */
+.page-hero {
+  padding: 80px 24px 60px;
+  text-align: center;
+  background: var(--white);
+}
+
+.page-hero .section-title {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin-bottom: 20px;
+}
+
+.page-hero p {
+  font-size: 1rem;
+  color: var(--text-light);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 2;
+}
+
+/* ===== SDG CARDS ===== */
+.sdg-section {
+  padding: 80px 0;
+}
+
+.sdg-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.sdg-card {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 32px;
+  align-items: start;
+  padding: 40px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.sdg-icon {
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--white);
+  text-align: center;
+  padding: 12px;
+}
+
+.sdg-icon-number {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.sdg-icon-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.sdg-content h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.sdg-content p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 2;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 40px 0;
+  background: #1B4332;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.footer-links {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--primary-light);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .sdg-card {
+    grid-template-columns: 1fr;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .sdg-icon {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="site-header-logo">AI<span>かけこみ寺</span></a>
+    <a href="index.html" class="site-header-back">← トップに戻る</a>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">SDGs</div>
+    <div class="section-title">AIかけこみ寺のSDGsへの取り組み</div>
+    <p>SDGs（持続可能な開発目標）は、2030年までに達成を目指す国際社会の共通目標です。AIかけこみ寺は、AI教育を通じて以下の3つの目標に貢献しています。</p>
+    <p style="display:inline-block;margin-top:20px;padding:8px 20px;background:var(--primary-pale);color:var(--primary);font-size:0.9rem;font-weight:700;border-radius:24px;">🏅 名古屋市SDGs推進プラットフォーム会員（No.900）</p>
+  </div>
+</section>
+
+<!-- ===== SDG GOALS ===== -->
+<section class="sdg-section">
+  <div class="container">
+    <div class="sdg-cards">
+
+      <!-- Goal 4 -->
+      <div class="sdg-card">
+        <img src="sdg-04.jpg" alt="SDGs 目標4：質の高い教育をみんなに" class="sdg-icon" style="background:#C5192D;object-fit:cover;">
+        <div class="sdg-content">
+          <h3 style="color:#C5192D;">目標4：質の高い教育をみんなに</h3>
+          <p>AIかけこみ寺は、シニアやAI未経験者が「取り残されない」社会を目指し、地域の生涯学習センターや社会福祉協議会と連携した無償のAI体験講座を提供しています。年齢や経験に関わらず、誰もがAIに触れられる学びの場を地域に広げる活動を続けています。</p>
+        </div>
+      </div>
+
+      <!-- Goal 8 -->
+      <div class="sdg-card">
+        <img src="sdg-08.jpg" alt="SDGs 目標8：働きがいも経済成長も" class="sdg-icon" style="background:#A21942;object-fit:cover;">
+        <div class="sdg-content">
+          <h3 style="color:#A21942;">目標8：働きがいも経済成長も</h3>
+          <p>AI活用スキルの習得を通じて、シニアや求職者が新たな可能性を発見し、地域の生産性向上に貢献することを目指しています。</p>
+        </div>
+      </div>
+
+      <!-- Goal 10 -->
+      <div class="sdg-card">
+        <img src="sdg-10.jpg" alt="SDGs 目標10：人や国の不平等をなくそう" class="sdg-icon" style="background:#DD1367;object-fit:cover;">
+        <div class="sdg-content">
+          <h3 style="color:#DD1367;">目標10：人や国の不平等をなくそう</h3>
+          <p>テクノロジーの恩恵が届かない人々のもとへ、人が足を運んで届ける。デジタルデバイドの解消に向け、地域に根差した取り組みを行っています。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2026 AIかけこみ寺（非営利の市民活動） All Rights Reserved.</p>
+    <div class="footer-links">
+      <a href="index.html">トップ</a>
+      <a href="index.html#courses">講座一覧</a>
+      <a href="index.html#contact">お問い合わせ</a>
+      <a href="volunteer.html">仲間募集</a>
+      <a href="sdgs.html">SDGs</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

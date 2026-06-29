@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>仲間募集 | AIかけこみ寺</title>
+<meta name="description" content="AIかけこみ寺では、AIの知識を地域のために活かしたい仲間を募集しています。スキル不問、やる気重視。まずは気軽にご連絡ください。">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2D6A4F;
+  --primary-light: #52B788;
+  --primary-pale: #D8F3DC;
+  --accent: #E76F51;
+  --accent-light: #F4A261;
+  --warm-bg: #FDF8F0;
+  --warm-bg-alt: #FFF5E8;
+  --text: #2C2C2C;
+  --text-light: #5A5A5A;
+  --white: #FFFFFF;
+  --shadow-soft: 0 4px 24px rgba(45, 106, 79, 0.08);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.06);
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: var(--warm-bg);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-label {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 24px 80px;
+  background: linear-gradient(170deg, #D8F3DC 0%, #FDF8F0 40%, #FFF5E8 100%);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(82,183,136,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(231,111,81,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.hero-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.hero h1 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.hero h1 span {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-tagline {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 40px;
+  background: var(--accent);
+  color: var(--white);
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 60px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(231, 111, 81, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.hero-cta:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(231, 111, 81, 0.35);
+}
+
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+  box-shadow: var(--shadow-soft);
+}
+
+/* ===== MISSION ===== */
+.mission {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.mission-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mission-message {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 2;
+  margin-bottom: 40px;
+}
+
+.mission-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.mission-card {
+  padding: 32px 20px;
+  background: var(--warm-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.mission-card-icon {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+}
+
+.mission-card h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.mission-card p {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ===== OUR MISSION (golden circle) ===== */
+.ourmission {
+  padding: 80px 0;
+  background: var(--warm-bg-alt);
+}
+
+.gc-mission {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.gc-block {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px 28px 30px;
+  box-shadow: var(--shadow-card);
+  border-left: 5px solid transparent;
+}
+
+.gc-why  { border-left-color: #E76F51; }
+.gc-how  { border-left-color: #F4A261; }
+.gc-what { border-left-color: #F9C97D; }
+
+.gc-tag {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+
+.gc-why  .gc-tag { color: #E76F51; }
+.gc-how  .gc-tag { color: #D58341; }
+.gc-what .gc-tag { color: #B07C00; }
+
+.gc-headline {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.22rem;
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.gc-img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.gc-body {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.9;
+}
+
+@media (max-width: 768px) {
+  .gc-block { padding: 20px 18px 22px; }
+  .gc-headline { font-size: 1.1rem; }
+}
+
+/* ===== STEPS ===== */
+.steps {
+  padding: 80px 0;
+  background: var(--warm-bg-alt);
+}
+
+.steps-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.step-card {
+  text-align: center;
+  padding: 32px 20px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+}
+
+.step-num {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+}
+
+.step-label {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--primary-pale);
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.step-card h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.step-card p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ===== MERIT ===== */
+.merit {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.merit-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.merit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.merit-card {
+  padding: 36px 24px;
+  background: linear-gradient(135deg, var(--primary-pale) 0%, #B7E4C7 100%);
+  border-radius: var(--radius);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.merit-card:hover {
+  transform: translateY(-4px);
+}
+
+.merit-card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.merit-card h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.merit-card p {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/* ===== CONDITIONS ===== */
+.conditions {
+  padding: 80px 0;
+  background: var(--warm-bg);
+}
+
+.conditions-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.conditions-table {
+  max-width: 740px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.conditions-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.conditions-row:last-child {
+  border-bottom: none;
+}
+
+.conditions-label {
+  padding: 20px 24px;
+  background: var(--primary-pale);
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+}
+
+.conditions-value {
+  padding: 20px 24px;
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/* ===== CTA ===== */
+.cta {
+  padding: 80px 0;
+  background: linear-gradient(170deg, var(--primary) 0%, #1B4332 100%);
+  text-align: center;
+  color: var(--white);
+}
+
+.cta .section-label {
+  color: var(--primary-pale);
+}
+
+.cta .section-title {
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.cta-message {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 2;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 48px;
+  background: var(--accent);
+  color: var(--white);
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 60px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(231, 111, 81, 0.4);
+}
+
+.cta-btn:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(231, 111, 81, 0.45);
+}
+
+.cta-sub {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.cta-sub a {
+  color: var(--primary-pale);
+  text-decoration: underline;
+}
+
+/* ===== PRIVACY ===== */
+.privacy {
+  padding: 40px 0;
+  background: var(--warm-bg);
+  text-align: center;
+}
+
+.privacy p {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 40px 0;
+  background: #1B4332;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.footer-links {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--primary-light);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .mission-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .steps-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .merit-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .conditions-row {
+    grid-template-columns: 1fr;
+  }
+  .conditions-label {
+    padding: 12px 24px;
+  }
+  .conditions-value {
+    padding: 12px 24px;
+  }
+}
+
+/* ===== SCROLL ANIMATION ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-icon">🤝</div>
+    <h1>AIで<span>善意をスケール</span>する<br>仲間を募集しています</h1>
+    <p class="hero-tagline">AIかけこみ寺は、AIの恩恵がまだ届いていない人に<br>自分たちから届けにいく活動です。</p>
+    <a href="#contact" class="hero-cta">📩 まずは気軽に連絡する</a>
+    <div class="hero-badges">
+      <div class="hero-badge">🌱 スキル不問・やる気重視</div>
+      <div class="hero-badge">📅 月1回〜でOK</div>
+      <div class="hero-badge">💚 非営利の市民活動</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OUR MISSION (ゴールデンサークル) ===== -->
+<section class="ourmission">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="section-label fade-in">OUR MISSION</div>
+      <div class="section-title fade-in">AIかけこみ寺のミッション</div>
+    </div>
+    <div class="gc-mission">
+      <div class="gc-block gc-why fade-in">
+        <div class="gc-tag">WHY</div>
+        <div class="gc-headline">AIの恩恵をすべての人へ。</div>
+        <img class="gc-img" src="golden_circle_WHY.png" alt="AIの恩恵をすべての人へ" loading="lazy">
+        <p class="gc-body">AIは社会を根底から変え、その変化はますます加速していきます。一方で、その恩恵は均等には行き渡りません。AIの恩恵がすべての人に行き渡るまで走り続けます。</p>
+      </div>
+      <div class="gc-block gc-how fade-in">
+        <div class="gc-tag">HOW</div>
+        <div class="gc-headline">AIで善意をスケールする。</div>
+        <img class="gc-img" src="golden_circle_HOW.png" alt="AIで善意をスケールする" loading="lazy">
+        <p class="gc-body">ひとりの善意はちっぽけでも、それをAIの力で何十倍にし、公共・地域のインフラに乗せて届けます。</p>
+      </div>
+      <div class="gc-block gc-what fade-in">
+        <div class="gc-tag">WHAT</div>
+        <div class="gc-headline">ひとりひとりに届く無料AI教室を、全国へ。</div>
+        <img class="gc-img" src="golden_circle_WHAT.png" alt="ひとりひとりに届く無料AI教室を、全国へ" loading="lazy">
+        <p class="gc-body">自治体・地域と連携しながら生涯学習センター等の公共施設で無料AI教室を全国へ広く展開していきます。届かない人のそばまでかけこみ、ひとりひとりに手渡しします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MISSION ===== -->
+<section class="mission">
+  <div class="container">
+    <div class="mission-inner">
+      <div class="section-label fade-in">WHY WE NEED YOU</div>
+      <div class="section-title fade-in">なぜ、仲間が必要なのか</div>
+      <p class="mission-message fade-in">
+        AIの進化は、すべての人の暮らしと仕事を変えようとしています。<br>
+        でも、その恩恵がまだ届いていない人がたくさんいます。<br>
+        「気づいたときにはもう手遅れ」にしないために、<br>
+        <strong>かけこみ寺の方から、かけこんでいく。</strong><br>
+        その活動を一緒に広げてくれる仲間を探しています。
+      </p>
+      <div class="mission-cards fade-in">
+        <div class="mission-card">
+          <div class="mission-card-icon">👤</div>
+          <h3>受講者</h3>
+          <p>AIがわからない<br>→ 使えるようになる</p>
+        </div>
+        <div class="mission-card">
+          <div class="mission-card-icon">🙋</div>
+          <h3>ボランティア</h3>
+          <p>実課題でAI腕試し<br>→ 履歴書に書ける実績に</p>
+        </div>
+        <div class="mission-card">
+          <div class="mission-card-icon">🏛️</div>
+          <h3>AIかけこみ寺</h3>
+          <p>教え手が増える<br>→ 善意がスケールする</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STEPS ===== -->
+<section class="steps">
+  <div class="container">
+    <div class="steps-header">
+      <div class="section-label fade-in">STEP UP</div>
+      <div class="section-title fade-in">あなたのペースで、ステップアップ</div>
+      <p class="fade-in" style="font-size:1rem;color:var(--text-light);max-width:600px;margin:0 auto;">最初は講座のお手伝いから。慣れてきたら、企画や営業、ゆくゆくは講師として活躍するチャンスもあります。</p>
+    </div>
+    <div class="steps-grid fade-in">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <span class="step-label">まずはここから</span>
+        <h3>講座アシスタント</h3>
+        <p>受講者のそばで一緒にサポート。「AIってこういうものなんだ」を届ける現場を体験。</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <span class="step-label">慣れてきたら</span>
+        <h3>コンテンツ企画</h3>
+        <p>講座の中身を一緒に考える。「こんな講座があったら面白い」をカタチに。</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <span class="step-label">活動を広げる</span>
+        <h3>営業・広報</h3>
+        <p>生涯学習センターやハローワークへの営業に同行。活動の輪を広げる仕事。</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <span class="step-label">ゆくゆくは</span>
+        <h3>講師として独立</h3>
+        <p>自分の担当講座を持つ。AIの恩恵を届ける「かけこみ寺ののれん分け」。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MERIT ===== -->
+<section class="merit">
+  <div class="container">
+    <div class="merit-header">
+      <div class="section-label fade-in">MERIT</div>
+      <div class="section-title fade-in">参加するメリット</div>
+    </div>
+    <div class="merit-grid fade-in">
+      <div class="merit-card">
+        <div class="merit-card-icon">📄</div>
+        <h3>履歴書に書ける<br>AI活用実績</h3>
+        <p>リアルな課題でAIを活用した経験は、転職市場でも大きなアピールポイントになります。</p>
+      </div>
+      <div class="merit-card">
+        <div class="merit-card-icon">😊</div>
+        <h3>「ありがとう」が<br>直接もらえる現場</h3>
+        <p>受講者の「わかった！」「使えた！」を目の前で見られるのは、この活動ならではの喜び。</p>
+      </div>
+      <div class="merit-card">
+        <div class="merit-card-icon">🤝</div>
+        <h3>同じ志の<br>仲間とつながる</h3>
+        <p>AIで地域に貢献したいという想いを持つ仲間と出会い、一緒に活動を作っていけます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONDITIONS ===== -->
+<section class="conditions">
+  <div class="container">
+    <div class="conditions-header">
+      <div class="section-label fade-in">DETAILS</div>
+      <div class="section-title fade-in">募集要項</div>
+    </div>
+    <div class="conditions-table fade-in">
+      <div class="conditions-row">
+        <div class="conditions-label">求めるスキル</div>
+        <div class="conditions-value">スキル不問・やる気重視。ChatGPTなどのAIを日常的に使っている方は大歓迎ですが、必須ではありません。</div>
+      </div>
+      <div class="conditions-row">
+        <div class="conditions-label">活動頻度</div>
+        <div class="conditions-value">月1回の講座参加からスタート。活動が広がるにつれて、開催地や頻度を一緒に増やしていきたいと考えています。</div>
+      </div>
+      <div class="conditions-row">
+        <div class="conditions-label">活動エリア</div>
+        <div class="conditions-value">名古屋市内を中心に、愛知県内。将来的には県外への講師派遣も視野に入れています。</div>
+      </div>
+      <div class="conditions-row">
+        <div class="conditions-label">交通費</div>
+        <div class="conditions-value">依頼元から交通費が支給される場合はお渡しします。自主開催イベントの場合は各自ご負担をお願いしています。</div>
+      </div>
+      <div class="conditions-row">
+        <div class="conditions-label">連絡手段</div>
+        <div class="conditions-value">LINE またはメール。活動が大きくなってきたら、メンバーに合わせた手段を一緒に考えていきます。</div>
+      </div>
+      <div class="conditions-row">
+        <div class="conditions-label">将来のビジョン</div>
+        <div class="conditions-value">ボランティア仲間が増えてきたら、ゆくゆくはNPO法人化も視野に。一緒に組織を育てていける方を歓迎します。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="section-label fade-in">JOIN US</div>
+    <div class="section-title fade-in">まずは気軽にご連絡ください</div>
+    <p class="cta-message fade-in">
+      「ちょっと話を聞いてみたい」「見学だけしてみたい」でも大歓迎です。<br>
+      下記フォームからお気軽にどうぞ。
+    </p>
+    <form class="fade-in" action="https://formspree.io/f/mvzwrgzo" method="POST" style="max-width:540px;margin:0 auto;display:flex;flex-direction:column;gap:16px;text-align:left;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <label style="font-size:0.85rem;font-weight:500;color:rgba(255,255,255,0.9);">お名前 <span style="color:var(--accent-light);font-size:0.75rem;">*必須</span></label>
+          <input type="text" name="name" placeholder="山田 太郎" required style="padding:14px 18px;border:2px solid rgba(255,255,255,0.2);border-radius:var(--radius-sm);background:rgba(255,255,255,0.1);color:var(--white);font-family:'Noto Sans JP',sans-serif;font-size:0.95rem;backdrop-filter:blur(4px);">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <label style="font-size:0.85rem;font-weight:500;color:rgba(255,255,255,0.9);">メールアドレス <span style="color:var(--accent-light);font-size:0.75rem;">*必須</span></label>
+          <input type="email" name="email" placeholder="example@mail.com" required style="padding:14px 18px;border:2px solid rgba(255,255,255,0.2);border-radius:var(--radius-sm);background:rgba(255,255,255,0.1);color:var(--white);font-family:'Noto Sans JP',sans-serif;font-size:0.95rem;backdrop-filter:blur(4px);">
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label style="font-size:0.85rem;font-weight:500;color:rgba(255,255,255,0.9);">興味のある関わり方</label>
+        <select name="role" style="padding:14px 18px;border:2px solid rgba(255,255,255,0.2);border-radius:var(--radius-sm);background:rgba(255,255,255,0.1);color:var(--white);font-family:'Noto Sans JP',sans-serif;font-size:0.95rem;backdrop-filter:blur(4px);">
+          <option value="" style="background:var(--primary);color:var(--white);">選択してください</option>
+          <option value="assistant" style="background:var(--primary);color:var(--white);">講座アシスタント（受講者サポート）</option>
+          <option value="planning" style="background:var(--primary);color:var(--white);">コンテンツ企画</option>
+          <option value="sales" style="background:var(--primary);color:var(--white);">営業・広報</option>
+          <option value="instructor" style="background:var(--primary);color:var(--white);">講師として活動したい</option>
+          <option value="all" style="background:var(--primary);color:var(--white);">全部やりたい！一緒に運営する仲間になりたい</option>
+          <option value="other" style="background:var(--primary);color:var(--white);">まずは話を聞いてみたい</option>
+        </select>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label style="font-size:0.85rem;font-weight:500;color:rgba(255,255,255,0.9);">メッセージ（任意）</label>
+        <textarea name="message" placeholder="自己紹介、AIの活用経験、参加への想いなど、お気軽にどうぞ。" style="padding:14px 18px;border:2px solid rgba(255,255,255,0.2);border-radius:var(--radius-sm);background:rgba(255,255,255,0.1);color:var(--white);font-family:'Noto Sans JP',sans-serif;font-size:0.95rem;min-height:100px;resize:vertical;backdrop-filter:blur(4px);"></textarea>
+      </div>
+      <button type="submit" style="margin-top:8px;padding:18px 48px;background:var(--accent);color:var(--white);font-family:'Zen Maru Gothic',sans-serif;font-size:1.1rem;font-weight:700;border:none;border-radius:60px;cursor:pointer;transition:all 0.3s ease;box-shadow:0 4px 16px rgba(231,111,81,0.4);align-self:center;">🤝 参加を申し込む</button>
+    </form>
+    <p class="cta-sub fade-in" style="margin-top:24px;">
+      メールでのご連絡：<a href="mailto:info@ai-kakekomi.com">info@ai-kakekomi.com</a><br>
+      AIかけこみ寺のトップページは<a href="index.html">こちら</a>
+    </p>
+  </div>
+</section>
+
+<!-- ===== PRIVACY ===== -->
+<section class="privacy">
+  <p>
+    📋 個人情報の取り扱いについて<br>
+    お預かりした個人情報は、AIかけこみ寺の活動連絡の目的にのみ使用いたします。<br>
+    第三者への提供はいたしません。ご本人のご希望でいつでも削除可能です。
+  </p>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 AIかけこみ寺（非営利の市民活動） All Rights Reserved.</p>
+    <div class="footer-links">
+      <a href="index.html">トップページ</a>
+      <a href="index.html#courses">講座一覧</a>
+      <a href="sdgs.html">SDGs</a>
+      <a href="index.html#contact">お問い合わせ</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatGPTインストール案内 | AIかけこみ寺</title>
+<meta name="description" content="ChatGPTアプリのインストール案内ページ。お使いのスマホに合わせてApp Store / Google Playへご案内します。">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2D6A4F;
+  --primary-light: #52B788;
+  --primary-pale: #D8F3DC;
+  --accent: #E76F51;
+  --warm-bg: #FDF8F0;
+  --text: #2C2C2C;
+  --text-light: #5A5A5A;
+  --white: #FFFFFF;
+  --apple: #000000;
+  --android: #3DDC84;
+  --radius: 20px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: var(--warm-bg);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.brand {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  text-decoration: none;
+}
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.6rem;
+  color: var(--primary);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: 28px;
+}
+
+.status {
+  background: var(--primary-pale);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.status.hidden { display: none; }
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 24px;
+  border-radius: 14px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+  min-height: 64px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-ios {
+  background: var(--apple);
+  color: var(--white);
+}
+
+.btn-android {
+  background: var(--android);
+  color: var(--apple);
+}
+
+.btn-icon {
+  font-size: 1.5rem;
+}
+
+.note {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+.footer {
+  margin-top: 32px;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+@media (max-width: 380px) {
+  h1 { font-size: 1.4rem; }
+  .btn { font-size: 1.05rem; padding: 16px 20px; }
+}
+</style>
+</head>
+<body>
+
+<a href="/" class="brand">🛕 AIかけこみ寺</a>
+
+<div class="card">
+  <h1>ChatGPTを<br>インストールしましょう</h1>
+  <p class="subtitle">お使いのスマホのストアへご案内します</p>
+
+  <div id="status" class="status hidden">
+    自動で開かない場合は、下のボタンをタップしてください
+  </div>
+
+  <div class="btn-group">
+    <a id="btn-ios"
+       href="https://apps.apple.com/jp/app/chatgpt/id6448311069"
+       class="btn btn-ios">
+      <span class="btn-icon">🍎</span>
+      <span>iPhoneの方はこちら</span>
+    </a>
+    <a id="btn-android"
+       href="https://play.google.com/store/apps/details?id=com.openai.chatgpt"
+       class="btn btn-android">
+      <span class="btn-icon">🤖</span>
+      <span>Androidの方はこちら</span>
+    </a>
+  </div>
+
+  <p class="note">
+    ボタンをタップすると、App Store または Google Playが開きます。<br>
+    そこで「入手」または「インストール」を押してください。
+  </p>
+</div>
+
+<div class="footer">
+  困ったときは AIかけこみ寺 にご相談ください<br>
+  <a href="/">ai-kakekomi.com</a>
+</div>
+
+<script>
+(function() {
+  const ua = navigator.userAgent || '';
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  const isAndroid = /Android/i.test(ua);
+
+  const iosUrl = 'https://apps.apple.com/jp/app/chatgpt/id6448311069';
+  const androidUrl = 'https://play.google.com/store/apps/details?id=com.openai.chatgpt';
+  const status = document.getElementById('status');
+  const btnIos = document.getElementById('btn-ios');
+  const btnAndroid = document.getElementById('btn-android');
+
+  if (isIOS) {
+    // iOSでは該当ボタンを目立たせる + 自動遷移を試みる
+    btnAndroid.style.display = 'none';
+    status.classList.remove('hidden');
+    setTimeout(function() { window.location.href = iosUrl; }, 400);
+  } else if (isAndroid) {
+    btnIos.style.display = 'none';
+    status.classList.remove('hidden');
+    setTimeout(function() { window.location.href = androidUrl; }, 400);
+  }
+  // PC等は両方表示のまま（手動選択）
+})();
+</script>
+
+</body>
+</html>
