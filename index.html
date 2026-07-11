@@ -1018,9 +1018,12 @@ details p { animation: fadeDown 0.3s ease; }
       + statTile(s.held_count, '回 開催') + statTile(s.total_participants, '名 が参加') + '</div>';
     var past = feed.past || [];
     var rows = past.map(function (p) {
+      var report = p.note_url
+        ? '<a href="' + esc(p.note_url) + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;margin-left:10px;padding:2px 10px;border:1.5px solid #41C9B4;border-radius:16px;font-size:0.78rem;font-weight:700;color:#41C9B4;text-decoration:none;white-space:nowrap;">📝 開催レポート</a>'
+        : '';
       return '<div style="display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:center;padding:18px 24px;background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);">'
         + '<span style="font-size:0.9rem;font-weight:700;color:var(--primary);">' + esc(p.ym) + '</span>'
-        + '<span style="font-size:0.95rem;color:var(--text);font-weight:500;">' + esc(p.label) + '</span>'
+        + '<span style="font-size:0.95rem;color:var(--text);font-weight:500;">' + esc(p.label) + report + '</span>'
         + '</div>';
     }).join('');
     track.innerHTML = stats + '<div style="display:flex;flex-direction:column;gap:12px;">' + rows + '</div>';

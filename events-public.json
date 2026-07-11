@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-11 22:21",
+  "generated": "2026-07-11 22:35",
   "stats": {
     "held_count": 5,
     "total_participants": 81
@@ -38,23 +38,28 @@
   "past": [
     {
       "ym": "2026年7月",
-      "label": "阪急交通社 添乗員向けAI教室"
+      "label": "阪急交通社 添乗員向けAI教室",
+      "note_url": "https://note.com/ai_kakekomi/n/n4814d51cfd9e"
     },
     {
       "ym": "2026年6月",
-      "label": "チャッピーと話そう！はじめてのAI体験教室"
+      "label": "チャッピーと話そう！はじめてのAI体験教室",
+      "note_url": "https://note.com/ai_kakekomi/n/n2913f3472ab3"
     },
     {
       "ym": "2026年5月",
-      "label": "AI体験教室（中村生涯学習センター）"
+      "label": "AI体験教室（中村生涯学習センター）",
+      "note_url": "https://note.com/ai_kakekomi/n/n176930e8666a"
     },
     {
       "ym": "2026年4月",
-      "label": "第2回 AI体験教室（西生涯学習センター）"
+      "label": "第2回 AI体験教室（西生涯学習センター）",
+      "note_url": "https://note.com/ai_kakekomi/n/n717a228abb92"
     },
     {
       "ym": "2026年3月",
-      "label": "第1回 AI教室（名古屋・ナディアパーク）"
+      "label": "第1回 AI教室（名古屋・ナディアパーク）",
+      "note_url": "https://note.com/ai_kakekomi/n/n1e9fbdbd70ae"
     }
   ]
 }
