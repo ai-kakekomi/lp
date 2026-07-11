@@ -968,6 +968,7 @@ details p { animation: fadeDown 0.3s ease; }
 <!-- ===== 開催予定・実績（events-public.json 連動） ===== -->
 <script>
 (function () {
+  function init() {
   var events = document.getElementById('lp-events');
   var track = document.getElementById('lp-track');
   if (!events && !track) return;
@@ -1035,6 +1036,9 @@ details p { animation: fadeDown 0.3s ease; }
       if (events) events.innerHTML = '';
       if (track) track.innerHTML = '';
     });
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
 })();
 </script>
 
