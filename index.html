@@ -949,48 +949,11 @@ details p { animation: fadeDown 0.3s ease; }
       <a href="https://lin.ee/pmR8ykh" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:#06C755;color:#fff;font-family:'Zen Maru Gothic',sans-serif;font-size:1.1rem;font-weight:700;text-decoration:none;border-radius:60px;transition:all 0.3s ease;box-shadow:0 4px 16px rgba(6,199,85,0.3);">LINEで相談する</a>
     </div>
 
-    <!-- イベント告知 縦並び3枚 -->
-    <div style="margin-top:40px;max-width:540px;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;gap:16px;position:relative;z-index:1;">
-
-      <!-- 6/21 次回開催 -->
-      <div style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid var(--accent);text-align:left;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <!-- バッジ：次回開催 = アクセント色(オレンジ) -->
-          <span style="padding:4px 12px;background:var(--accent);color:var(--white);font-size:0.75rem;font-weight:700;border-radius:20px;font-family:'Zen Maru Gothic',sans-serif;">次回開催</span>
-        </div>
-        <p style="font-family:'Zen Maru Gothic',sans-serif;font-size:1.1rem;font-weight:900;color:var(--primary);margin-bottom:12px;">チャッピーと話そう！はじめてのAI体験教室</p>
-        <div style="display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--text);">
-          <span>📅 2026年7月18日（土）10:00〜11:30</span>
-          <span>📍 西生涯学習センター 第1集会室（名古屋市西区浄心1-1-45）</span>
-          <span>🚇 地下鉄鶴舞線「浄心」下車 徒歩すぐ</span>
-        </div>
-        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;">
-          <span style="padding:4px 14px;background:var(--primary-pale);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;">参加無料</span>
-          <span style="padding:4px 14px;background:var(--warm-bg-alt);color:var(--text-light);font-size:0.8rem;font-weight:500;border-radius:20px;">📱 スマホ持参</span>
-          <span style="padding:4px 14px;background:var(--warm-bg-alt);color:var(--text-light);font-size:0.8rem;font-weight:500;border-radius:20px;">申込不要</span>
-          <span style="padding:4px 14px;background:var(--white);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;border:1.5px solid var(--primary);">🏛️ 名古屋市教育委員会 後援</span>
-        </div>
+    <!-- イベント告知：events-public.json から自動描画（scripts/sync_lp.py が生成） -->
+    <div id="lp-events" style="margin-top:40px;max-width:540px;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;gap:16px;position:relative;z-index:1;text-align:left;">
+      <div style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid var(--accent);">
+        <span style="color:var(--text-light);font-size:0.9rem;">開催予定を読み込み中…</span>
       </div>
-
-      <!-- 7/18 開催予定 -->
-      <div style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid #457B9D;text-align:left;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <!-- バッジ：開催予定 = ブルー系 -->
-          <span style="padding:4px 12px;background:#457B9D;color:var(--white);font-size:0.75rem;font-weight:700;border-radius:20px;font-family:'Zen Maru Gothic',sans-serif;">開催予定</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--text);">
-          <span>📅 2026年8月22日（土）10:00〜11:30</span>
-          <span>📍 西生涯学習センター 第3集会室（名古屋市西区浄心1-1-45）</span>
-          <span>🚇 地下鉄鶴舞線「浄心」下車 徒歩すぐ</span>
-        </div>
-        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;">
-          <span style="padding:4px 14px;background:var(--primary-pale);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;">参加無料</span>
-          <span style="padding:4px 14px;background:var(--warm-bg-alt);color:var(--text-light);font-size:0.8rem;font-weight:500;border-radius:20px;">📱 スマホ持参</span>
-          <span style="padding:4px 14px;background:var(--warm-bg-alt);color:var(--text-light);font-size:0.8rem;font-weight:500;border-radius:20px;">申込不要</span>
-          <span style="padding:4px 14px;background:var(--white);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;border:1.5px solid var(--primary);">🏛️ 名古屋市教育委員会 後援</span>
-        </div>
-      </div>
-
     </div>
 
     <div class="hero-badges">
@@ -1001,6 +964,79 @@ details p { animation: fadeDown 0.3s ease; }
     </div>
   </div>
 </section>
+
+<!-- ===== 開催予定・実績（events-public.json 連動） ===== -->
+<script>
+(function () {
+  var events = document.getElementById('lp-events');
+  var track = document.getElementById('lp-track');
+  if (!events && !track) return;
+  var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  var badge = function (html, bg, color, weight, border) {
+    return '<span style="padding:4px 14px;background:' + bg + ';color:' + color + ';font-size:0.8rem;font-weight:' + weight + ';border-radius:20px;' + (border || '') + '">' + html + '</span>';
+  };
+
+  function renderUpcoming(evs) {
+    if (!evs.length) { events.innerHTML = ''; return; }
+    events.innerHTML = evs.map(function (e, i) {
+      var first = i === 0;
+      var accent = first ? 'var(--accent)' : '#457B9D';
+      var label = first ? '次回開催' : '開催予定';
+      var b = [];
+      if (e.fee === '無料') b.push(badge('参加無料', 'var(--primary-pale)', 'var(--primary)', 700));
+      if (e.bring) b.push(badge('📱 ' + esc(e.bring) + '持参', 'var(--warm-bg-alt)', 'var(--text-light)', 500));
+      b.push(badge(e.apply_required ? '要申込' : '申込不要', 'var(--warm-bg-alt)', 'var(--text-light)', 500));
+      if (e.endorsement) b.push(badge('🏛️ ' + esc(e.endorsement) + ' 後援', 'var(--white)', 'var(--primary)', 700, 'border:1.5px solid var(--primary);'));
+      var title = first ? '<p style="font-family:\'Zen Maru Gothic\',sans-serif;font-size:1.1rem;font-weight:900;color:var(--primary);margin-bottom:12px;">' + esc(e.title) + '</p>' : '';
+      var place = e.loc_url ? '<a href="' + esc(e.loc_url) + '" target="_blank" rel="noopener" style="color:inherit;">' + esc(e.place_label) + '</a>' : esc(e.place_label);
+      return '<div style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid ' + accent + ';">'
+        + '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">'
+        + '<span style="padding:4px 12px;background:' + accent + ';color:var(--white);font-size:0.75rem;font-weight:700;border-radius:20px;font-family:\'Zen Maru Gothic\',sans-serif;">' + label + '</span>'
+        + '</div>' + title
+        + '<div style="display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--text);">'
+        + '<span>📅 ' + esc(e.date_label) + ' ' + esc(e.time_label) + '</span>'
+        + '<span>🕘 開場 ' + esc(e.doors_label) + '（開始30分前）</span>'
+        + '<span>📍 ' + place + '</span>'
+        + (e.access ? '<span>🚇 ' + esc(e.access) + '</span>' : '')
+        + '</div>'
+        + '<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;">' + b.join('') + '</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  function statTile(num, unit) {
+    return '<div style="background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:24px 40px;text-align:center;min-width:150px;">'
+      + '<div style="font-family:\'Zen Maru Gothic\',sans-serif;font-size:2.8rem;font-weight:900;color:var(--primary);line-height:1;">' + num + '</div>'
+      + '<div style="font-size:0.9rem;color:var(--text-light);font-weight:700;margin-top:8px;">' + unit + '</div>'
+      + '</div>';
+  }
+
+  function renderTrack(feed) {
+    var s = feed.stats || { held_count: 0, total_participants: 0 };
+    var stats = '<div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:40px;">'
+      + statTile(s.held_count, '回 開催') + statTile(s.total_participants, '名 が参加') + '</div>';
+    var past = feed.past || [];
+    var rows = past.map(function (p) {
+      return '<div style="display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:center;padding:18px 24px;background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);">'
+        + '<span style="font-size:0.9rem;font-weight:700;color:var(--primary);">' + esc(p.ym) + '</span>'
+        + '<span style="font-size:0.95rem;color:var(--text);font-weight:500;">' + esc(p.label) + '</span>'
+        + '</div>';
+    }).join('');
+    track.innerHTML = stats + '<div style="display:flex;flex-direction:column;gap:12px;">' + rows + '</div>';
+  }
+
+  fetch('events-public.json?v=' + Date.now())
+    .then(function (r) { return r.json(); })
+    .then(function (feed) {
+      if (events) renderUpcoming((feed && feed.upcoming) || []);
+      if (track) renderTrack(feed || {});
+    })
+    .catch(function () {
+      if (events) events.innerHTML = '';
+      if (track) track.innerHTML = '';
+    });
+})();
+</script>
 
 <!-- ===== MISSION ===== -->
 <section class="mission" id="mission">
@@ -1265,33 +1301,9 @@ details p { animation: fadeDown 0.3s ease; }
       <div class="section-label fade-in">TRACK RECORD</div>
       <div class="section-title fade-in">活動実績</div>
     </div>
-    <div style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:16px;">
-      <div class="fade-in" style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid var(--primary);text-align:left;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <!-- バッジ：開催済み = グリーン系 -->
-          <span style="padding:4px 12px;background:var(--primary);color:var(--white);font-size:0.75rem;font-weight:700;border-radius:20px;font-family:'Zen Maru Gothic',sans-serif;">開催済み</span>
-        </div>
-        <p style="font-family:'Zen Maru Gothic',sans-serif;font-size:1.1rem;font-weight:900;color:var(--primary);margin-bottom:12px;">チャッピーと話そう！はじめてのAI体験教室</p>
-        <div style="display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--text);">
-          <span>📅 2026年6月21日（日）10:00〜11:30</span>
-          <span>📍 西生涯学習センター 第2集会室（名古屋市西区浄心1-1-45）</span>
-        </div>
-        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;">
-          <span style="padding:4px 14px;background:var(--white);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;border:1.5px solid var(--primary);">🏛️ 名古屋市教育委員会 後援</span>
-        </div>
-      </div>
-      <div class="fade-in" style="display:grid;grid-template-columns:100px 1fr;gap:16px;align-items:center;padding:20px 24px;background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);">
-        <span style="font-size:0.9rem;font-weight:700;color:var(--primary);">2026年5月</span>
-        <span style="font-size:0.95rem;color:var(--text);font-weight:500;">AI体験教室（名古屋市中村生涯学習センター）</span>
-      </div>
-      <div class="fade-in" style="display:grid;grid-template-columns:100px 1fr;gap:16px;align-items:center;padding:20px 24px;background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);">
-        <span style="font-size:0.9rem;font-weight:700;color:var(--primary);">2026年4月</span>
-        <span style="font-size:0.95rem;color:var(--text);font-weight:500;">第2回 AI体験教室（名古屋市西生涯学習センター）</span>
-      </div>
-      <div class="fade-in" style="display:grid;grid-template-columns:100px 1fr;gap:16px;align-items:center;padding:20px 24px;background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);">
-        <span style="font-size:0.9rem;font-weight:700;color:var(--primary);">2026年3月</span>
-        <span style="font-size:0.95rem;color:var(--text);font-weight:500;">第1回 AI教室（名古屋・ナディアパーク）<br><span style="font-size:0.85rem;color:var(--text-light);">AIかけこみ寺として初開催</span></span>
-      </div>
+    <!-- 実績：events-public.json から自動描画（scripts/sync_lp.py が生成） -->
+    <div id="lp-track" style="max-width:760px;margin:0 auto;">
+      <p style="text-align:center;color:var(--text-light);font-size:0.9rem;">実績を読み込み中…</p>
     </div>
   </div>
 </section>
