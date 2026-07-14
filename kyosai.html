@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>共催AI教室 事前確認フォーム｜AIかけこみ寺</title>
+<style>
+  :root{
+    --bg:#faf9f7; --card:#ffffff; --ink:#1f2a2e; --muted:#6b7472;
+    --accent:#0f7a6b; --accent-soft:#e7f2ef; --accent-ink:#0b5e52;
+    --line:#e3e0d9; --field:#fbfbfa; --field-focus:#ffffff;
+    --req:#c0563a; --req-soft:#fbeae4;
+    --radius:12px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:32px 20px 80px}
+  header.hero{
+    background:linear-gradient(160deg,#0f7a6b,#0b5e52); color:#fff;
+    border-radius:var(--radius); padding:28px 26px; margin-bottom:16px;
+  }
+  .hero .brand{font-size:.82rem; letter-spacing:.12em; opacity:.85; margin-bottom:6px}
+  .hero h1{margin:0 0 8px; font-size:1.45rem; letter-spacing:.01em; text-wrap:balance}
+  .hero p{margin:0; font-size:.95rem; opacity:.95; line-height:1.7}
+  .legend{
+    display:flex; flex-wrap:wrap; align-items:center; gap:14px;
+    background:var(--card); border:1px solid var(--line); border-radius:10px;
+    padding:12px 16px; margin-bottom:22px; font-size:.86rem; color:var(--muted);
+  }
+  .legend .req-badge{background:var(--req-soft); color:var(--req); font-weight:700; font-size:.74rem; padding:2px 8px; border-radius:6px}
+  .legend .opt-badge{background:var(--field); color:var(--muted); font-weight:600; font-size:.74rem; padding:2px 8px; border-radius:6px; border:1px solid var(--line)}
+  section.card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px 22px 8px; margin-bottom:18px;
+  }
+  section.card.spotlight{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
+  .sec-head{display:flex; align-items:baseline; gap:10px; margin:0 0 4px}
+  .sec-num{
+    color:var(--accent); font-weight:700; font-size:.9rem;
+    font-variant-numeric:tabular-nums; min-width:1.4em;
+  }
+  .sec-head h2{margin:0; font-size:1.08rem; letter-spacing:.01em}
+  .wish{
+    background:var(--accent-soft); color:var(--accent-ink);
+    border-radius:10px; padding:11px 14px; margin:12px 0 4px;
+    font-size:.9rem; line-height:1.65;
+  }
+  .wish b{color:var(--accent-ink)}
+  .field{margin:16px 0}
+  .field > label.q{display:block; font-weight:600; margin-bottom:6px; font-size:.96rem}
+  .hint{color:var(--muted); font-size:.83rem; margin-top:4px; line-height:1.6}
+  input[type=text], input[type=email], input[type=number], input[type=tel], textarea, select{
+    width:100%; padding:11px 12px; font:inherit; color:var(--ink);
+    background:var(--field); border:1px solid var(--line); border-radius:9px;
+    transition:border-color .15s, background .15s;
+  }
+  input:focus, textarea:focus, select:focus{
+    outline:none; border-color:var(--accent); background:var(--field-focus);
+    box-shadow:0 0 0 3px var(--accent-soft);
+  }
+  textarea{min-height:80px; resize:vertical}
+  textarea.big{min-height:110px}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  @media(max-width:520px){ .grid2{grid-template-columns:1fr} }
+  .opts{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+  .opts label{
+    display:inline-flex; align-items:center; gap:6px; cursor:pointer;
+    border:1px solid var(--line); border-radius:999px; padding:7px 14px;
+    font-size:.9rem; background:var(--field); user-select:none;
+  }
+  .opts input{accent-color:var(--accent); margin:0}
+  .opts label:has(input:checked){
+    border-color:var(--accent); background:var(--accent-soft); color:var(--accent-ink); font-weight:600;
+  }
+  table.disclose{width:100%; border-collapse:collapse; margin-top:8px; font-size:.92rem}
+  table.disclose th, table.disclose td{border-bottom:1px solid var(--line); padding:10px 6px; text-align:left}
+  table.disclose th{color:var(--muted); font-weight:600; font-size:.82rem}
+  table.disclose td.opt{text-align:center; white-space:nowrap}
+  table.disclose td.opt label{display:inline-flex; align-items:center; gap:5px; cursor:pointer; font-size:.88rem}
+  .note-inline{color:var(--muted); font-size:.82rem; margin:6px 0 2px}
+  .submit-row{margin-top:26px; text-align:center}
+  button.send{
+    background:var(--accent); color:#fff; border:none; border-radius:10px;
+    padding:14px 40px; font-size:1.02rem; font-weight:700; cursor:pointer; letter-spacing:.03em;
+    transition:background .15s, transform .05s;
+  }
+  button.send:hover{background:var(--accent-ink)}
+  button.send:active{transform:translateY(1px)}
+  footer.sig{margin-top:30px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:.86rem; line-height:1.8}
+  .req{color:var(--req); font-size:.72rem; font-weight:700; margin-left:6px; background:var(--req-soft); padding:2px 7px; border-radius:6px; vertical-align:middle}
+  .opt{color:var(--muted); font-size:.72rem; font-weight:600; margin-left:6px; background:var(--field); border:1px solid var(--line); padding:2px 7px; border-radius:6px; vertical-align:middle}
+  .setup{background:#fff7ed; border:1px dashed #e0a05a; border-radius:10px; padding:12px 14px; margin-bottom:22px; font-size:.85rem; color:#8a5a1f; line-height:1.65}
+  .setup code{background:#fff; padding:1px 5px; border-radius:4px; border:1px solid #e6cfa5}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="brand">非営利団体 AIかけこみ寺</div>
+    <h1>共催AI教室 事前確認フォーム</h1>
+    <p>共催でAI教室を開催するにあたり、<b>より多くの方に・安心して</b>お届けするための確認事項です。参加者から参加費はいただきません。分かる範囲でご記入ください（空欄は追って一緒に詰めます）。</p>
+  </header>
+
+  <div class="legend">
+    <span><span class="req-badge">必須</span> 必ずご記入ください</span>
+    <span><span class="opt-badge">任意</span> それ以外はすべて任意（分かる範囲でOK）</span>
+  </div>
+
+  <form action="https://formspree.io/f/meeyooky" method="POST">
+    <input type="hidden" name="_subject" value="【共催AI教室】事前確認フォームの回答">
+
+    <!-- 0 基本情報 -->
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">0</span><h2>基本情報</h2></div>
+      <div class="grid2">
+        <div class="field"><label class="q">貴団体名<span class="req">必須</span></label>
+          <input type="text" name="貴団体名" required></div>
+        <div class="field"><label class="q">ご担当者名<span class="req">必須</span></label>
+          <input type="text" name="ご担当者名" required></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label class="q">ご連絡先メール<span class="req">必須</span></label>
+          <input type="email" name="email" required>
+          <div class="hint">回答控え・当団体からの返信用</div></div>
+        <div class="field"><label class="q">開催予定日<span class="opt">任意</span></label>
+          <input type="text" name="開催予定日" placeholder="例）2026年8月22日（土）10:00〜"></div>
+      </div>
+    </section>
+
+    <!-- 1 開催概要 -->
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">1</span><h2>開催概要</h2></div>
+      <div class="field"><label class="q">会場名・住所<span class="opt">任意</span></label>
+        <input type="text" name="会場名・住所"></div>
+      <div class="field"><label class="q">対象（どんな方に届けたいか）<span class="opt">任意</span></label>
+        <input type="text" name="対象" placeholder="例）ひとり親家庭の保護者、シニア など"></div>
+      <div class="field"><label class="q">共催・協力の座組<span class="opt">任意</span></label>
+        <input type="text" name="座組" placeholder="例）主催＝貴団体／企画・講師＝AIかけこみ寺"></div>
+    </section>
+
+    <!-- 2 困りごと（スポットライト） -->
+    <section class="card spotlight">
+      <div class="sec-head"><span class="sec-num">2</span><h2>AIで解決したい困りごと</h2></div>
+      <div class="wish">✨ ここが一番大事です。<b>受講される方の「困りごと」に合わせて教室の内容を組み立てます。</b>「こんなことがAIでできたら」というご要望を、思いつく範囲で自由にお書きください。</div>
+      <div class="field"><label class="q">AIで解決したい困りごと・受講者に期待すること<span class="opt">任意</span></label>
+        <textarea class="big" name="AIで解決したい困りごと" placeholder="例）役所への文章作成が大変／スマホの写真整理／広報チラシを自分で作りたい／英語のメール対応 など"></textarea></div>
+    </section>
+
+    <!-- 3 費用・謝金 -->
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">3</span><h2>費用・謝金</h2></div>
+      <p class="note-inline" style="line-height:1.75">参加者から参加費はいただきません。一方、<b>法人・団体向けのAI教室</b>については、活動を継続していくため、<b>ご予算の範囲内で謝金</b>の支給をお願いしております（公共施設での市民向け無料教室等は対象外です）。無理のない範囲でご相談させてください。</p>
+      <p class="note-inline" style="line-height:1.75;color:var(--accent-ink);background:var(--accent-soft);border-radius:8px;padding:11px 13px;margin-top:8px">💚 いただいた謝金は、無料の市民向けAI教室の運営に大切に使わせていただきます。あなたのご依頼が、AIに触れる機会のなかった誰かの一歩を支えます。</p>
+      <div class="field"><label class="q">今回の位置づけ<span class="opt">任意</span></label>
+        <div class="opts">
+          <label><input type="radio" name="位置づけ" value="法人・団体向け（謝金あり）">法人・団体向け（謝金あり）</label>
+          <label><input type="radio" name="位置づけ" value="市民向け無料">市民向け無料</label>
+          <label><input type="radio" name="位置づけ" value="相談したい">相談したい</label>
+        </div></div>
+      <div class="field"><label class="q">謝金のご予算感<span class="opt">任意</span></label>
+        <input type="text" name="謝金予算" placeholder="例）◯万円程度／要相談">
+        <div class="hint">交通費：登壇するメンバーの実費について、別途ご相談させてください。</div></div>
+    </section>
+
+    <!-- 4 会場と定員 -->
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">4</span><h2>会場と定員</h2></div>
+      <div class="wish">🙌 <b>当団体の願い：</b>せっかくの機会なので、<b>入れる人数の上限いっぱい</b>まで届けたいです。可能な範囲で大きめの会場・定員をご検討いただけると嬉しいです。</div>
+      <div class="grid2">
+        <div class="field"><label class="q">会場の最大収容人数<span class="opt">任意</span></label>
+          <input type="number" name="会場の最大収容人数" min="0" placeholder="名"></div>
+        <div class="field"><label class="q">今回の募集定員（参加者）<span class="opt">任意</span></label>
+          <input type="number" name="募集定員" min="0" placeholder="名"></div>
+      </div>
+      <div class="field"><label class="q">当団体スタッフ（講師＋サポーター）の入場可否・上限<span class="opt">任意</span></label>
+        <input type="text" name="スタッフ入場上限" placeholder="例）10名まで可">
+        <div class="hint">サポーターは参加者のスマホ操作を隣で手伝う役です。参加者5〜6名につき1名が目安で、その分の座席も見込んでいただけると助かります。</div></div>
+      <div class="field"><label class="q">机・イスありのレイアウト<span class="opt">任意</span></label>
+        <div class="opts">
+          <label><input type="radio" name="レイアウト" value="可">可</label>
+          <label><input type="radio" name="レイアウト" value="不可">不可</label>
+        </div></div>
+    </section>
+
+    <!-- 5 集客・広報 -->
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">5</span><h2>集客・広報</h2></div>
+      <div class="wish">📣 <b>当団体の願い：</b>ひとりでも多くの方に届けたいので、告知・チラシ配布にご協力いただけると心強いです。<b>チラシは当団体が無料で制作</b>します。</div>
+      <div class="field"><label class="q">当団体制作チラシの掲示・配布（貴施設内）<span class="opt">任意</span></label>
+        <div class="opts"><label><input type="radio" name="チラシ掲示配布" value="可">可</label><label><input type="radio" name="チラシ掲示配布" value="不可">不可</label></div></div>
+      <div class="field"><label class="q">貴団体の会員・利用者への告知（LINE・広報誌・メール等）<span class="opt">任意</span></label>
+        <div class="opts"><label><input type="radio" name="会員告知" value="可">可</label><label><input type="radio" name="会員告知" value="不可">不可</label></div></div>
+      <div class="field"><label class="q">近隣施設・自治体窓口等へのチラシ配架のご紹介<span class="opt">任意</span></label>
+        <div class="opts"><label><input type="radio" name="配架紹介" value="可">可</label><label><input type="radio" name="配架紹介" value="不可">不可</label></div></div>
+      <div class="field"><label class="q">貴団体SNS・HPでの告知<span class="opt">任意</span></label>
+        <div class="opts"><label><input type="radio" name="SNS告知" value="可">可</label><label><input type="radio" name="SNS告知" value="不可">不可</label></div></div>
+      <div class="field"><label class="q">主な告知チャネル・申込方法・締切<span class="opt">任意</span></label>
+        <textarea name="告知・申込メモ" placeholder="例）会員LINEで告知、申込は電話とQRの二本立て、締切は開催1週間前 など"></textarea></div>
+      <div class="field"><label class="q">最少催行人数（この人数を下回ったら要相談）<span class="opt">任意</span></label>
+        <input type="number" name="最少催行人数" min="0" placeholder="名"></div>
+    </section>
+
+    <!-- 6 自治体 -->
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">6</span><h2>自治体との共催・後援</h2></div>
+      <div class="wish">🏛️ 自治体の後援・共催があると参加者に安心いただけ、集客もしやすくなります（当団体は<b>名古屋市教育委員会の後援実績あり</b>）。可能性があればご相談させてください。</div>
+      <div class="field"><label class="q">自治体との共催・後援の可能性<span class="opt">任意</span></label>
+        <div class="opts">
+          <label><input type="radio" name="自治体共催" value="あり">あり</label>
+          <label><input type="radio" name="自治体共催" value="なし">なし</label>
+          <label><input type="radio" name="自治体共催" value="相談したい">相談したい</label>
+        </div></div>
+      <div class="field"><label class="q">（ありの場合）想定される自治体・部署<span class="opt">任意</span></label>
+        <input type="text" name="想定自治体"></div>
+    </section>
+
+    <!-- 7 当日環境 -->
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">7</span><h2>当日の環境</h2></div>
+      <p class="note-inline">スマホ・PCでAIに触れていただくため、以下をご確認ください。</p>
+      <div class="field"><label class="q">Wi-Fi（参加者が使えるもの）<span class="opt">任意</span></label>
+        <div class="opts"><label><input type="radio" name="WiFi" value="あり">あり</label><label><input type="radio" name="WiFi" value="なし">なし</label></div></div>
+      <div class="field"><label class="q">電源（延長・タップの利用）<span class="opt">任意</span></label>
+        <div class="opts"><label><input type="radio" name="電源" value="可">可</label><label><input type="radio" name="電源" value="不可">不可</label></div></div>
+      <div class="field"><label class="q">プロジェクター／スクリーン<span class="opt">任意</span></label>
+        <div class="opts"><label><input type="radio" name="プロジェクター" value="あり">あり</label><label><input type="radio" name="プロジェクター" value="なし">なし（持込相談）</label></div></div>
+      <div class="field"><label class="q">マイク・スピーカー<span class="opt">任意</span></label>
+        <div class="opts"><label><input type="radio" name="マイク" value="あり">あり</label><label><input type="radio" name="マイク" value="なし">なし</label></div></div>
+    </section>
+
+    <!-- 8 情報セキュリティ -->
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">8</span><h2>情報セキュリティに関する説明</h2></div>
+      <p class="note-inline" style="line-height:1.75">AI教室の冒頭で、企業秘密・個人情報のAIにおける取り扱いについて注意事項を説明します。具体的には、扱う情報を機密度に応じて3段階（青・黄・赤）に分類し、AIに入力してよい情報・注意が必要な情報・入力してはいけない情報の判断基準をお伝えします。</p>
+      <div class="field"><div class="opts"><label><input type="checkbox" name="セキュリティ説明_承知" value="承知しました">上記の説明について承知しました</label></div></div>
+    </section>
+
+    <!-- 9 実績公開 -->
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">9</span><h2>実績公開の確認</h2></div>
+      <p class="note-inline">当団体の活動報告として、以下の公開可否をご確認ください。</p>
+      <table class="disclose">
+        <thead><tr><th>項目</th><th style="text-align:center">許可する</th><th style="text-align:center">許可しない</th></tr></thead>
+        <tbody>
+          <tr><td>AI教室の様子の<b>写真撮影</b></td>
+            <td class="opt"><label><input type="radio" name="公開_写真撮影" value="許可する"></label></td>
+            <td class="opt"><label><input type="radio" name="公開_写真撮影" value="許可しない"></label></td></tr>
+          <tr><td>写真の<b>SNS・HPへの掲載</b></td>
+            <td class="opt"><label><input type="radio" name="公開_写真掲載" value="許可する"></label></td>
+            <td class="opt"><label><input type="radio" name="公開_写真掲載" value="許可しない"></label></td></tr>
+          <tr><td>活動報告（レポート・記事）の<b>外部公開</b></td>
+            <td class="opt"><label><input type="radio" name="公開_レポート" value="許可する"></label></td>
+            <td class="opt"><label><input type="radio" name="公開_レポート" value="許可しない"></label></td></tr>
+          <tr><td>活動記録における<b>貴団体名の掲載</b></td>
+            <td class="opt"><label><input type="radio" name="公開_団体名" value="許可する"></label></td>
+            <td class="opt"><label><input type="radio" name="公開_団体名" value="許可しない"></label></td></tr>
+        </tbody>
+      </table>
+      <p class="hint" style="margin-top:10px">※ 写真掲載時は、参加者の顔が特定できないようモザイク処理等を責任をもって施します。<br>※ 公開先：HP（ai-kakekomi.com）／SNS（note・Instagram 等）／助成金等の申請書類／その他の活動報告資料</p>
+      <div class="field"><label class="q">備考（条件付き許可など）<span class="opt">任意</span></label>
+        <textarea name="備考"></textarea></div>
+    </section>
+
+    <div class="submit-row">
+      <button type="submit" class="send">この内容で送信する</button>
+    </div>
+
+    <footer class="sig">
+      非営利団体 AIかけこみ寺　代表　伊藤一樹<br>
+      連絡先：info@ai-kakekomi.com ／ ai-kakekomi.com
+    </footer>
+  </form>
+
+</div>
+</body>
+</html>
