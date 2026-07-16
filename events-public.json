@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-11 22:35",
+  "generated": "2026-07-16 21:56",
   "stats": {
     "held_count": 5,
     "total_participants": 81
@@ -31,8 +31,10 @@
       "access": "地下鉄鶴舞線「浄心」下車 徒歩すぐ",
       "fee": "無料",
       "bring": "スマホ",
-      "apply_required": false,
-      "endorsement": "名古屋市教育委員会"
+      "apply_required": true,
+      "endorsement": "名古屋市教育委員会",
+      "apply_url": "https://tally.so/r/MeqZdE",
+      "capacity": 40
     }
   ],
   "past": [

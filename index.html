@@ -1001,6 +1001,7 @@ details p { animation: fadeDown 0.3s ease; }
         + (e.access ? '<span>🚇 ' + esc(e.access) + '</span>' : '')
         + '</div>'
         + '<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;">' + b.join('') + '</div>'
+        + (e.apply_url ? '<a href="' + esc(e.apply_url) + '" target="_blank" rel="noopener" style="display:inline-block;margin-top:18px;padding:15px 36px;background:' + accent + ';color:var(--white);font-family:\'Zen Maru Gothic\',sans-serif;font-size:1.1rem;font-weight:900;border-radius:30px;text-decoration:none;box-shadow:var(--shadow-card);">📝 スマホでかんたん申込</a>' : '')
         + '</div>';
     }).join('');
   }
