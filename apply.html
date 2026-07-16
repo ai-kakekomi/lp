@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI体験教室 お申込 | AIかけこみ寺</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#2D6A4F; --primary-light:#52B788; --primary-pale:#D8F3DC;
+  --accent:#E76F51; --accent-light:#F4A261;
+  --warm-bg:#FDF8F0; --warm-bg-alt:#FFF5E8;
+  --text:#2C2C2C; --text-light:#5A5A5A; --white:#FFFFFF;
+  --shadow-soft:0 4px 24px rgba(45,106,79,0.08);
+  --shadow-card:0 8px 32px rgba(0,0,0,0.06);
+  --radius:20px; --radius-sm:12px;
+  --danger:#C0392B;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; font-family:'Noto Sans JP',sans-serif; color:var(--text);
+  background:var(--warm-bg); font-size:18px; line-height:1.7;
+}
+.wrap{max-width:640px; margin:0 auto; padding:24px 18px 64px;}
+.site-head{display:flex; align-items:center; gap:10px; padding:8px 0 20px;}
+.site-head .logo{font-family:'Zen Maru Gothic',sans-serif; font-weight:900; color:var(--primary); font-size:1.15rem;}
+.preview-banner{
+  background:#FFF3CD; color:#8a6d3b; border:1.5px solid #f0d98c;
+  border-radius:var(--radius-sm); padding:10px 16px; font-size:0.9rem; margin-bottom:20px;
+}
+.card{background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow-card); padding:28px 26px; margin-bottom:20px;}
+h1{font-family:'Zen Maru Gothic',sans-serif; color:var(--primary); font-size:1.6rem; margin:0 0 6px; line-height:1.4;}
+h2{font-family:'Zen Maru Gothic',sans-serif; color:var(--primary); font-size:1.3rem; margin:0 0 14px;}
+.lead{color:var(--text-light); font-size:1rem; margin:0 0 20px;}
+.ev-meta{display:flex; flex-direction:column; gap:8px; font-size:1.05rem; margin:14px 0 6px;}
+.ev-meta span{display:flex; gap:8px;}
+.badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;}
+.badge{padding:5px 14px; border-radius:20px; font-size:0.85rem; font-weight:700;}
+.badge.seat{background:var(--primary-pale); color:var(--primary);}
+.badge.few{background:#FDEBD0; color:#B9770E;}
+.badge.full{background:#FADBD8; color:var(--danger);}
+.badge.free{background:var(--warm-bg-alt); color:var(--text-light);}
+
+form{margin-top:8px;}
+.field{margin-bottom:24px;}
+label.q{display:block; font-family:'Zen Maru Gothic',sans-serif; font-weight:700; font-size:1.15rem; color:var(--primary); margin-bottom:4px;}
+.hint{font-size:0.9rem; color:var(--text-light); margin-bottom:10px;}
+input[type=text], input[type=tel]{
+  width:100%; font-size:1.2rem; padding:14px 16px; border:2px solid #E0D8CC;
+  border-radius:var(--radius-sm); font-family:inherit; background:#fff;
+}
+input:focus{outline:none; border-color:var(--primary-light); box-shadow:0 0 0 3px var(--primary-pale);}
+.stepper{display:flex; align-items:center; gap:14px;}
+.stepper button{
+  width:56px; height:56px; border-radius:50%; border:2px solid var(--primary-light);
+  background:#fff; color:var(--primary); font-size:1.8rem; font-weight:700; cursor:pointer; line-height:1;
+}
+.stepper button:active{background:var(--primary-pale);}
+.stepper .num{font-size:1.8rem; font-weight:700; min-width:56px; text-align:center; font-family:'Zen Maru Gothic',sans-serif;}
+.choices{display:flex; gap:12px; flex-wrap:wrap;}
+.choice{flex:1; min-width:130px;}
+.choice input{position:absolute; opacity:0;}
+.choice label{
+  display:block; text-align:center; padding:14px; border:2px solid #E0D8CC; border-radius:var(--radius-sm);
+  font-size:1.1rem; font-weight:700; cursor:pointer; background:#fff;
+}
+.choice input:checked + label{border-color:var(--primary); background:var(--primary-pale); color:var(--primary);}
+.hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+
+.btn{
+  display:block; width:100%; padding:18px; border:none; border-radius:30px;
+  font-family:'Zen Maru Gothic',sans-serif; font-size:1.3rem; font-weight:900; color:#fff;
+  background:var(--accent); cursor:pointer; box-shadow:var(--shadow-card); margin-top:8px;
+}
+.btn:disabled{opacity:0.55; cursor:default;}
+.btn.secondary{background:var(--primary);}
+
+.state{text-align:center; padding:12px 0;}
+.state .big{font-size:3rem; margin-bottom:8px;}
+.state h2{font-size:1.4rem;}
+.state p{color:var(--text-light); font-size:1.05rem;}
+.tel-fallback{margin-top:18px; padding:16px; background:var(--warm-bg-alt); border-radius:var(--radius-sm); font-size:1rem;}
+.tel-fallback a{color:var(--primary); font-weight:700; text-decoration:none; font-size:1.25rem;}
+
+.chooser-ev{border:2px solid var(--primary-pale); border-radius:var(--radius); padding:20px 22px; margin-bottom:16px;}
+.chooser-ev .t{font-family:'Zen Maru Gothic',sans-serif; font-weight:900; color:var(--primary); font-size:1.15rem; margin-bottom:6px;}
+.chooser-ev .d{color:var(--text); font-size:1rem; margin-bottom:12px;}
+a.apply-link{display:block; text-align:center; padding:14px; border-radius:30px; background:var(--accent); color:#fff; font-family:'Zen Maru Gothic',sans-serif; font-weight:900; font-size:1.1rem; text-decoration:none;}
+.foot{text-align:center; margin-top:32px; font-size:0.9rem;}
+.foot a{color:var(--primary); text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="site-head"><span class="logo">🎓 AIかけこみ寺</span></div>
+  <div id="preview" class="preview-banner" style="display:none;"></div>
+  <div id="app"><div class="card"><p class="lead">読み込み中…</p></div></div>
+  <div class="foot"><a href="/">← AIかけこみ寺トップへ</a></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ===== 設定 =====
+  // GASウェブアプリをデプロイしたら、その /exec URL をここに入れる。
+  // 空のままだと「プレビューモード」（送信先未接続・デモ表示）で動く。
+  var GAS_URL = "https://script.google.com/macros/s/AKfycbw0PukQqYCBdlt9cHmd0jTRma1a4g_HMwZlwb7vxqd-XMvttPoNDEXMi730JFDU3LcHIw/exec";
+
+  var TEL = "050-1792-9953";
+
+  // ===== file:// で直接開いたとき用のデモデータ =====
+  // 本番（ai-kakekomi.com 上）では events-public.json の実データを読む。
+  // 複数教室が同時受付中の見え方を確認できるよう、あえて2件入れてある。
+  var DEMO_FEED = { upcoming: [
+    { uid:"akk-20260822", title:"チャッピーと話そう！はじめてのAI体験教室",
+      date_label:"2026年8月22日（土）", time_label:"10:00〜11:30", doors_label:"9:30",
+      place_label:"西生涯学習センター 第3集会室（名古屋市西区浄心1-1-45）",
+      access:"地下鉄鶴舞線「浄心」下車 徒歩すぐ", fee:"無料", bring:"スマホ",
+      apply_required:true, apply_url:"apply.html?uid=akk-20260822", endorsement:"名古屋市教育委員会", capacity:40 },
+    { uid:"akk-20260919", title:"チャッピーと話そう！はじめてのAI体験教室",
+      date_label:"2026年9月19日（土）", time_label:"10:00〜12:00", doors_label:"9:30",
+      place_label:"西生涯学習センター 視聴覚室（名古屋市西区浄心1-1-45）",
+      access:"地下鉄鶴舞線「浄心」下車 徒歩すぐ", fee:"無料", bring:"スマホ",
+      apply_required:true, apply_url:"apply.html?uid=akk-20260919", endorsement:"名古屋市教育委員会", capacity:60 }
+  ]};
+
+  var app = document.getElementById("app");
+  var previewBanner = document.getElementById("preview");
+  var esc = function(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); };
+  var param = function(k){ return new URLSearchParams(location.search).get(k); };
+  var isPreview = !GAS_URL;
+
+  function telBlock(msg){
+    return '<div class="tel-fallback">'+esc(msg)+'<br><a href="tel:'+TEL.replace(/-/g,"")+'">📞 '+TEL+'</a></div>';
+  }
+
+  // ---- feed取得（本番=fetch / ローカル=デモ） ----
+  function loadFeed(){
+    return fetch("events-public.json?v="+Date.now())
+      .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+      .catch(function(){ usingDemo=true; return DEMO_FEED; });
+  }
+  var usingDemo = false;
+
+  // ---- 残席取得（GAS doGet）。未接続なら null ----
+  function loadRemaining(uid){
+    if(isPreview) return Promise.resolve(null);
+    return fetch(GAS_URL+"?uid="+encodeURIComponent(uid))
+      .then(function(r){ return r.json(); })
+      .catch(function(){ return null; });
+  }
+
+  function seatBadge(rem, cap){
+    if(rem==null) return '<span class="badge seat">定員 '+cap+'名</span>';
+    if(rem<=0)   return '<span class="badge full">満席</span>';
+    if(rem<=5)   return '<span class="badge few">残りあと'+rem+'席</span>';
+    return '<span class="badge seat">受付中（残り'+rem+'席）</span>';
+  }
+
+  // ===== 画面：受付中の教室一覧（uid無しで来たとき） =====
+  function renderChooser(feed){
+    var open = (feed.upcoming||[]).filter(function(e){ return e.apply_required; });
+    if(!open.length){
+      app.innerHTML = '<div class="card"><h2>ただいま受付中の教室はありません</h2>'
+        + '<p class="lead">次回の開催予定はトップページでご案内しています。</p>'
+        + telBlock("お電話でもお問い合わせいただけます。") + '</div>';
+      return;
+    }
+    var cards = open.map(function(e){
+      return '<div class="chooser-ev">'
+        + '<div class="t">'+esc(e.title)+'</div>'
+        + '<div class="d">📅 '+esc(e.date_label)+' '+esc(e.time_label)+'<br>📍 '+esc(e.place_label)+'</div>'
+        + '<a class="apply-link" href="apply.html?uid='+encodeURIComponent(e.uid)+'">この教室に申し込む →</a>'
+        + '</div>';
+    }).join("");
+    app.innerHTML = '<div class="card"><h1>AI体験教室 お申込</h1>'
+      + '<p class="lead">お申し込みになる教室をお選びください。</p>'+cards+'</div>';
+  }
+
+  // ===== 画面：申込フォーム（uid指定） =====
+  function renderForm(ev){
+    loadRemaining(ev.uid).then(function(g){
+      var rem = g ? g.remaining : null;
+      var full = (rem!=null && rem<=0);
+      var meta = '<div class="ev-meta">'
+        + '<span>📅 '+esc(ev.date_label)+' '+esc(ev.time_label)+'</span>'
+        + '<span>🕘 開場 '+esc(ev.doors_label)+'（開始30分前）</span>'
+        + '<span>📍 '+esc(ev.place_label)+'</span>'
+        + (ev.access?'<span>🚇 '+esc(ev.access)+'</span>':'')
+        + '</div>'
+        + '<div class="badges">'
+        +   (ev.fee==="無料"?'<span class="badge free">参加無料</span>':'')
+        +   seatBadge(rem, ev.capacity)
+        +   (ev.endorsement?'<span class="badge free">🏛️ '+esc(ev.endorsement)+' 後援</span>':'')
+        + '</div>';
+
+      if(full){
+        app.innerHTML = '<div class="card"><h1>'+esc(ev.title)+'</h1>'+meta
+          + '<div class="state" style="margin-top:24px;"><div class="big">🙇</div>'
+          + '<h2>おかげさまで満席となりました</h2>'
+          + '<p>キャンセル待ちをお電話で承ります。</p>'
+          + telBlock("空きが出た場合にご連絡します。") + '</div></div>';
+        return;
+      }
+
+      app.innerHTML = '<div class="card"><h1>'+esc(ev.title)+'</h1>'+meta
+        + '<p class="lead" style="margin-top:20px;">下記をご記入のうえ「申し込む」を押してください。ご家族が代わりに入力していただいてもかまいません。</p>'
+        + '<form id="f" novalidate>'
+        + '<input type="hidden" id="uid" value="'+esc(ev.uid)+'">'
+        + '<div class="field"><label class="q" for="name">お名前</label>'
+        +   '<div class="hint">ふりがなでもかまいません</div>'
+        +   '<input type="text" id="name" autocomplete="name" required></div>'
+        + '<div class="field"><label class="q" for="tel">お電話番号</label>'
+        +   '<div class="hint">確認のご連絡に使います</div>'
+        +   '<input type="tel" id="tel" inputmode="tel" autocomplete="tel" required></div>'
+        + '<div class="field"><label class="q">参加人数</label>'
+        +   '<div class="hint">ご本人を含めた人数</div>'
+        +   '<div class="stepper"><button type="button" id="minus" aria-label="減らす">−</button>'
+        +   '<span class="num" id="numlabel">1</span>'
+        +   '<button type="button" id="plus" aria-label="増やす">＋</button>'
+        +   '<input type="hidden" id="num" value="1"></div></div>'
+        + '<div class="field"><label class="q">当日サポートは必要ですか？</label>'
+        +   '<div class="hint">スマホ操作に不安がある方は「必要」をお選びください</div>'
+        +   '<div class="choices">'
+        +     '<div class="choice"><input type="radio" name="support" id="s_no" value="いいえ" checked><label for="s_no">大丈夫</label></div>'
+        +     '<div class="choice"><input type="radio" name="support" id="s_yes" value="はい"><label for="s_yes">必要</label></div>'
+        +   '</div></div>'
+        + '<div class="hp"><label>ここは空欄のまま<input type="text" id="hp" tabindex="-1" autocomplete="off"></label></div>'
+        + '<button type="submit" class="btn" id="submit">申し込む</button>'
+        + '</form></div>';
+
+      wireForm(ev);
+    });
+  }
+
+  function wireForm(ev){
+    var num = document.getElementById("num"), lbl = document.getElementById("numlabel");
+    document.getElementById("plus").onclick = function(){ var v=Math.min(10,+num.value+1); num.value=v; lbl.textContent=v; };
+    document.getElementById("minus").onclick = function(){ var v=Math.max(1,+num.value-1); num.value=v; lbl.textContent=v; };
+
+    document.getElementById("f").addEventListener("submit", function(e){
+      e.preventDefault();
+      var name = document.getElementById("name").value.trim();
+      var tel  = document.getElementById("tel").value.trim();
+      if(!name){ document.getElementById("name").focus(); return; }
+      if(!tel){ document.getElementById("tel").focus(); return; }
+
+      var payload = {
+        event_uid: ev.uid, 氏名: name, 電話: tel,
+        人数: +document.getElementById("num").value,
+        サポート: document.querySelector('input[name=support]:checked').value,
+        hp: document.getElementById("hp").value
+      };
+      if(payload.hp) return; // bot
+
+      var btn = document.getElementById("submit");
+      btn.disabled = true; btn.textContent = "送信中…";
+
+      if(isPreview){
+        // GAS未接続：実際には送らず、送信内容と結果画面のプレビューを表示
+        setTimeout(function(){ showSuccess(ev, null, payload); }, 400);
+        return;
+      }
+
+      fetch(GAS_URL, { method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body: JSON.stringify(payload) })
+        .then(function(r){ return r.json(); })
+        .then(function(res){
+          if(res.ok) showSuccess(ev, res.remaining, null);
+          else if(res.reason==="full") showFull(ev);
+          else showError(ev);
+        })
+        .catch(function(){ showError(ev); })
+        .finally(function(){ btn.disabled=false; btn.textContent="申し込む"; });
+    });
+  }
+
+  function showSuccess(ev, remaining, previewPayload){
+    var extra = previewPayload
+      ? '<div class="tel-fallback" style="text-align:left;"><b>（プレビュー：送信内容）</b><br>'
+        + '教室：'+esc(ev.uid)+'<br>お名前：'+esc(previewPayload.氏名)+'<br>電話：'+esc(previewPayload.電話)
+        + '<br>人数：'+previewPayload.人数+'　サポート：'+esc(previewPayload.サポート)
+        + '<br><small>GAS接続後は、この内容がSheetに追記され残席が減ります。</small></div>'
+      : (remaining!=null ? '<p>現在の残席：あと'+remaining+'席</p>' : '');
+    app.innerHTML = '<div class="card"><div class="state">'
+      + '<div class="big">🎉</div><h2>お申し込みありがとうございます！</h2>'
+      + '<p>'+esc(ev.date_label)+' '+esc(ev.time_label)+'<br>'+esc(ev.place_label)+'</p>'
+      + '<p>当日は開場 '+esc(ev.doors_label)+' です。'+(ev.bring?esc(ev.bring)+'をお持ちください。':'')+'</p>'
+      + extra
+      + '<div style="margin-top:20px;"><a class="btn secondary" href="/" style="text-decoration:none;">トップへ戻る</a></div>'
+      + '</div></div>';
+  }
+  function showFull(ev){
+    app.innerHTML = '<div class="card"><div class="state"><div class="big">🙇</div>'
+      + '<h2>満席になりました</h2><p>入れ違いで満席となりました。申し訳ありません。</p>'
+      + telBlock("キャンセル待ちをお電話で承ります。")+'</div></div>';
+  }
+  function showError(ev){
+    app.innerHTML = '<div class="card"><div class="state"><div class="big">⚠️</div>'
+      + '<h2>送信できませんでした</h2><p>通信エラーが起きました。お手数ですが、お電話でも受付できます。</p>'
+      + telBlock("お電話での申込を承ります。")
+      + '<div style="margin-top:16px;"><button class="btn" onclick="location.reload()">もう一度試す</button></div></div></div>';
+  }
+
+  // ===== 起動 =====
+  loadFeed().then(function(feed){
+    if(usingDemo || isPreview){
+      previewBanner.style.display="block";
+      previewBanner.innerHTML = "🔍 プレビューモード"
+        + (usingDemo ? "（ローカル表示：デモデータを使用）" : "")
+        + (isPreview ? "（GAS未接続：申込は実際には送信されません）" : "");
+    }
+    var uid = param("uid");
+    if(!uid){ renderChooser(feed); return; }
+    var ev = (feed.upcoming||[]).find(function(e){ return e.uid===uid; });
+    if(!ev || !ev.apply_required){
+      app.innerHTML = '<div class="card"><h2>この教室は現在オンライン受付を行っていません</h2>'
+        + '<p class="lead">お手数ですが、トップページの開催予定をご確認ください。</p>'
+        + telBlock("お電話でもお問い合わせいただけます。")+'</div>';
+      return;
+    }
+    renderForm(ev);
+  });
+})();
+</script>
+</body>
+</html>
