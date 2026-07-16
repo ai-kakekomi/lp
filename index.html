@@ -980,7 +980,7 @@ details p { animation: fadeDown 0.3s ease; }
   // 残席の状態別表示（自前RSVPのGAS doGetから取得）。
   // 空席が多いうちは数を出さず「お申込受付中」。残りわずか/満席のときだけ上書き（逆・社会的証明の回避）。
   var GAS_URL = 'https://script.google.com/macros/s/AKfycbw0PukQqYCBdlt9cHmd0jTRma1a4g_HMwZlwb7vxqd-XMvttPoNDEXMi730JFDU3LcHIw/exec';
-  var SEAT_REVEAL = 100; // 【一時デモ】通常は10。動作確認のため一時的に上げている
+  var SEAT_REVEAL = 10; // 残席がこれ以下で初めて数字を解禁
   function updateSeats(e) {
     fetch(GAS_URL + '?uid=' + encodeURIComponent(e.uid))
       .then(function (r) { return r.json(); })
