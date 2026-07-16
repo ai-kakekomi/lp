@@ -977,6 +977,28 @@ details p { animation: fadeDown 0.3s ease; }
     return '<span style="padding:4px 14px;background:' + bg + ';color:' + color + ';font-size:0.8rem;font-weight:' + weight + ';border-radius:20px;' + (border || '') + '">' + html + '</span>';
   };
 
+  // 残席の状態別表示（自前RSVPのGAS doGetから取得）。
+  // 空席が多いうちは数を出さず「お申込受付中」。残りわずか/満席のときだけ上書き（逆・社会的証明の回避）。
+  var GAS_URL = 'https://script.google.com/macros/s/AKfycbw0PukQqYCBdlt9cHmd0jTRma1a4g_HMwZlwb7vxqd-XMvttPoNDEXMi730JFDU3LcHIw/exec';
+  var SEAT_REVEAL = 10; // 残席がこれ以下で初めて数字を解禁
+  function updateSeats(e) {
+    fetch(GAS_URL + '?uid=' + encodeURIComponent(e.uid))
+      .then(function (r) { return r.json(); })
+      .then(function (g) {
+        if (!g || typeof g.remaining !== 'number') return;
+        var el = document.getElementById('seat-' + e.uid);
+        if (g.status === 'full' || g.remaining <= 0) {
+          if (el) { el.textContent = '満席御礼'; el.style.background = '#FADBD8'; el.style.color = '#C0392B'; }
+          var box = document.getElementById('applybtn-' + e.uid);
+          if (box) box.innerHTML = '<div style="margin-top:18px;padding:14px 20px;background:var(--warm-bg-alt);border-radius:var(--radius-sm);font-size:0.95rem;color:var(--text);">🙇 満席になりました。キャンセル待ちはお電話（050-1792-9953）で承ります。</div>';
+        } else if (g.remaining <= SEAT_REVEAL) {
+          if (el) { el.textContent = '🔥 残りわずか あと' + g.remaining + '席'; el.style.background = '#FDEBD0'; el.style.color = '#B9770E'; }
+        }
+        // remaining > SEAT_REVEAL のときは既定の「お申込受付中」のまま
+      })
+      .catch(function () { /* 取得失敗時は既定バッジ維持 */ });
+  }
+
   function renderUpcoming(evs) {
     if (!evs.length) { events.innerHTML = ''; return; }
     events.innerHTML = evs.map(function (e, i) {
@@ -986,7 +1008,11 @@ details p { animation: fadeDown 0.3s ease; }
       var b = [];
       if (e.fee === '無料') b.push(badge('参加無料', 'var(--primary-pale)', 'var(--primary)', 700));
       if (e.bring) b.push(badge('📱 ' + esc(e.bring) + '持参', 'var(--warm-bg-alt)', 'var(--text-light)', 500));
-      b.push(badge(e.apply_required ? '要申込' : '申込不要', 'var(--warm-bg-alt)', 'var(--text-light)', 500));
+      if (e.apply_required) {
+        b.push('<span id="seat-' + esc(e.uid) + '" style="padding:4px 14px;background:var(--primary-pale);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;">お申込受付中</span>');
+      } else {
+        b.push(badge('申込不要', 'var(--warm-bg-alt)', 'var(--text-light)', 500));
+      }
       if (e.endorsement) b.push(badge('🏛️ ' + esc(e.endorsement) + ' 後援', 'var(--white)', 'var(--primary)', 700, 'border:1.5px solid var(--primary);'));
       var title = first ? '<p style="font-family:\'Zen Maru Gothic\',sans-serif;font-size:1.1rem;font-weight:900;color:var(--primary);margin-bottom:12px;">' + esc(e.title) + '</p>' : '';
       var place = e.loc_url ? '<a href="' + esc(e.loc_url) + '" target="_blank" rel="noopener" style="color:inherit;">' + esc(e.place_label) + '</a>' : esc(e.place_label);
@@ -1001,9 +1027,10 @@ details p { animation: fadeDown 0.3s ease; }
         + (e.access ? '<span>🚇 ' + esc(e.access) + '</span>' : '')
         + '</div>'
         + '<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;">' + b.join('') + '</div>'
-        + (e.apply_url ? '<a href="' + esc(e.apply_url) + '" target="_blank" rel="noopener" style="display:inline-block;margin-top:18px;padding:15px 36px;background:' + accent + ';color:var(--white);font-family:\'Zen Maru Gothic\',sans-serif;font-size:1.1rem;font-weight:900;border-radius:30px;text-decoration:none;box-shadow:var(--shadow-card);">📝 スマホでかんたん申込</a>' : '')
+        + (e.apply_url ? '<div id="applybtn-' + esc(e.uid) + '"><a href="' + esc(e.apply_url) + '" target="_blank" rel="noopener" style="display:inline-block;margin-top:18px;padding:15px 36px;background:' + accent + ';color:var(--white);font-family:\'Zen Maru Gothic\',sans-serif;font-size:1.1rem;font-weight:900;border-radius:30px;text-decoration:none;box-shadow:var(--shadow-card);">📝 スマホでかんたん申込</a></div>' : '')
         + '</div>';
     }).join('');
+    evs.forEach(function (e) { if (e.apply_required && e.apply_url) updateSeats(e); });
   }
 
   function statTile(num, unit) {
