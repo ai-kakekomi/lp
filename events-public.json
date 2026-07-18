@@ -1,25 +1,10 @@
 {
-  "generated": "2026-07-16 22:53",
+  "generated": "2026-07-18 14:20",
   "stats": {
-    "held_count": 5,
-    "total_participants": 81
+    "held_count": 6,
+    "total_participants": 96
   },
   "upcoming": [
-    {
-      "uid": "akk-20260718",
-      "title": "チャッピーと話そう！はじめてのAI体験教室",
-      "ymd": "2026-07-18",
-      "date_label": "2026年7月18日（土）",
-      "time_label": "10:00〜12:00",
-      "doors_label": "9:30",
-      "place_label": "西生涯学習センター 第1集会室（名古屋市西区浄心1-1-45）",
-      "access": "地下鉄鶴舞線「浄心」下車 徒歩すぐ",
-      "fee": "無料",
-      "bring": "スマホ",
-      "apply_required": false,
-      "endorsement": "名古屋市教育委員会",
-      "loc_url": "https://maps.app.goo.gl/nishi-center"
-    },
     {
       "uid": "akk-20260822",
       "title": "チャッピーと話そう！はじめてのAI体験教室",
@@ -38,6 +23,10 @@
     }
   ],
   "past": [
+    {
+      "ym": "2026年7月",
+      "label": "チャッピーと話そう！はじめてのAI体験教室"
+    },
     {
       "ym": "2026年7月",
       "label": "阪急交通社 添乗員向けAI教室",
