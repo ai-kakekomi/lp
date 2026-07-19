@@ -244,22 +244,26 @@
 
     <!-- 9 実績公開 -->
     <section class="card">
-      <div class="sec-head"><span class="sec-num">9</span><h2>実績公開の確認</h2></div>
-      <p class="note-inline">当団体の活動報告として、以下の公開可否をご確認ください。</p>
+      <div class="sec-head"><span class="sec-num">9</span><h2>実績公開の確認<span class="req">必須</span></h2></div>
+      <p class="note-inline">当団体の活動報告として、以下の公開可否を<b>各項目ご選択ください</b>。今すぐ決めきれない項目は「検討中」でも構いません（後日あらためてご相談します）。</p>
       <table class="disclose">
-        <thead><tr><th>項目</th><th style="text-align:center">許可する</th><th style="text-align:center">許可しない</th></tr></thead>
+        <thead><tr><th>項目</th><th style="text-align:center">許可する</th><th style="text-align:center">検討中</th><th style="text-align:center">許可しない</th></tr></thead>
         <tbody>
           <tr><td>AI教室の様子の<b>写真撮影</b></td>
-            <td class="opt"><label><input type="radio" name="公開_写真撮影" value="許可する"></label></td>
+            <td class="opt"><label><input type="radio" name="公開_写真撮影" value="許可する" required></label></td>
+            <td class="opt"><label><input type="radio" name="公開_写真撮影" value="検討中"></label></td>
             <td class="opt"><label><input type="radio" name="公開_写真撮影" value="許可しない"></label></td></tr>
           <tr><td>写真の<b>SNS・HPへの掲載</b></td>
-            <td class="opt"><label><input type="radio" name="公開_写真掲載" value="許可する"></label></td>
+            <td class="opt"><label><input type="radio" name="公開_写真掲載" value="許可する" required></label></td>
+            <td class="opt"><label><input type="radio" name="公開_写真掲載" value="検討中"></label></td>
             <td class="opt"><label><input type="radio" name="公開_写真掲載" value="許可しない"></label></td></tr>
           <tr><td>活動報告（レポート・記事）の<b>外部公開</b></td>
-            <td class="opt"><label><input type="radio" name="公開_レポート" value="許可する"></label></td>
+            <td class="opt"><label><input type="radio" name="公開_レポート" value="許可する" required></label></td>
+            <td class="opt"><label><input type="radio" name="公開_レポート" value="検討中"></label></td>
             <td class="opt"><label><input type="radio" name="公開_レポート" value="許可しない"></label></td></tr>
           <tr><td>活動記録における<b>貴団体名の掲載</b></td>
-            <td class="opt"><label><input type="radio" name="公開_団体名" value="許可する"></label></td>
+            <td class="opt"><label><input type="radio" name="公開_団体名" value="許可する" required></label></td>
+            <td class="opt"><label><input type="radio" name="公開_団体名" value="検討中"></label></td>
             <td class="opt"><label><input type="radio" name="公開_団体名" value="許可しない"></label></td></tr>
         </tbody>
       </table>
