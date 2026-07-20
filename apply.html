@@ -153,11 +153,13 @@ a.apply-link{display:block; text-align:center; padding:14px; border-radius:30px;
       .catch(function(){ return null; });
   }
 
+  // 残席は「数」を出さない（残り◯席だと申込ゼロが見えて逆効果）。
+  // 受付中 → 残りわずか → 満席（受付終了）の段階表示のみ。
   function seatBadge(rem, cap){
-    if(rem==null) return '<span class="badge seat">定員 '+cap+'名</span>';
-    if(rem<=0)   return '<span class="badge full">満席</span>';
-    if(rem<=5)   return '<span class="badge few">残りあと'+rem+'席</span>';
-    return '<span class="badge seat">受付中（残り'+rem+'席）</span>';
+    if(rem==null) return '<span class="badge seat">受付中</span>';
+    if(rem<=0)    return '<span class="badge full">満席</span>';
+    if(rem<=10)   return '<span class="badge few">残りわずか</span>'; // トップページ(SEAT_REVEAL=10)と揃える
+    return '<span class="badge seat">受付中</span>';
   }
 
   // ===== 画面：受付中の教室一覧（uid無しで来たとき） =====
@@ -283,7 +285,7 @@ a.apply-link{display:block; text-align:center; padding:14px; border-radius:30px;
         + '教室：'+esc(ev.uid)+'<br>お名前：'+esc(previewPayload.氏名)+'<br>電話：'+esc(previewPayload.電話)
         + '<br>人数：'+previewPayload.人数+'　サポート：'+esc(previewPayload.サポート)
         + '<br><small>GAS接続後は、この内容がSheetに追記され残席が減ります。</small></div>'
-      : (remaining!=null ? '<p>現在の残席：あと'+remaining+'席</p>' : '');
+      : (remaining!=null && remaining<=10 ? '<p>🔥 <b>お席は残りわずか</b>です。ご家族・お友だちもぜひお早めに。</p>' : '');
     app.innerHTML = '<div class="card"><div class="state">'
       + '<div class="big">🎉</div><h2>お申し込みありがとうございます！</h2>'
       + '<p>'+esc(ev.date_label)+' '+esc(ev.time_label)+'<br>'+esc(ev.place_label)+'</p>'
