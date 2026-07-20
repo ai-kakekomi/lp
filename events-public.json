@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-20 05:01",
+  "generated": "2026-07-20 10:32",
   "stats": {
     "held_count": 6,
     "total_participants": 96
@@ -32,8 +32,10 @@
       "access": "地下鉄鶴舞線「浄心」下車 徒歩すぐ",
       "fee": "無料",
       "bring": "スマホ",
-      "apply_required": false,
-      "endorsement": "名古屋市教育委員会"
+      "apply_required": true,
+      "endorsement": "名古屋市教育委員会",
+      "apply_url": "https://ai-kakekomi.com/apply.html?uid=akk-20260919",
+      "capacity": 60
     }
   ],
   "past": [
