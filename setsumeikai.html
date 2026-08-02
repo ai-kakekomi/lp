@@ -379,12 +379,17 @@ form { display: flex; flex-direction: column; gap: 20px; }
 
 <!-- ===== 確定枠 =====
      ⚠️ 運用メモ（表に出ません）
-     ・開催が決まっている回だけをここに書く。日付が過ぎたらこの <section> をまるごと削除する
-     ・枠が無い期間はこのブロックを消せばよい。下の #slot-none だけが残り、ページは壊れない
-     ・枠を消したときは、フォームの「合同の回に参加する」ラジオも一緒に消すこと
+     いまは確定枠なし。下の #slot-none だけを出している。
+     枠が決まったら、この3点をセットで戻す：
+       (1) 下の <div class="slot-card"> のコメントを外し、日付・時刻を書き換える
+       (2) フォームの「合同の回に参加する」ラジオ（同じくコメントアウト中）を戻す
+       (3) <div id="dates"> の class="show" を外す（ラジオ選択で開くようになる）
+       (4) 「第1希望」の required を外す（合同回を選ぶ人は日付を書かないため）
+     日付が過ぎたら、この4点を元に戻す。
 -->
 <section class="slot">
   <div class="container">
+    <!--
     <div class="slot-card">
       <span class="slot-tag">開催が決まっている回</span>
       <div class="slot-date">8/1(土)</div>
@@ -392,7 +397,8 @@ form { display: flex; flex-direction: column; gap: 20px; }
       <p class="slot-note">ほかの応募者の方と合同で行います。<br>他の方の質問も聞けるので、活動のイメージが掴みやすい回です。</p>
       <button type="button" class="slot-btn" id="pick-slot">🙌 この回に参加する</button>
     </div>
-    <p class="slot-or" id="slot-none">この日が難しい場合は、下のフォームからご希望日をお知らせください。</p>
+    -->
+    <p class="slot-or" id="slot-none">下のフォームから、ご都合のよい日をお知らせください。<br>こちらから日程をご連絡いたします。</p>
   </div>
 </section>
 
@@ -456,10 +462,10 @@ form { display: flex; flex-direction: column; gap: 20px; }
         </div>
       </div>
 
+      <!-- ⚠️ 確定枠があるときだけ、この参加方法ラジオを戻す（下の #dates の class="show" も外すこと）
       <div class="field">
         <label>ご希望の参加方法 <span class="req">*必須</span></label>
         <div class="choice-group">
-          <!-- ⚠️ 確定枠を消すときは、このラベルも一緒に削除する -->
           <label class="choice">
             <input type="radio" name="参加方法" value="8/1(土) 16:00 の合同回に参加" id="r-slot" required>
             <span class="choice-body">
@@ -476,15 +482,16 @@ form { display: flex; flex-direction: column; gap: 20px; }
           </label>
         </div>
       </div>
+      -->
 
-      <div id="dates">
+      <div id="dates" class="show">
         <p class="dates-help">
           <strong>3週間以内</strong>で、<strong>土日</strong>または<strong>平日19:30〜21:00</strong>のうち、30分ほどお時間をいただける候補を3つお書きください。<br>
           例：8/16(日) 14:00 ／ 8/19(水) 20:00 ／ 8/23(日) 10:00
         </p>
         <div class="field">
-          <label for="f-d1">第1希望</label>
-          <input type="text" id="f-d1" name="第1希望" placeholder="8/16(日) 14:00">
+          <label for="f-d1">第1希望 <span class="req">*必須</span></label>
+          <input type="text" id="f-d1" name="第1希望" placeholder="8/16(日) 14:00" required>
         </div>
         <div class="field">
           <label for="f-d2">第2希望</label>
@@ -542,13 +549,16 @@ form { display: flex; flex-direction: column; gap: 20px; }
   var rOther  = document.getElementById('r-other');
   var pickBtn = document.getElementById('pick-slot');
 
+  // 確定枠が無い期間はラジオごと消してある。その場合は希望日欄を出しっぱなしにする
+  if (!rSlot || !rOther) { return; }
+
   function sync() {
-    if (rOther && rOther.checked) { dates.classList.add('show'); }
+    if (rOther.checked) { dates.classList.add('show'); }
     else { dates.classList.remove('show'); }
   }
 
   [rSlot, rOther].forEach(function (el) {
-    if (el) { el.addEventListener('change', sync); }
+    el.addEventListener('change', sync);
   });
   sync();
 
