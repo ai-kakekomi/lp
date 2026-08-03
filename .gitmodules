@@ -1,0 +1,3 @@
+[submodule "tools/food-label"]
+	path = tools/food-label
+	url = https://github.com/ai-kakekomi/food-label-maker.git
