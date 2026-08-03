@@ -1,4 +1,6 @@
 {
   "cleanUrls": true,
-  "trailingSlash": true
+  "redirects": [
+    { "source": "/tools/:tool((?:[^/]+))", "destination": "/tools/:tool/", "permanent": false }
+  ]
 }
