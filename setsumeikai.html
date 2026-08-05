@@ -179,6 +179,43 @@ body {
   color: var(--text-light);
 }
 
+/* 当日の入室URL（確定枠カードの中だけに置く。枠を消すとリンクも一緒に消える） */
+.slot-join {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px dashed rgba(0,0,0,0.12);
+}
+
+.slot-join-label {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+.slot-join-url {
+  display: inline-block;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(0.95rem, 3.4vw, 1.1rem);
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  word-break: break-all;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+  transition: color 0.3s ease;
+}
+
+.slot-join-url:hover { color: var(--accent); }
+
+.slot-join-note {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  margin-top: 10px;
+  line-height: 1.7;
+}
+
 /* ===== TALK (何を話すか) ===== */
 .talk { padding: 56px 0; }
 
@@ -386,6 +423,11 @@ form { display: flex; flex-direction: column; gap: 20px; }
        (3) <div id="dates"> に class="show" を付ける（希望日欄を出しっぱなしにする）
        (4) 「第1希望」に required を付ける
      次に枠が決まったら、この4点を戻す（いまの状態が見本）。
+
+     ⚠️ Meetの入室URLは .slot-join としてカードの中に置いてある。
+        (1) でカードごとコメントアウトすれば、URLも一緒に消える。カードの外に出さないこと。
+        載せてよい根拠は「Meet側が承認制（主催者の参加前は入室不可＋外部参加者は承認が必要）」であること。
+        この設定を外すなら、URLもページから下ろす。→ 00_経営/定例業務/activo応募者対応.md
 -->
 <section class="slot">
   <div class="container">
@@ -395,6 +437,12 @@ form { display: flex; flex-direction: column; gap: 20px; }
       <div class="slot-time">9:00 〜 9:30</div>
       <p class="slot-note">ほかの応募者の方と合同で行います。<br>他の方の質問も聞けるので、活動のイメージが掴みやすい回です。<br>お盆期間の朝ですので、お休みの方はぜひご一緒に。30分で終わります。</p>
       <button type="button" class="slot-btn" id="pick-slot">🙌 この回に参加する</button>
+
+      <div class="slot-join">
+        <div class="slot-join-label">当日の入室URL</div>
+        <a class="slot-join-url" href="https://meet.google.com/mbb-buta-dzx" target="_blank" rel="noopener">meet.google.com/mbb-buta-dzx</a>
+        <p class="slot-join-note">当日はこちらからお入りください。入室は主催者の承認制です。<br>先に上のボタンからお申し込みいただけると、当日スムーズにご案内できます。</p>
+      </div>
     </div>
     <p class="slot-or">この日が難しい方は、下のフォームからご都合のよい日をお知らせください。</p>
   </div>
