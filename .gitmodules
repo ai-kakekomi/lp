@@ -4,3 +4,6 @@
 [submodule "tools/bus-seat"]
 	path = tools/bus-seat
 	url = https://github.com/ai-kakekomi/bus-seat-maker.git
+[submodule "tools/single-parent-lifesim"]
+	path = tools/single-parent-lifesim
+	url = https://github.com/ai-kakekomi/single-parent-lifesim.git
