@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>かけこみアプリ | AIかけこみ寺</title>
+<meta name="description" content="AIかけこみ寺が作った、誰でも無料で使えるWebアプリ集。バス座席表メーカー、食品表示ラベルメーカー、ひとり親ライフチョイス・シミュレータ。すべてオープンソースで公開しています。">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2D6A4F;
+  --primary-light: #52B788;
+  --primary-pale: #D8F3DC;
+  --accent: #E76F51;
+  --accent-light: #F4A261;
+  --warm-bg: #FDF8F0;
+  --warm-bg-alt: #FFF5E8;
+  --text: #2C2C2C;
+  --text-light: #5A5A5A;
+  --white: #FFFFFF;
+  --shadow-soft: 0 4px 24px rgba(45, 106, 79, 0.08);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.06);
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: var(--warm-bg);
+  line-height: 1.9;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.brand-bar {
+  background: var(--white);
+  border-bottom: 1px solid rgba(45,106,79,0.1);
+  padding: 16px 0;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.brand {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+main { flex: 1; }
+
+.page-head {
+  padding: 64px 0 40px;
+  text-align: center;
+  background: linear-gradient(170deg, #D8F3DC 0%, #FDF8F0 55%, #FDF8F0 100%);
+}
+
+.section-label {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.page-head h1 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.lead {
+  font-size: 1.02rem;
+  color: var(--text-light);
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.tools {
+  padding: 48px 0 72px;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.tool-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px 30px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  border-left: 5px solid var(--primary-light);
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(45, 106, 79, 0.14);
+}
+
+.tool-card.is-accent { border-left-color: var(--accent); }
+.tool-card.is-warm { border-left-color: var(--accent-light); }
+
+.tool-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.tool-title {
+  display: block;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.tool-desc {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+.tool-more {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.oss-note {
+  margin-top: 32px;
+  padding: 24px 28px;
+  background: var(--warm-bg-alt);
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+  color: var(--text-light);
+}
+
+.oss-note a {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.footer {
+  padding: 32px 0;
+  background: #1B4332;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.footer a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .page-head { padding: 48px 0 32px; }
+  .tool-card { padding: 22px 20px; gap: 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="brand-bar">
+  <div class="container">
+    <a href="/" class="brand">🛕 AIかけこみ寺</a>
+  </div>
+</div>
+
+<main>
+  <div class="page-head">
+    <div class="container">
+      <div class="section-label">TOOLS</div>
+      <h1>かけこみアプリ</h1>
+      <p class="lead">
+        AIかけこみ寺が作った、誰でも無料で使えるWebアプリ集です。<br>
+        登録もインストールも不要。ブラウザを開いてすぐ使えます。<br>
+        すべてオープンソースとしてGitHubで公開しています。
+      </p>
+    </div>
+  </div>
+
+  <section class="tools">
+    <div class="container">
+      <div class="tool-grid">
+
+        <a href="/tools/bus-seat/" class="tool-card is-accent">
+          <span class="tool-icon" style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/></svg></span>
+          <span>
+            <span class="tool-title">バス座席表メーカー</span>
+            <span class="tool-desc">
+              バスツアーの添乗員向け。申し込みグループを入れるだけで、座席表を自動で作って印刷できます。
+            </span>
+            <span class="tool-more">使ってみる →</span>
+          </span>
+        </a>
+
+        <a href="/tools/food-label/" class="tool-card is-warm">
+          <span class="tool-icon" style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg></span>
+          <span>
+            <span class="tool-title">食品表示ラベルメーカー</span>
+            <span class="tool-desc">
+              加工食品（一般用）の一括表示を入力し、食品表示基準にもとづくチェックとラベル案の作成ができます。
+            </span>
+            <span class="tool-more">使ってみる →</span>
+          </span>
+        </a>
+
+        <a href="/tools/single-parent-lifesim/" class="tool-card">
+          <span class="tool-icon" style="color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/></svg></span>
+          <span>
+            <span class="tool-title">ひとり親ライフチョイス・シミュレータ（ベータ版）</span>
+            <span class="tool-desc">
+              ひとり親の方・離婚を考えている方が、使える制度と、これからのお金の見通しを5分で確かめられます。入力した内容はどこにも送信されません。
+            </span>
+            <span class="tool-more">使ってみる →</span>
+          </span>
+        </a>
+
+      </div>
+
+      <div class="oss-note">
+        <p>
+          <span style="display:inline-flex;align-items:center;color:var(--accent);vertical-align:-0.15em;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span> これらのアプリは、AIかけこみ寺のメンバーがAIを使って作りました。<br>
+          ソースコードは <a href="https://github.com/ai-kakekomi" target="_blank" rel="noopener">GitHub（ai-kakekomi）</a> ですべて公開しています。ご自由にお使いいただけますし、ご自身の用途に合わせて改造していただいてもかまいません。<br>
+          「こんなアプリが欲しい」「ここが使いにくい」というご意見は <a href="mailto:info@ai-kakekomi.com">info@ai-kakekomi.com</a> までお寄せください。
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p style="font-size:0.82rem;opacity:0.85;">「AIかけこみ寺」は商標登録出願中です。現在、NPO法人設立に向けて認証申請中です。</p>
+    <p>© 2026 AIかけこみ寺（非営利の市民活動） All Rights Reserved.　<a href="/">トップへ戻る</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

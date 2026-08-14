@@ -402,14 +402,14 @@ form { display: flex; flex-direction: column; gap: 20px; }
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="container">
-    <div class="hero-icon">💬</div>
+    <div class="hero-icon" style="color:var(--primary);line-height:0;"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div>
     <h1>オンライン説明会</h1>
     <p class="hero-tagline">AIかけこみ寺の活動について、30分ほどお話しします。<br>聞いてから決めていただいて大丈夫です。</p>
     <div class="hero-badges">
-      <div class="hero-badge">🕒 30分</div>
-      <div class="hero-badge">📷 カメラオフOK</div>
-      <div class="hero-badge">🙂 聞くだけでOK</div>
-      <div class="hero-badge">💰 参加費なし</div>
+      <div class="hero-badge"><span style="display:inline-flex;align-items:center;color:var(--primary);vertical-align:-0.15em;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span> 30分</div>
+      <div class="hero-badge"><span style="display:inline-flex;align-items:center;color:var(--primary);vertical-align:-0.15em;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></span> カメラオフOK</div>
+      <div class="hero-badge"><span style="display:inline-flex;align-items:center;color:var(--primary);vertical-align:-0.15em;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg></span> 聞くだけでOK</div>
+      <div class="hero-badge"><span style="display:inline-flex;align-items:center;color:var(--primary);vertical-align:-0.15em;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></span> 参加費なし</div>
     </div>
   </div>
 </section>
@@ -436,7 +436,7 @@ form { display: flex; flex-direction: column; gap: 20px; }
       <div class="slot-date">8/15(土)</div>
       <div class="slot-time">13:30 〜 14:00</div>
       <p class="slot-note">ほかの応募者の方と合同で行います。<br>他の方の質問も聞けるので、活動のイメージが掴みやすい回です。<br>30分で終わります。</p>
-      <button type="button" class="slot-btn" id="pick-slot">🙌 この回に参加する</button>
+      <button type="button" class="slot-btn" id="pick-slot"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg> この回に参加する</button>
 
       <div class="slot-join">
         <div class="slot-join-label">当日の入室URL</div>
@@ -455,21 +455,21 @@ form { display: flex; flex-direction: column; gap: 20px; }
     <div class="section-title">説明会でお話しすること</div>
     <div class="talk-list">
       <div class="talk-item">
-        <div class="talk-item-icon">🎯</div>
+        <div class="talk-item-icon" style="color:var(--primary);display:inline-flex;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
         <div>
           <h3>私たちが何を目指しているのか</h3>
           <p>「AIの恩恵をすべての人へ」という考え方と、なぜ無料のAI教室という形をとっているのか。ここがいちばん大事だと思っているので、口でお話しさせてください。</p>
         </div>
       </div>
       <div class="talk-item">
-        <div class="talk-item-icon">🙋</div>
+        <div class="talk-item-icon" style="color:var(--primary);display:inline-flex;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg></div>
         <div>
           <h3>実際に何をするのか</h3>
           <p>教室の当日の流れ、サポーターとしてどう動くか、無理のない関わり方。「月1回だけ」「見学だけ」でも歓迎しています。</p>
         </div>
       </div>
       <div class="talk-item">
-        <div class="talk-item-icon">🗓️</div>
+        <div class="talk-item-icon" style="color:var(--primary);display:inline-flex;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></div>
         <div>
           <h3>参加のしかた</h3>
           <p>連絡用のLINEグループへのご案内と、参加したい回への出欠の登録方法をご説明します。操作は簡単なので、その場で一緒にやってみましょう。</p>
@@ -532,19 +532,19 @@ form { display: flex; flex-direction: column; gap: 20px; }
       <div id="dates">
         <p class="dates-help">
           <strong>3週間以内</strong>で、<strong>土日</strong>または<strong>平日19:30〜21:00</strong>のうち、30分ほどお時間をいただける候補を3つお書きください。<br>
-          例：8/23(日) 14:00 ／ 8/20(木) 20:00 ／ 8/24(月) 20:00
+          例：土曜の14:00 ／ 木曜の20:00 ／ 日曜の10:00
         </p>
         <div class="field">
           <label for="f-d1">第1希望 <span class="req" id="d1-req">*必須</span></label>
-          <input type="text" id="f-d1" name="第1希望" placeholder="8/23(日) 14:00">
+          <input type="text" id="f-d1" name="第1希望" placeholder="土曜の14:00">
         </div>
         <div class="field">
           <label for="f-d2">第2希望</label>
-          <input type="text" id="f-d2" name="第2希望" placeholder="8/20(木) 20:00">
+          <input type="text" id="f-d2" name="第2希望" placeholder="木曜の20:00">
         </div>
         <div class="field">
           <label for="f-d3">第3希望</label>
-          <input type="text" id="f-d3" name="第3希望" placeholder="8/24(月) 20:00">
+          <input type="text" id="f-d3" name="第3希望" placeholder="日曜の10:00">
         </div>
       </div>
 
@@ -553,7 +553,7 @@ form { display: flex; flex-direction: column; gap: 20px; }
         <textarea id="f-msg" name="ご質問" placeholder="不安なこと、聞いておきたいことがあればどうぞ。当日お答えします。"></textarea>
       </div>
 
-      <button type="submit" class="submit-btn">📩 申し込む</button>
+      <button type="submit" class="submit-btn" style="display:inline-flex;align-items:center;gap:8px;justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> 申し込む</button>
     </form>
 
     <p class="form-sub">
@@ -567,7 +567,7 @@ form { display: flex; flex-direction: column; gap: 20px; }
 <section class="privacy">
   <div class="container">
     <p>
-      📋 個人情報の取り扱いについて<br>
+      <span style="display:inline-flex;align-items:center;color:var(--primary);vertical-align:-0.15em;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span> 個人情報の取り扱いについて<br>
       お預かりした個人情報は、AIかけこみ寺の活動連絡の目的にのみ使用いたします。<br>
       第三者への提供はいたしません。ご本人のご希望でいつでも削除可能です。
     </p>
