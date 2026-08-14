@@ -416,20 +416,20 @@ form { display: flex; flex-direction: column; gap: 20px; }
 
 <!-- ===== 確定枠 =====
      ⚠️ 運用メモ（表に出ません）
-     いまは確定枠あり（8/15(土) 13:30）。4点セットが「戻っている」状態。
-     日付が過ぎたら、この4点をセットで外して「確定枠なしモード」に戻す：
-       (1) 下の <div class="slot-card"> をコメントアウトし、代わりに #slot-none を出す
-       (2) フォームの「参加方法」ラジオをコメントアウトする
-       (3) <div id="dates"> に class="show" を付ける（希望日欄を出しっぱなしにする）
-       (4) 「第1希望」に required を付ける
-     次に枠が決まったら、この4点を戻す（いまの状態が見本）。
+     確定枠の表示・非表示はJSが自動で切り替える。
+     下の <section class="slot"> の data-slot-expires（枠の終了日時、JST）を過ぎると、
+     確定枠カードと「参加方法」ラジオが自動で消え、希望日欄が必須で出っぱなしになる。
+     次の枠が決まったら、次の3点を書き換えるだけでよい：
+       (1) data-slot-expires の日時
+       (2) .slot-date / .slot-time の表示（と必要なら入室URL）
+       (3) フォームのラジオ #r-slot の value と表示文言
 
      ⚠️ Meetの入室URLは .slot-join としてカードの中に置いてある。
         カードごとコメントアウトすれば、URLも一緒に表から消える。カードの外に出さないこと。
         載せてよい根拠は「Meet側が承認制（主催者の参加前は入室不可＋外部参加者は承認が必要）」であること。
         この設定を外すなら、URLもページから下ろす。→ 00_経営/定例業務/activo応募者対応.md
 -->
-<section class="slot">
+<section class="slot" data-slot-expires="2026-08-15T14:00:00+09:00">
   <div class="container">
     <div class="slot-card">
       <span class="slot-tag">開催が決まっている回</span>
@@ -508,8 +508,8 @@ form { display: flex; flex-direction: column; gap: 20px; }
         </div>
       </div>
 
-      <!-- ⚠️ 確定枠がない期間は、この参加方法ラジオをコメントアウトする（#dates に class="show" を付けること） -->
-      <div class="field">
+      <!-- ⚠️ 確定枠の期限切れ時はJSがこのfieldごと非表示にする（手動コメントアウト不要） -->
+      <div class="field" id="method-field">
         <label>ご希望の参加方法 <span class="req">*必須</span></label>
         <div class="choice-group">
           <label class="choice">
@@ -596,6 +596,20 @@ form { display: flex; flex-direction: column; gap: 20px; }
 
   var d1     = document.getElementById('f-d1');
   var d1req  = document.getElementById('d1-req');
+
+  // 確定枠の自動失効：data-slot-expires を過ぎたら「確定枠なしモード」に切り替える
+  var slotSec = document.querySelector('.slot[data-slot-expires]');
+  var expired = slotSec && new Date() >= new Date(slotSec.getAttribute('data-slot-expires'));
+  if (expired) {
+    slotSec.style.display = 'none';
+    var methodField = document.getElementById('method-field');
+    if (methodField) { methodField.style.display = 'none'; }
+    if (rSlot)  { rSlot.required = false; rSlot.disabled = true; }
+    if (rOther) { rOther.checked = true; }  // 送信データ上は「別日を希望」扱いにする
+    if (dates) { dates.classList.add('show'); }
+    if (d1) { d1.required = true; }
+    return;
+  }
 
   // 確定枠が無い期間はラジオごと消してある。その場合は希望日欄を出しっぱなしにする
   // （そのときは #dates に class="show"、f-d1 に required が直接付いている）
