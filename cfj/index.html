@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CfJ Summit 2026 来場者のみなさまへ | AIかけこみ寺</title>
+<meta name="description" content="Code for Japan Summit 2026 セッション「無料AI教室を全国へ」来場者向けリンク集。かけこみアプリを触りながら聞いてください。">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2D6A4F;
+  --primary-light: #52B788;
+  --primary-pale: #D8F3DC;
+  --accent: #E76F51;
+  --accent-light: #F4A261;
+  --warm-bg: #FDF8F0;
+  --warm-bg-alt: #FFF5E8;
+  --text: #2C2C2C;
+  --text-light: #5A5A5A;
+  --white: #FFFFFF;
+  --shadow-soft: 0 4px 24px rgba(45, 106, 79, 0.08);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.06);
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: var(--warm-bg);
+  line-height: 1.9;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.brand-bar {
+  background: var(--white);
+  border-bottom: 1px solid rgba(45,106,79,0.1);
+  padding: 16px 0;
+}
+
+.container {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.brand {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+main { flex: 1; }
+
+.page-head {
+  padding: 44px 0 28px;
+  text-align: center;
+  background: linear-gradient(170deg, #D8F3DC 0%, #FDF8F0 60%, #FDF8F0 100%);
+}
+
+.section-label {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.page-head h1 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.lead {
+  font-size: 0.98rem;
+  color: var(--text-light);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.lead b { color: var(--primary); }
+
+.links { padding: 32px 0 64px; }
+
+h2 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 32px 0 14px;
+}
+
+h2:first-child { margin-top: 0; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 22px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  border-left: 5px solid var(--primary-light);
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(45, 106, 79, 0.14);
+}
+
+.card.is-accent { border-left-color: var(--accent); }
+.card.is-warm { border-left-color: var(--accent-light); }
+
+.card-emoji {
+  font-size: 1.7rem;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.card-title {
+  display: block;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.5;
+}
+
+.card-desc {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+.cta {
+  margin-top: 40px;
+  padding: 26px 26px;
+  background: var(--primary-pale);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.cta p {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.9;
+  margin-bottom: 14px;
+}
+
+.cta p span { color: var(--accent); }
+
+.cta a.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--white);
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 700;
+  font-size: 0.98rem;
+  padding: 12px 32px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta a.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+
+.cta .sub {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 12px;
+}
+
+.cta .sub a { color: var(--primary); font-weight: 700; }
+
+.footer {
+  padding: 28px 0;
+  background: #1B4332;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="brand-bar">
+  <div class="container">
+    <a href="/" class="brand">AIかけこみ寺</a>
+  </div>
+</div>
+
+<main>
+  <div class="page-head">
+    <div class="container">
+      <div class="section-label">CODE FOR JAPAN SUMMIT 2026</div>
+      <h1>ご来場ありがとうございます！</h1>
+      <p class="lead">
+        セッション「無料AI教室を全国へ」のリンク集です。<br>
+        登録もインストールも不要、すべて無料です。
+      </p>
+    </div>
+  </div>
+
+  <section class="links">
+    <div class="container">
+
+      <h2>📱 かけこみアプリ</h2>
+      <p style="font-size:0.9rem;color:var(--text-light);margin:-6px 0 14px;">
+        困っている人に直接会って、話を聞きながらvibe codingで作ったアプリです。<br>
+        HTML+JSだけで動き、<b style="color:var(--primary);">個人情報を一切受け取らない</b>ので、AIチャットに入力するより安心して使えます。
+      </p>
+      <div class="grid">
+        <a href="/tools/bus-seat/" class="card is-accent">
+          <span class="card-emoji">🚌</span>
+          <span>
+            <span class="card-title">バス座席表メーカー</span>
+            <span class="card-desc">セッションで話している主役。グループを入れると座席表が一瞬でできます。</span>
+          </span>
+        </a>
+        <a href="/tools/food-label/" class="card is-warm">
+          <span class="card-emoji">🏷️</span>
+          <span>
+            <span class="card-title">食品表示ラベルメーカー</span>
+            <span class="card-desc">食品表示基準にもとづくチェックとラベル案の作成。</span>
+          </span>
+        </a>
+        <a href="/tools/single-parent-lifesim/" class="card">
+          <span class="card-emoji">🌱</span>
+          <span>
+            <span class="card-title">ひとり親ライフチョイス・シミュレータ</span>
+            <span class="card-desc">使える支援制度とお金の見通しを5分で。入力内容はどこにも送信されません。</span>
+          </span>
+        </a>
+      </div>
+
+      <h2>🔍 もっと知る</h2>
+      <div class="grid">
+        <a href="/cfj/accounting/" class="card is-accent">
+          <span class="card-emoji">📖</span>
+          <span>
+            <span class="card-title">ゼロトラスト会計帳簿（デモ）</span>
+            <span class="card-desc">帳簿全件を公開。コピーしてお手持ちのAIに貼れば、その場で監査できます。</span>
+          </span>
+        </a>
+        <a href="/cfj/internal/" class="card">
+          <span class="card-emoji"><img src="/favicon.ico" alt="" width="26" height="26" style="border-radius:6px;vertical-align:middle;"></span>
+          <span>
+            <span class="card-title">メンバーサイト（デモ）</span>
+            <span class="card-desc">RSVP・カレンダー・運営マニュアルを集約した内部ポータルのデモ版。</span>
+          </span>
+        </a>
+        <a href="/" class="card">
+          <span class="card-emoji"><img src="/favicon.ico" alt="" width="26" height="26" style="border-radius:6px;vertical-align:middle;"></span>
+          <span>
+            <span class="card-title">AIかけこみ寺 ホームページ</span>
+            <span class="card-desc">無料AI教室の活動紹介・開催予定・講師依頼はこちらから。</span>
+          </span>
+        </a>
+        <a href="https://github.com/ai-kakekomi" class="card">
+          <span class="card-emoji" style="display:inline-flex;padding-top:4px;"><svg width="26" height="26" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="#24292f"/></svg></span>
+          <span>
+            <span class="card-title">GitHub（ai-kakekomi）</span>
+            <span class="card-desc">このページもアプリもすべてOSS。フォークも改造もご自由に。</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="cta">
+        <p>AIかけこみ寺は、AIの恩恵をすべての人へ広めるために<br>全国展開を目指しています。<br>あなたの地域に<span>AIかけこみ寺の地域支部</span>を立ち上げてくれませんか？</p>
+        <a class="btn" href="/volunteer">ボランティア募集ページへ</a>
+        <span class="sub">ご相談・講師依頼は <a href="mailto:info@ai-kakekomi.com">info@ai-kakekomi.com</a> へお気軽に</span>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p style="font-size:0.8rem;opacity:0.85;">「AIかけこみ寺」は商標登録出願中です。現在、NPO法人設立に向けて認証申請中です。</p>
+    <p>© 2026 AIかけこみ寺（非営利の市民活動） All Rights Reserved.　<a href="/">トップへ戻る</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

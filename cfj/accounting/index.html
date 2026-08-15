@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>ゼロトラスト会計（デモ）| AIかけこみ寺</title>
+  <meta name="description" content="Code for Japan Summit 2026 来場者向け。帳簿全件を公開し、誰でもAIで監査できるゼロトラスト会計のデモ版です。">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/cfj/assets/style.css">
+  <link rel="stylesheet" href="/cfj/assets/demo.css">
+  <script defer src="/cfj/assets/nav-demo.js"></script>
+  <style>
+    .acc-hero {
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 48px 32px 40px;
+      text-align: center;
+      margin-bottom: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .acc-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.015) 40px,
+        rgba(255,255,255,0.015) 80px
+      );
+    }
+    .acc-hero-eyebrow {
+      display: inline-block;
+      background: #E76F51;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .acc-hero-title {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      margin-bottom: 28px;
+    }
+    .acc-hero-pillars {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .acc-pillar {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 20px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      min-width: 140px;
+    }
+    .acc-pillar-num {
+      font-size: 2.8rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .acc-pillar-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      opacity: 0.9;
+      letter-spacing: 0.06em;
+    }
+    .acc-hero-sub {
+      font-size: 1rem;
+      opacity: 0.75;
+      line-height: 1.8;
+      margin: 0;
+      font-weight: 500;
+    }
+    .acc-hero-sub strong {
+      color: #FFD700;
+      opacity: 1;
+      -webkit-text-fill-color: #FFD700;
+    }
+
+    .acc-explain {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+    .acc-explain summary {
+      font-weight: 700;
+      color: var(--primary);
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
+    .acc-explain p {
+      margin: 12px 0 0;
+      color: var(--text-light);
+    }
+
+    .acc-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .acc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+    .acc-card-label {
+      font-size: 0.82rem;
+      color: var(--text-mute);
+      margin-bottom: 4px;
+    }
+    .acc-card-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+    .acc-card-value.expense { color: var(--accent); }
+
+    .acc-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      margin-bottom: 24px;
+    }
+    .acc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .acc-table thead {
+      background: var(--primary-pale);
+    }
+    .acc-table th {
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+    .acc-table td {
+      padding: 9px 14px;
+      border-top: 1px solid var(--border);
+    }
+    .acc-table tr:hover td {
+      background: var(--warm-bg);
+    }
+    .acc-table .num {
+      text-align: right;
+      font-weight: 600;
+    }
+
+    .acc-statement td, .acc-statement th {
+      padding: 8px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .acc-statement .st-group td {
+      background: var(--primary-pale);
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.92rem;
+    }
+    .acc-statement .st-item td:first-child { padding-left: 32px; color: var(--text-light); }
+    .acc-statement .st-subtotal td {
+      font-weight: 700;
+      border-top: 1.5px solid var(--primary-light);
+    }
+    .acc-statement .st-total td {
+      background: #1a1a1a;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      border-top: 2px solid #1a1a1a;
+    }
+    .acc-statement .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .acc-statement tr:hover td { background: inherit; }
+    .acc-statement .st-group:hover td { background: var(--primary-pale); }
+    .acc-statement .st-total:hover td { background: #1a1a1a; }
+
+    .acc-audit-section {
+      background: var(--warm-bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 32px;
+    }
+    .acc-audit-section h3 {
+      margin: 0 0 8px;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+    .acc-audit-section p {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      margin-bottom: 14px;
+    }
+    .audit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .audit-btn:hover { background: #245A42; }
+    .audit-btn.copied {
+      background: var(--primary-light);
+    }
+
+    .acc-note {
+      font-size: 0.8rem;
+      color: var(--text-mute);
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body data-page="accounting">
+
+<div class="demo-banner">
+  🔍 これは<b>CfJ Summit 来場者向けのデモ</b>です。実サイトはメンバー認証つきで運用しています。
+  <a href="/cfj/">← リンク集へ戻る</a>
+</div>
+
+<div class="app">
+  <div id="akk-sidebar"></div>
+  <main class="main">
+
+    <div class="acc-hero">
+      <div class="acc-hero-eyebrow">🌍 世界初 — AI監査対応のNPO会計</div>
+      <div class="acc-hero-title">ゼロトラスト会計</div>
+      <div class="acc-hero-pillars">
+        <div class="acc-pillar">
+          <span class="acc-pillar-num">¥0</span>
+          <span class="acc-pillar-label">役員報酬</span>
+        </div>
+        <div class="acc-pillar">
+          <span class="acc-pillar-num">0%</span>
+          <span class="acc-pillar-label">中抜き</span>
+        </div>
+        <div class="acc-pillar">
+          <span class="acc-pillar-num">100%</span>
+          <span class="acc-pillar-label">帳簿公開</span>
+        </div>
+      </div>
+      <p class="acc-hero-sub"><strong>自分の目で確かめてください。</strong><br>全収支リアルタイム公開 — 誰でもワンクリックでAI監査できます。</p>
+    </div>
+
+    <details class="acc-explain">
+      <summary>ゼロトラスト会計とは？</summary>
+      <p>「ゼロトラスト」とは、IT セキュリティ分野の「信頼せず、常に検証する」という考え方です。AIかけこみ寺はこれを会計に応用し、<strong>帳簿を全件リアルタイム公開</strong>することで「信用してもらう」のではなく「誰でも検証できる」状態を実現しました。下のボタンから帳簿データをコピーし、お好みのAI（ChatGPT, Claude, Gemini等）に貼り付けるだけで、どなたでも会計監査ができます。帳簿全件のリアルタイム公開とAI監査の組み合わせは、NPOとして世界初の取り組みです。</p>
+    </details>
+
+    <p class="acc-note" style="margin-top:-20px;margin-bottom:28px;">
+      ※ デモ版の注記：金額・日付・勘定科目は実データそのままです。連携先の企業名・団体名のみ「大手旅行会社様」等にぼかしています。
+    </p>
+
+    <div class="acc-summary" id="acc-summary"></div>
+
+    <h2>活動計算書（経常費用の内訳）</h2>
+    <p class="acc-note" style="margin-top:0;margin-bottom:14px;">
+      NPO法人会計基準に沿って、費用を<b>事業費</b>（AI教室など目的事業に直接かかる費用）と<b>管理費</b>（団体運営の共通費）に区分し、勘定科目ごとに集計しています。
+    </p>
+    <div class="acc-table-wrap">
+      <table class="acc-table acc-statement" id="acc-statement"></table>
+    </div>
+
+    <h2>帳簿明細</h2>
+    <div class="acc-table-wrap">
+      <table class="acc-table" id="acc-table">
+        <thead>
+          <tr>
+            <th>日付</th>
+            <th>区分</th>
+            <th>科目</th>
+            <th>摘要</th>
+            <th class="num">金額</th>
+          </tr>
+        </thead>
+        <tbody id="acc-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="acc-audit-section">
+      <h3>🤖 AI監査用コピー</h3>
+      <p>帳簿データと監査プロンプトをクリップボードにコピーします。お好みのAI（ChatGPT, Claude, Gemini等）に貼り付けるだけで、誰でも会計監査ができます。</p>
+      <button class="audit-btn" id="audit-copy-btn">📋 AI監査用にコピー</button>
+      <p class="acc-note">※ コピーされるデータに個人情報は含まれません。全件の日付・機能・科目・摘要・金額のみです。</p>
+    </div>
+
+    <p class="acc-note" style="margin-top:32px;border-top:1px solid var(--border);padding-top:16px;">
+      <a href="/cfj/" style="color:var(--primary);font-weight:700;">← CfJ Summit リンク集へ戻る</a>　/　
+      <a href="/cfj/internal/" style="color:var(--primary);font-weight:700;">メンバー向けサイトのデモを見る</a>
+    </p>
+
+  </main>
+</div>
+
+<script>
+(async function() {
+  const res = await fetch('accounting.json?v=' + Date.now());
+  const data = await res.json();
+
+  // Summary
+  const totalExpense = data.reduce((s, r) => s + (r['支出'] || 0), 0);
+  const totalIncome = data.reduce((s, r) => s + (r['収入'] || 0), 0);
+  const balance = totalIncome - totalExpense;
+  const entryCount = data.length;
+
+  document.getElementById('acc-summary').innerHTML = `
+    <div class="acc-card">
+      <div class="acc-card-label">総支出</div>
+      <div class="acc-card-value expense">¥${totalExpense.toLocaleString()}</div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-card-label">総収入</div>
+      <div class="acc-card-value">¥${totalIncome.toLocaleString()}</div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-card-label">収支</div>
+      <div class="acc-card-value ${balance < 0 ? 'expense' : ''}">¥${balance.toLocaleString()}</div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-card-label">記帳件数</div>
+      <div class="acc-card-value">${entryCount}</div>
+    </div>
+  `;
+
+  // 活動計算書（機能別×科目別）
+  const yen = n => '¥' + n.toLocaleString();
+  const byFunc = { '事業費': {}, '管理費': {} };
+  data.forEach(r => {
+    if (!r['支出']) return;
+    const fn = r['機能'] || '管理費';
+    const k = r['科目'] || '不明';
+    if (!byFunc[fn]) byFunc[fn] = {};
+    byFunc[fn][k] = (byFunc[fn][k] || 0) + r['支出'];
+  });
+  let stHtml = '';
+  let grandTotal = 0;
+  ['事業費', '管理費'].forEach(fn => {
+    const items = Object.entries(byFunc[fn] || {}).sort((a, b) => b[1] - a[1]);
+    if (items.length === 0) return;
+    const sub = items.reduce((s, [, v]) => s + v, 0);
+    grandTotal += sub;
+    stHtml += `<tr class="st-group"><td>${fn}</td><td class="num">${yen(sub)}</td></tr>`;
+    items.forEach(([k, v]) => {
+      stHtml += `<tr class="st-item"><td>${k}</td><td class="num">${yen(v)}</td></tr>`;
+    });
+    stHtml += `<tr class="st-subtotal"><td>${fn}計</td><td class="num">${yen(sub)}</td></tr>`;
+  });
+  stHtml += `<tr class="st-total"><td>経常費用計</td><td class="num">${yen(grandTotal)}</td></tr>`;
+  document.getElementById('acc-statement').innerHTML = stHtml;
+
+  // Table
+  const tbody = document.getElementById('acc-tbody');
+  tbody.innerHTML = data.slice().reverse().map(r => `
+    <tr>
+      <td>${r['日付']}</td>
+      <td>${r['機能'] || ''}</td>
+      <td>${r['科目'] || ''}</td>
+      <td>${r['摘要']}</td>
+      <td class="num">¥${(r['支出'] || r['収入'] || 0).toLocaleString()}</td>
+    </tr>
+  `).join('');
+
+  // Audit copy
+  document.getElementById('audit-copy-btn').addEventListener('click', function() {
+    const header = '日付,機能,科目,摘要,支出,収入';
+    const rows = data.map(r =>
+      `${r['日付']},${r['機能'] || ''},${r['科目'] || ''},${r['摘要']},${r['支出'] || ''},${r['収入'] || ''}`
+    );
+    const csv = [header, ...rows].join('\n');
+
+    const prompt = `以下は非営利団体「AIかけこみ寺」の会計帳簿データです。この団体の会計を監査してください。
+費用はNPO法人会計基準に沿って、機能別（事業費／管理費）×形態別の勘定科目で分類しています。
+
+確認ポイント：
+- 支出の妥当性（NPO活動との関連性）
+- 機能別区分（事業費／管理費）と勘定科目の分類の正確性
+- 異常値や不自然な支出パターンの有無
+- 改善提案があれば指摘してください
+
+なお、この団体は役員報酬ゼロ・代表の自己資金で運営されています。
+
+---
+${csv}
+---
+
+総支出: ¥${totalExpense.toLocaleString()}
+総収入: ¥${totalIncome.toLocaleString()}
+記帳件数: ${entryCount}件
+期間: ${data[0]['日付']} 〜 ${data[data.length-1]['日付']}`;
+
+    navigator.clipboard.writeText(prompt).then(() => {
+      const btn = document.getElementById('audit-copy-btn');
+      btn.textContent = '✅ コピーしました！AIに貼り付けてください';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = '📋 AI監査用にコピー';
+        btn.classList.remove('copied');
+      }, 3000);
+    });
+  });
+})();
+</script>
+</body>
+</html>
