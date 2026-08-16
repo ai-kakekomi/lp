@@ -1,6 +1,7 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/tools/:tool((?:[^/]+))", "destination": "/tools/:tool/", "permanent": false }
+    { "source": "/tools/:tool((?:[^/]+))", "destination": "/tools/:tool/", "permanent": false },
+    { "source": "/wiki/:slug((?:[^/]+))", "destination": "/wiki/:slug/", "permanent": false }
   ]
 }
