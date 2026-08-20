@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アプリを自分用に改造する | AIかけこみ寺</title>
+<meta name="description" content="かけこみアプリをAIエージェント（Claude Code / Codex）で自分用に改造するための、日本語のやさしい手順書。インストールからアプリの入手まで、コピペで進められます。">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2D6A4F;
+  --primary-light: #52B788;
+  --primary-pale: #D8F3DC;
+  --accent: #E76F51;
+  --accent-light: #F4A261;
+  --warm-bg: #FDF8F0;
+  --warm-bg-alt: #FFF5E8;
+  --text: #2C2C2C;
+  --text-light: #5A5A5A;
+  --white: #FFFFFF;
+  --claude: #C15F3C;
+  --chatgpt: #10A37F;
+  --shadow-soft: 0 4px 24px rgba(45, 106, 79, 0.08);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.06);
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: var(--warm-bg);
+  line-height: 1.9;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.brand-bar {
+  background: var(--white);
+  border-bottom: 1px solid rgba(45,106,79,0.1);
+  padding: 16px 0;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.brand {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+main { flex: 1; }
+
+.page-head {
+  padding: 64px 0 40px;
+  text-align: center;
+  background: linear-gradient(170deg, #D8F3DC 0%, #FDF8F0 55%, #FDF8F0 100%);
+}
+
+.section-label {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.page-head h1 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(1.7rem, 5vw, 2.4rem);
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.lead {
+  font-size: 1.02rem;
+  color: var(--text-light);
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.content { padding: 40px 0 72px; }
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 30px 32px;
+  margin-bottom: 28px;
+}
+
+.card h2 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.card h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 22px 0 8px;
+}
+
+.card p { margin-bottom: 12px; }
+.card ul, .card ol { margin: 0 0 12px 1.4em; }
+.card li { margin-bottom: 6px; }
+
+.step-num {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  padding: 2px 14px;
+  margin-bottom: 8px;
+}
+
+.note {
+  background: var(--warm-bg-alt);
+  border-left: 4px solid var(--accent-light);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  font-size: 0.93rem;
+  margin: 14px 0;
+}
+
+.note strong { color: var(--accent); }
+
+/* 派選択 */
+.lane-picker {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 16px 0 4px;
+}
+
+.lane-btn {
+  flex: 1;
+  min-width: 200px;
+  border: 2px solid rgba(0,0,0,0.12);
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.98rem;
+  cursor: pointer;
+  text-align: left;
+  line-height: 1.6;
+  transition: all .2s ease;
+}
+
+.lane-btn b { font-size: 1.05rem; display: block; }
+.lane-btn small { color: var(--text-light); }
+.lane-btn[data-lane="claude"] b { color: var(--claude); }
+.lane-btn[data-lane="chatgpt"] b { color: var(--chatgpt); }
+.lane-btn.active { box-shadow: var(--shadow-soft); }
+.lane-btn[data-lane="claude"].active { border-color: var(--claude); background: #FCF3EF; }
+.lane-btn[data-lane="chatgpt"].active { border-color: var(--chatgpt); background: #EDF9F5; }
+
+body.pick-claude .lane-chatgpt { display: none; }
+body.pick-chatgpt .lane-claude { display: none; }
+
+.lane {
+  border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  margin: 14px 0;
+}
+
+.lane-claude { border-color: rgba(193,95,60,0.4); }
+.lane-chatgpt { border-color: rgba(16,163,127,0.4); }
+
+.lane-tag {
+  display: inline-block;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  border-radius: 999px;
+  padding: 1px 12px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.lane-claude .lane-tag { background: var(--claude); }
+.lane-chatgpt .lane-tag { background: var(--chatgpt); }
+
+/* OS切り替えはしない。両方書いて見出しで分ける */
+.os-head {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-light);
+  margin: 12px 0 4px;
+}
+
+/* コード */
+.code-wrap { position: relative; margin: 6px 0 14px; }
+
+pre.code {
+  background: #22302B;
+  color: #E8F5EE;
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  padding-right: 74px;
+  font-family: Consolas, Menlo, monospace;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 0;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer;
+}
+
+.copy-btn:hover { background: rgba(255,255,255,0.3); }
+
+.check {
+  background: var(--primary-pale);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 0.92rem;
+  margin: 10px 0 4px;
+}
+
+.check::before { content: "✅ "; }
+
+a { color: var(--primary); font-weight: 500; }
+
+.footer {
+  padding: 32px 0;
+  background: #1B4332;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+
+@media (max-width: 768px) {
+  .page-head { padding: 48px 0 32px; }
+  .card { padding: 22px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="brand-bar">
+  <div class="container">
+    <a href="/" class="brand">🛕 AIかけこみ寺</a>
+  </div>
+</div>
+
+<main>
+  <div class="page-head">
+    <div class="container">
+      <div class="section-label">CUSTOMIZE</div>
+      <h1>かけこみアプリを<br>自分用に改造する</h1>
+      <p class="lead">
+        <a href="/tools/">かけこみアプリ</a>はすべてオープンソース。AIエージェントを使えば、プログラミングの知識がなくても「ここをこう変えて」と<strong>日本語で頼むだけ</strong>で自分用に改造できます。<br><br>
+        その入口になる「AIエージェントを自分のパソコンに入れる」手順を、日本語でやさしくまとめました。公式の説明は英語ばかりなので、教育団体のわたしたちが橋渡しします。所要時間はだいたい30分です。
+      </p>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container">
+
+      <div class="card">
+        <h2>はじめに：必要なもの</h2>
+        <ul>
+          <li>パソコン（WindowsまたはMac）</li>
+          <li>ChatGPTまたはClaudeの<strong>有料プラン</strong>のアカウント（どちらか片方でOK）</li>
+        </ul>
+        <p>
+          AIエージェントとは、チャットのAIと違って<strong>あなたのパソコンの中で実際に手を動かしてくれる</strong>AIのことです。
+          ファイルを読み、書き換え、動作確認までしてくれます。ChatGPTの会社（OpenAI）が出しているのが「Codex」、
+          Claudeの会社（Anthropic）が出しているのが「Claude Code」です。中身の実力はどちらも十分。
+          <strong>ふだん使っている方・課金している方を選べばOK</strong>です。
+        </p>
+        <div class="lane-picker">
+          <button type="button" class="lane-btn" data-lane="chatgpt"><b>ChatGPT派</b><small>Codex を入れる（ChatGPT Plus等のアカウントでサインイン）</small></button>
+          <button type="button" class="lane-btn" data-lane="claude"><b>Claude派</b><small>Claude Code を入れる（Claude Pro等のアカウントでサインイン）</small></button>
+        </div>
+        <p style="font-size:0.85rem;color:var(--text-light);">↑ 押すと、以降の手順があなたの派だけに絞られます（いつでも切り替えられます）。</p>
+      </div>
+
+      <div class="card">
+        <span class="step-num">STEP 1</span>
+        <h2>「黒い画面」を開く</h2>
+        <p>
+          AIエージェントは「ターミナル」という文字だけの画面で動きます。見た目は無骨ですが、
+          <strong>あなたが打つのは最初のインストール命令くらい</strong>。あとはAIとの日本語の会話です。
+        </p>
+        <p class="os-head">Windowsの場合</p>
+        <p>スタートボタンを押して「<strong>powershell</strong>」と入力し、「Windows PowerShell」を開きます。</p>
+        <p class="os-head">Macの場合</p>
+        <p>画面右上の虫めがね（Spotlight）を押して「<strong>ターミナル</strong>」と入力し、「ターミナル.app」を開きます。</p>
+      </div>
+
+      <div class="card">
+        <span class="step-num">STEP 2</span>
+        <h2>AIエージェントをインストールする</h2>
+
+        <div class="lane lane-chatgpt">
+          <span class="lane-tag">ChatGPT派：Codex</span>
+          <p class="os-head">Macの場合（ターミナルに貼り付けてEnter）</p>
+          <div class="code-wrap"><pre class="code">curl -fsSL https://chatgpt.com/codex/install.sh | sh</pre></div>
+          <p class="os-head">Windowsの場合</p>
+          <p>
+            先に <a href="https://nodejs.org/ja" target="_blank" rel="noopener">Node.js公式サイト</a> から
+            「LTS」と書かれた方をダウンロードしてインストールします（全部そのまま「次へ」でOK）。
+            終わったらPowerShellを<strong>開き直して</strong>、次を貼り付けてEnter：
+          </p>
+          <div class="code-wrap"><pre class="code">npm install -g @openai/codex</pre></div>
+          <div class="check">確認：<code>codex --version</code> と打ってバージョン番号が出れば成功です。</div>
+          <h3>サインイン</h3>
+          <p><code>codex</code> と打って起動し、「Sign in with ChatGPT」を選ぶとブラウザが開くので、ふだんのChatGPTアカウントでログインします。</p>
+          <p style="font-size:0.88rem;color:var(--text-light);">公式情報（英語）：<a href="https://developers.openai.com/codex/cli/" target="_blank" rel="noopener">Codex CLIドキュメント</a></p>
+        </div>
+
+        <div class="lane lane-claude">
+          <span class="lane-tag">Claude派：Claude Code</span>
+          <p class="os-head">Macの場合（ターミナルに貼り付けてEnter）</p>
+          <div class="code-wrap"><pre class="code">curl -fsSL https://claude.ai/install.sh | bash</pre></div>
+          <p class="os-head">Windowsの場合（PowerShellに貼り付けてEnter）</p>
+          <div class="code-wrap"><pre class="code">irm https://claude.ai/install.ps1 | iex</pre></div>
+          <div class="check">確認：ターミナルを開き直して <code>claude --version</code> と打ち、バージョン番号が出れば成功です。</div>
+          <h3>サインイン</h3>
+          <p><code>claude</code> と打って起動すると初回にログインを求められるので、指示に従ってブラウザでふだんのClaudeアカウントにログインします。</p>
+          <p style="font-size:0.88rem;color:var(--text-light);">公式情報（英語）：<a href="https://code.claude.com/docs/en/quickstart" target="_blank" rel="noopener">Claude Codeクイックスタート</a></p>
+        </div>
+
+        <div class="note">
+          <strong>うまくいかないときは：</strong>エラーの文章をそのままコピーして、ChatGPTやClaudeの<strong>ふだんのチャット</strong>に
+          「WindowsでCodexをインストール中にこのエラーが出ました。どうすればいいですか」のように貼ってください。
+          たいてい解決します。それでもだめなら <a href="mailto:info@ai-kakekomi.com">info@ai-kakekomi.com</a> へ。
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="step-num">STEP 3</span>
+        <h2>アプリを手元に持ってきて、改造を頼む</h2>
+        <p>
+          ここから先は、もう手順を覚える必要はありません。<strong>入れたばかりのAIエージェントに頼めばいい</strong>からです。
+          ターミナルで <span class="lane-chatgpt" style="display:inline;border:0;padding:0;"><code>codex</code></span><span class="lane-claude" style="display:inline;border:0;padding:0;"><code>claude</code></span> を起動して、次のような日本語を貼り付けてください。
+        </p>
+        <div class="code-wrap"><pre class="code">https://github.com/ai-kakekomi/food-label-maker を私のパソコンに取得（クローン）して、ブラウザで開いて動かしてください。gitなど必要な道具が入っていなければ、入れるところから案内してください。</pre></div>
+        <p>アプリのアドレスは以下から選んで差し替えてください。</p>
+        <ul>
+          <li>食品表示ラベルメーカー：<code>https://github.com/ai-kakekomi/food-label-maker</code></li>
+          <li>バス座席表メーカー：<code>https://github.com/ai-kakekomi/bus-seat-maker</code></li>
+          <li>ひとり親ライフチョイス・シミュレータ：<code>https://github.com/ai-kakekomi/single-parent-lifesim</code></li>
+        </ul>
+        <p>動いたら、あとは自由に頼むだけです。たとえば：</p>
+        <div class="code-wrap"><pre class="code">このアプリの色を、うちの会社のコーポレートカラー（#003366）に合わせて変えてください。</pre></div>
+        <div class="code-wrap"><pre class="code">うちで扱う原材料をあらかじめ選択肢に入れて、入力の手間を減らしてください。</pre></div>
+        <div class="note">
+          各アプリの使い方マニュアルにも、そのアプリ専用の「AIに頼む」ためのコピペ文を用意しています。
+          あなたが入力した内容やファイルは、あなたが契約しているAI事業者との間だけでやり取りされ、
+          <strong>わたしたちAIかけこみ寺には一切届きません</strong>。社外秘を扱うときは、AI側の学習設定もご確認ください。
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="step-num">STEP 4（やりたい人だけ）</span>
+        <h2>改造の成果を本家に還元する</h2>
+        <p>
+          ここまでの手順に、GitHubのアカウントは<strong>不要</strong>です。作った改造は自分のパソコンの中で完結します。
+          「この改善、みんなの役に立ちそう」と思ったら、GitHubアカウントを作って提案（Pull Request）を送れます。
+          これもエージェントに頼むのが早道です：
+        </p>
+        <div class="code-wrap"><pre class="code">この改造を本家（ai-kakekomi）に提案したいです。GitHubアカウントの作成から、ghコマンドの準備、フォークしてPull Requestを送るところまで、ひとつずつ案内してください。</pre></div>
+        <p>もちろん「提案までは……」という方は、<a href="mailto:info@ai-kakekomi.com">info@ai-kakekomi.com</a> に「こう変えたら良くなった」と教えてくださるだけでも大歓迎です。</p>
+      </div>
+
+      <div class="card">
+        <h2>このページについて</h2>
+        <p>
+          最終更新：2026年8月。インストール手順やAIサービスの仕様は頻繁に変わります。
+          「書いてあるとおりにやったのに動かない」「情報が古い」と気づいたら、
+          <a href="mailto:info@ai-kakekomi.com">info@ai-kakekomi.com</a> までお知らせください。すぐに直します。
+        </p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p style="font-size:0.82rem;opacity:0.85;">「AIかけこみ寺」は商標登録出願中です。現在、NPO法人設立に向けて認証申請中です。</p>
+    <p>© 2026 AIかけこみ寺（非営利の市民活動） All Rights Reserved.　<a href="/tools/">かけこみアプリへ戻る</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var body = document.body;
+  var btns = document.querySelectorAll('.lane-btn');
+  function pick(lane) {
+    body.classList.remove('pick-claude', 'pick-chatgpt');
+    btns.forEach(function (b) { b.classList.remove('active'); });
+    if (lane) {
+      body.classList.add('pick-' + lane);
+      document.querySelector('.lane-btn[data-lane="' + lane + '"]').classList.add('active');
+    }
+    try { localStorage.setItem('kakekomi-lane', lane || ''); } catch (e) {}
+  }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var lane = b.getAttribute('data-lane');
+      pick(b.classList.contains('active') ? '' : lane);
+    });
+  });
+  try { var saved = localStorage.getItem('kakekomi-lane'); if (saved) pick(saved); } catch (e) {}
+
+  document.querySelectorAll('pre.code').forEach(function (pre) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copy-btn';
+    btn.textContent = 'コピー';
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(pre.textContent).then(function () {
+        btn.textContent = 'コピーしました';
+        setTimeout(function () { btn.textContent = 'コピー'; }, 1600);
+      });
+    });
+    pre.parentNode.appendChild(btn);
+  });
+})();
+</script>
+
+</body>
+</html>
