@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "redirects": [
     { "source": "/tools", "destination": "/apps/", "permanent": true },
-    { "source": "/tools/:path*", "destination": "/apps/:path*", "permanent": true },
+    { "source": "/tools/:path(.*)", "destination": "/apps/:path", "permanent": true },
     { "source": "/apps/:app(bus-seat|food-label|single-parent-lifesim)", "destination": "/apps/:app/", "permanent": false },
     { "source": "/wiki/:slug((?:[^/]+))", "destination": "/wiki/:slug/", "permanent": false }
   ]
