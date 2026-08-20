@@ -344,12 +344,16 @@ a { color: var(--primary); font-weight: 500; }
           <p class="os-head">Macの場合（ターミナルに貼り付けてEnter）</p>
           <div class="code-wrap"><pre class="code">curl -fsSL https://chatgpt.com/codex/install.sh | sh</pre></div>
           <p class="os-head">Windowsの場合</p>
+          <p>先に、土台になる「Node.js」を入れます。PowerShellに次を貼り付けてEnter：</p>
+          <div class="code-wrap"><pre class="code">winget install OpenJS.NodeJS.LTS</pre></div>
           <p>
-            先に <a href="https://nodejs.org/ja" target="_blank" rel="noopener">Node.js公式サイト</a> から
-            「LTS」と書かれた方をダウンロードしてインストールします（全部そのまま「次へ」でOK）。
-            終わったらPowerShellを<strong>開き直して</strong>、次を貼り付けてEnter：
+            終わったらPowerShellをいったん閉じて<strong>開き直し</strong>、次を貼り付けてEnter：
           </p>
           <div class="code-wrap"><pre class="code">npm install -g @openai/codex</pre></div>
+          <p style="font-size:0.88rem;color:var(--text-light);">
+            ※ <a href="https://nodejs.org/ja/download" target="_blank" rel="noopener">Node.js公式サイト</a>からも入れられますが、
+            現在の公式ページは開発者向けの構成でわかりにくいため、上のコマンドをおすすめします。
+          </p>
           <div class="check">確認：<code>codex --version</code> と打ってバージョン番号が出れば成功です。</div>
           <h3>サインイン</h3>
           <p><code>codex</code> と打って起動し、「Sign in with ChatGPT」を選ぶとブラウザが開くので、ふだんのChatGPTアカウントでログインします。</p>
