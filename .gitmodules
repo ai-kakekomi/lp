@@ -1,11 +1,11 @@
 [submodule "tools/food-label"]
-	path = tools/food-label
+	path = apps/food-label
 	url = https://github.com/ai-kakekomi/food-label-maker.git
 [submodule "tools/bus-seat"]
-	path = tools/bus-seat
+	path = apps/bus-seat
 	url = https://github.com/ai-kakekomi/bus-seat-maker.git
 [submodule "tools/single-parent-lifesim"]
-	path = tools/single-parent-lifesim
+	path = apps/single-parent-lifesim
 	url = https://github.com/ai-kakekomi/single-parent-lifesim.git
 [submodule "wiki"]
 	path = wiki
