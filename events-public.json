@@ -1,26 +1,10 @@
 {
-  "generated": "2026-08-03 19:31",
+  "generated": "2026-08-22 16:13",
   "stats": {
-    "held_count": 6,
-    "total_participants": 96
+    "held_count": 7,
+    "total_participants": 111
   },
   "upcoming": [
-    {
-      "uid": "akk-20260822",
-      "title": "チャッピーと話そう！はじめてのAI体験教室",
-      "ymd": "2026-08-22",
-      "date_label": "2026年8月22日（土）",
-      "time_label": "10:00〜11:30",
-      "doors_label": "9:30",
-      "place_label": "西生涯学習センター 第3集会室（名古屋市西区浄心1-1-45）",
-      "access": "地下鉄鶴舞線「浄心」下車 徒歩すぐ",
-      "fee": "無料",
-      "bring": "スマホ",
-      "apply_required": true,
-      "endorsement": "名古屋市教育委員会",
-      "apply_url": "https://ai-kakekomi.com/apply.html?uid=akk-20260822",
-      "capacity": 35
-    },
     {
       "uid": "akk-20260919",
       "title": "チャッピーと話そう！はじめてのAI体験教室",
@@ -36,9 +20,29 @@
       "endorsement": "名古屋市教育委員会",
       "apply_url": "https://ai-kakekomi.com/apply.html?uid=akk-20260919",
       "capacity": 60
+    },
+    {
+      "uid": "akk-20261017",
+      "title": "チャッピーと話そう！はじめてのAI体験教室",
+      "ymd": "2026-10-17",
+      "date_label": "2026年10月17日（土）",
+      "time_label": "10:00〜12:00",
+      "doors_label": "9:30",
+      "place_label": "西生涯学習センター（名古屋市西区浄心1-1-45）",
+      "access": "地下鉄鶴舞線「浄心」下車 徒歩すぐ",
+      "fee": "無料",
+      "bring": "スマホ",
+      "apply_required": true,
+      "endorsement": "名古屋市教育委員会",
+      "apply_url": "https://ai-kakekomi.com/apply.html?uid=akk-20261017",
+      "capacity": 30
     }
   ],
   "past": [
+    {
+      "ym": "2026年8月",
+      "label": "チャッピーと話そう！はじめてのAI体験教室"
+    },
     {
       "ym": "2026年7月",
       "label": "チャッピーと話そう！はじめてのAI体験教室",
