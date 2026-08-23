@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-23 19:27",
+  "generated": "2026-08-24 08:44",
   "stats": {
     "held_count": 7,
     "total_participants": 112
@@ -19,7 +19,7 @@
       "apply_required": true,
       "endorsement": "名古屋市教育委員会",
       "apply_url": "https://ai-kakekomi.com/apply.html?uid=akk-20260919",
-      "capacity": 60
+      "capacity": 50
     },
     {
       "uid": "akk-20261017",
@@ -28,14 +28,14 @@
       "date_label": "2026年10月17日（土）",
       "time_label": "10:00〜12:00",
       "doors_label": "9:30",
-      "place_label": "西生涯学習センター（名古屋市西区浄心1-1-45）",
+      "place_label": "西生涯学習センター 視聴覚室（名古屋市西区浄心1-1-45）",
       "access": "地下鉄鶴舞線「浄心」下車 徒歩すぐ",
       "fee": "無料",
       "bring": "スマホ",
       "apply_required": true,
       "endorsement": "名古屋市教育委員会",
       "apply_url": "https://ai-kakekomi.com/apply.html?uid=akk-20261017",
-      "capacity": 30
+      "capacity": 50
     }
   ],
   "past": [
