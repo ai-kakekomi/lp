@@ -1,8 +1,8 @@
 {
-  "generated": "2026-08-22 16:13",
+  "generated": "2026-08-23 19:27",
   "stats": {
     "held_count": 7,
-    "total_participants": 111
+    "total_participants": 112
   },
   "upcoming": [
     {
@@ -41,7 +41,8 @@
   "past": [
     {
       "ym": "2026年8月",
-      "label": "チャッピーと話そう！はじめてのAI体験教室"
+      "label": "チャッピーと話そう！はじめてのAI体験教室",
+      "note_url": "https://note.com/ai_kakekomi/n/n31082a881fa5"
     },
     {
       "ym": "2026年7月",
