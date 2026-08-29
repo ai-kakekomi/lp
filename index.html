@@ -561,6 +561,7 @@ body {
 }
 
 @media (max-width: 768px) {
+
   .pricing-grid {
     grid-template-columns: 1fr;
   }
@@ -627,6 +628,28 @@ body {
 .pricing-list strong {
   display: block;
   color: var(--primary);
+}
+
+/* 開催予定のカード。パソコンでは横に並べ、スマホでは縦に積む。
+   中身は events-public.json から JavaScript が差し込む */
+.hero-events {
+  margin: 40px auto 0;
+  max-width: 960px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
+.hero-events > div { flex: 1 1 340px; max-width: 460px; }
+
+@media (max-width: 768px) {
+  .hero-events { flex-direction: column; max-width: 540px; }
+  .hero-events > div { flex: 1 1 auto; max-width: none; }
 }
 
 .hero-badges {
@@ -1316,7 +1339,7 @@ details p { animation: fadeDown 0.3s ease; }
     </div>
 
     <!-- イベント告知：events-public.json から自動描画（scripts/sync_lp.py が生成） -->
-    <div id="lp-events" style="scroll-margin-top:80px;margin-top:40px;max-width:540px;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;gap:16px;position:relative;z-index:1;text-align:left;">
+    <div id="lp-events" class="hero-events" style="scroll-margin-top:80px;">
       <div style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid var(--accent);">
         <span style="color:var(--text-light);font-size:0.9rem;">開催予定を読み込み中…</span>
       </div>
@@ -1449,6 +1472,74 @@ details p { animation: fadeDown 0.3s ease; }
   else { init(); }
 })();
 </script>
+
+<!-- ===== VOICES ===== -->
+<section style="padding:80px 0;background:var(--white);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px;">
+      <div class="section-label fade-in">VOICES</div>
+      <div class="section-title fade-in">参加者の声</div>
+    </div>
+    <div style="max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:24px;">
+      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
+        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
+          初心者すぎて聞きにくいと思っていたことまで先に用意してくださり、とても丁寧に教えていただけました。機種の違いも一緒に寄り添って解明してくださり、とても実りの多い時間でした。
+        </p>
+      </div>
+      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
+        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
+          フランクに話せて、思ったことをその場ですぐ質問できてよかったです！
+        </p>
+      </div>
+      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
+        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
+          スマホは普段あまり使いこなせていないのですが、教えていただいた通りに話しかけたら、自分の体調のことまで丁寧に答えてくれて驚きました。家でも一人で続けてみようと思います。
+        </p>
+        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 70代女性／2026年4月 西生涯学習センター</p>
+      </div>
+      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
+        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
+          とても私にはムリと思いましたが、スタッフの方の熱心な教え方に少しわかったような気がして、びっくりするやら嬉しいやら。家でも試してみようと思いました。
+        </p>
+        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年6月 西生涯学習センター</p>
+      </div>
+      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
+        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
+          初めてのチャッピー体験でした。怖さがなくなりました。ありがとうございました。
+        </p>
+        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年7月 西生涯学習センター</p>
+      </div>
+      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
+        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
+          個人情報の流出がこわくて今まであまり使えていませんでしたが、これからはAI情報リテラシーを守ってやってみます。
+        </p>
+        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年7月 西生涯学習センター</p>
+      </div>
+      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
+        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
+          講師やボランティアさんのお人柄が温かく、とてもいい時間でした。
+        </p>
+        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年6月 西生涯学習センター</p>
+      </div>
+      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
+        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
+          とても有意義なセミナーです。このような活動は、引き続き続けてほしいです。
+        </p>
+        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年8月 西生涯学習センター</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 <!-- ===== MISSION ===== -->
 <section class="mission" id="mission">
@@ -1616,72 +1707,6 @@ details p { animation: fadeDown 0.3s ease; }
     </div>
     <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--text);line-height:1.8;"><b>阪急交通社</b> 様　添乗員向けAI活用研修（2026年7月・名古屋）</p>
     <p style="text-align:center;margin-top:6px;font-size:0.8rem;color:var(--text-light);line-height:1.8;">参加者のプライバシー保護のため、お顔の一部を加工しています。</p>
-  </div>
-</section>
-
-<!-- ===== VOICES ===== -->
-<section style="padding:80px 0;background:var(--white);">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:56px;">
-      <div class="section-label fade-in">VOICES</div>
-      <div class="section-title fade-in">参加者の声</div>
-    </div>
-    <div style="max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:24px;">
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          初心者すぎて聞きにくいと思っていたことまで先に用意してくださり、とても丁寧に教えていただけました。機種の違いも一緒に寄り添って解明してくださり、とても実りの多い時間でした。
-        </p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          フランクに話せて、思ったことをその場ですぐ質問できてよかったです！
-        </p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          スマホは普段あまり使いこなせていないのですが、教えていただいた通りに話しかけたら、自分の体調のことまで丁寧に答えてくれて驚きました。家でも一人で続けてみようと思います。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 70代女性／2026年4月 西生涯学習センター</p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          とても私にはムリと思いましたが、スタッフの方の熱心な教え方に少しわかったような気がして、びっくりするやら嬉しいやら。家でも試してみようと思いました。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年6月 西生涯学習センター</p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          初めてのチャッピー体験でした。怖さがなくなりました。ありがとうございました。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年7月 西生涯学習センター</p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          個人情報の流出がこわくて今まであまり使えていませんでしたが、これからはAI情報リテラシーを守ってやってみます。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年7月 西生涯学習センター</p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          講師やボランティアさんのお人柄が温かく、とてもいい時間でした。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年6月 西生涯学習センター</p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          とても有意義なセミナーです。このような活動は、引き続き続けてほしいです。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年8月 西生涯学習センター</p>
-      </div>
-    </div>
   </div>
 </section>
 
