@@ -430,12 +430,12 @@ form { display: flex; flex-direction: column; gap: 20px; }
         載せてよい根拠は「Meet側が承認制（主催者の参加前は入室不可＋外部参加者は承認が必要）」であること。
         この設定を外すなら、URLもページから下ろす。→ 00_経営/定例業務/activo応募者対応.md
 -->
-<section class="slot" data-slot-expires="2026-08-29T14:30:00+09:00">
+<section class="slot" id="slot-sec" hidden>
   <div class="container">
     <div class="slot-card">
       <span class="slot-tag">開催が決まっている回</span>
-      <div class="slot-date">8/29(土)</div>
-      <div class="slot-time">14:00 〜 14:30</div>
+      <div class="slot-date" id="slot-date"></div>
+      <div class="slot-time" id="slot-time"></div>
       <p class="slot-note">ほかの応募者の方と合同で行います。<br>他の方の質問も聞けるので、活動のイメージが掴みやすい回です。<br>30分で終わります。</p>
       <button type="button" class="slot-btn" id="pick-slot"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg> この回に参加する</button>
 
@@ -514,9 +514,9 @@ form { display: flex; flex-direction: column; gap: 20px; }
         <label>ご希望の参加方法 <span class="req">*必須</span></label>
         <div class="choice-group">
           <label class="choice">
-            <input type="radio" name="参加方法" value="8/29(土) 14:00 の合同回に参加" id="r-slot" required>
+            <input type="radio" name="参加方法" value="" id="r-slot" required>
             <span class="choice-body">
-              <strong>8/29(土) 14:00 の合同回に参加する</strong>
+              <strong id="r-slot-label">合同回に参加する</strong>
               <span>おすすめ。日程調整なしでそのまま確定します</span>
             </span>
           </label>
@@ -591,6 +591,75 @@ form { display: flex; flex-direction: column; gap: 20px; }
 
 <script>
 (function () {
+  /* ============================================================
+   *  合同回の日程
+   *  ------------------------------------------------------------
+   *  毎週土曜の14:00〜14:30に開く。日付は自動で先へ進むので、
+   *  ふだんはこのファイルを触らなくてよい。
+   *
+   *  【開けない土曜が出たら SKIP に1行足す】
+   *  定期AI教室と重なる日、遠方のイベントの日、私用で動けない日など。
+   *  足した土曜は飛ばして、次の土曜が出る。
+   *  理由をコメントで残しておくと、あとで消してよいか分かる。
+   * ============================================================ */
+  var SLOT_START = '14:00';
+  var SLOT_END   = '14:30';
+
+  /* ここに足すのは「その土曜の14時に本当に出られない日」だけにする。
+     30分のオンラインなので、前日に用事がある程度なら開ける。
+     多く足すほど次の回が先になり、応募した人を待たせることになる。 */
+  var SKIP = [
+    '2026-09-19',  // 西生涯学習センター 定期AI教室
+    '2026-10-03',  // Code for Japan サミット2026（東京・終日）
+    '2026-10-17',  // 定期AI教室 ＋ ファミリーステーションRin AI教室
+    '2026-11-21',  // 西生涯学習センター 定期AI教室
+    '2026-12-19'   // 西生涯学習センター 定期AI教室
+  ];
+
+  var WEEK = ['日', '月', '火', '水', '木', '金', '土'];
+
+  /* 端末の時計が日本以外に合っていても、日本時間で数える */
+  function nowInJapan() {
+    var t = new Date();
+    return new Date(t.getTime() + (t.getTimezoneOffset() * 60000) + 9 * 3600000);
+  }
+
+  function ymd(d) {
+    var m = d.getMonth() + 1, day = d.getDate();
+    return d.getFullYear() + '-' + (m < 10 ? '0' + m : m) + '-' + (day < 10 ? '0' + day : day);
+  }
+
+  /* いちばん近い、開ける土曜を探す。当日は終了時刻を過ぎたら次の週へ送る */
+  function findSlot() {
+    var now = nowInJapan();
+    var endMinutes = Number(SLOT_END.split(':')[0]) * 60 + Number(SLOT_END.split(':')[1]);
+
+    for (var i = 0; i < 120; i++) {
+      var day = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+      if (day.getDay() !== 6) continue;                    /* 土曜だけ */
+      if (SKIP.indexOf(ymd(day)) >= 0) continue;
+      if (i === 0 && (now.getHours() * 60 + now.getMinutes()) >= endMinutes) continue;
+      return day;
+    }
+    return null;   /* 4か月先まで開ける土曜が無い。そのときは確定枠なしで出す */
+  }
+
+  var slotDay   = findSlot();
+  var slotLabel = slotDay
+    ? (slotDay.getMonth() + 1) + '/' + slotDay.getDate() + '(' + WEEK[slotDay.getDay()] + ')'
+    : null;
+
+  if (slotDay) {
+    var elDate = document.getElementById('slot-date');
+    var elTime = document.getElementById('slot-time');
+    var elLabel = document.getElementById('r-slot-label');
+    var elSec  = document.getElementById('slot-sec');
+    if (elDate) { elDate.textContent = slotLabel; }
+    if (elTime) { elTime.textContent = SLOT_START + ' 〜 ' + SLOT_END; }
+    if (elLabel) { elLabel.textContent = slotLabel + ' ' + SLOT_START + ' の合同回に参加する'; }
+    if (elSec) { elSec.hidden = false; }
+  }
+
   var dates   = document.getElementById('dates');
   var rSlot   = document.getElementById('r-slot');
   var rOther  = document.getElementById('r-other');
@@ -599,11 +668,11 @@ form { display: flex; flex-direction: column; gap: 20px; }
   var d1     = document.getElementById('f-d1');
   var d1req  = document.getElementById('d1-req');
 
-  // 確定枠の自動失効：data-slot-expires を過ぎたら「確定枠なしモード」に切り替える
-  var slotSec = document.querySelector('.slot[data-slot-expires]');
-  var expired = slotSec && new Date() >= new Date(slotSec.getAttribute('data-slot-expires'));
-  if (expired) {
-    slotSec.style.display = 'none';
+  /* 開ける土曜が見つからないときだけ「確定枠なしモード」にする。
+     ふだんはここを通らない（日付は自動で先へ進む） */
+  if (!slotDay) {
+    var hidden = document.getElementById('slot-sec');
+    if (hidden) { hidden.style.display = 'none'; }
     var methodField = document.getElementById('method-field');
     if (methodField) { methodField.style.display = 'none'; }
     if (rSlot)  { rSlot.required = false; rSlot.disabled = true; }
@@ -616,6 +685,11 @@ form { display: flex; flex-direction: column; gap: 20px; }
   // 確定枠が無い期間はラジオごと消してある。その場合は希望日欄を出しっぱなしにする
   // （そのときは #dates に class="show"、f-d1 に required が直接付いている）
   if (!rSlot || !rOther) { return; }
+
+  /* 送信されるのはこの文字列。日付が入っていないと、どの回か分からなくなる */
+  if (rSlot && slotLabel) {
+    rSlot.value = slotLabel + ' ' + SLOT_START + ' の合同回に参加';
+  }
 
   function sync() {
     var wantsOther = rOther.checked;
