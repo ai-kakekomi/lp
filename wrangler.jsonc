@@ -1,0 +1,15 @@
+{
+  // Cloudflare Workers（静的アセット配信）の設定。
+  // ダッシュボードのビルド設定より、このファイルが優先される。
+  "name": "ai-kakekomi-lp",
+  "compatibility_date": "2026-08-29",
+  "assets": {
+    "directory": ".",
+    // 存在しないURLで 404.html（日本語の「ページが見つかりません」）を返す。
+    // 既定は "none" で、本文のない素の404になってしまう。
+    "not_found_handling": "404-page",
+    // /privacy.html → /privacy、/wiki/git → /wiki/git/ の自動リダイレクト。
+    // 既定値だが、Vercel の cleanUrls から引き継いだ挙動なので明示しておく。
+    "html_handling": "auto-trailing-slash"
+  }
+}
