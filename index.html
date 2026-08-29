@@ -966,6 +966,49 @@ body {
   gap: 4px;
 }
 
+/* ===== 参加者の声：横に流れる ===== */
+.voices-lane {
+  overflow: hidden;
+  /* 上下に余白がないと、カードの影がレーンの縁で切られて平らに見える */
+  padding: 24px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+/* 余白は gap ではなくカードの margin-right で持つ。
+   gap だと 1セット分の幅と translateX(-50%) が gap の半分ずれ、毎周ガタつく */
+.voices-track { display: flex; gap: 0; width: max-content; will-change: transform; }
+.voices-track > .voice-card { margin-right: 20px; }
+.voices-track-l { animation: voices-slide-l 70s linear infinite; }
+.voices-track-r { animation: voices-slide-r 84s linear infinite; }
+.voices-lane:hover .voices-track { animation-play-state: paused; }
+@keyframes voices-slide-l { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes voices-slide-r { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .voices-track { animation: none; } }
+
+.voice-card {
+  flex: 0 0 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 244px;
+  padding: 24px 28px;
+  background: var(--warm-bg);
+  border-radius: var(--radius) var(--radius) var(--radius) 4px;
+  box-shadow: var(--shadow-soft);
+}
+.voice-card.is-alt { background: var(--warm-bg-alt); }
+.voice-text { margin: 0; font-size: 0.95rem; line-height: 2; color: var(--text); }
+.voice-src { margin: 0; font-size: 0.8rem; color: var(--text-light); letter-spacing: 0.02em; }
+
+@media (max-width: 768px) {
+  .voices-lane { padding: 20px 0; }
+  .voices-track > .voice-card { margin-right: 14px; }
+  .voice-card { flex: 0 0 268px; min-height: 214px; padding: 20px 22px; }
+  .voice-text { font-size: 0.88rem; }
+  .voice-src { font-size: 0.74rem; }
+}
+
 /* ===== PROFILE ===== */
 .profile {
   padding: 100px 0;
@@ -1474,67 +1517,236 @@ details p { animation: fadeDown 0.3s ease; }
 </script>
 
 <!-- ===== VOICES ===== -->
-<section style="padding:80px 0;background:var(--white);">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:56px;">
-      <div class="section-label fade-in">VOICES</div>
-      <div class="section-title fade-in">参加者の声</div>
+<section style="padding:52px 0 56px;background:var(--white);overflow:hidden;">
+  <div class="container" style="text-align:center;margin-bottom:44px;">
+    <div class="section-label fade-in">VOICES</div>
+    <div class="section-title fade-in">参加者の声</div>
+    <p class="fade-in" style="margin:0;font-size:0.98rem;line-height:1.9;color:var(--text-light);">教室のあとにお書きいただいたアンケートから、そのまま載せています。</p>
+  </div>
+
+  <div class="voices-lane" style="margin-bottom:20px;">
+    <div class="voices-track voices-track-l">
+        <div class="voice-card">
+          <p class="voice-text">とても私にはムリと思いましたが、スタッフの方の熱心な教え方に少しわかったような気がして、びっくりするやら嬉しいやら。家でも試してみようと思いました。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">初めてのチャッピー体験でした。怖さがなくなりました。</p>
+          <p class="voice-src">2026.7 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">親切に教えてもらってよかったです。いろいろな事ができてびっくりです。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">はじめて聞くことも多く、とても勉強になりました。講師やボランティアさんのお人柄が温かく、とてもいい時間でした。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">とても有意義なセミナーです。このような活動は引き続き続けてほしいです。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">情報リテラシーは非常に参考になりました。</p>
+          <p class="voice-src">2026.7 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">とても分かりやすかったです。AIが身近に感じた劇的な1日でした。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">アプリの整理にもChatGPTが役立つことをしれてよかった。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">フランクに話せて、思ったことをその場ですぐ質問できてよかったです。</p>
+          <p class="voice-src">2026.4 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">大変よい講座でたすかりました。スタッフ親切で感謝。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">面白かったです。使い方がよくわかりました。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">チャッピーが好きになりました。</p>
+          <p class="voice-src">2026.7 添乗員向け研修</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">これから公私ともに活用させて頂きます。</p>
+          <p class="voice-src">2026.7 添乗員向け研修</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">これから添乗業務にAIを活用して、業務をしていきたい。</p>
+          <p class="voice-src">2026.7 添乗員向け研修</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">とても私にはムリと思いましたが、スタッフの方の熱心な教え方に少しわかったような気がして、びっくりするやら嬉しいやら。家でも試してみようと思いました。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">初めてのチャッピー体験でした。怖さがなくなりました。</p>
+          <p class="voice-src">2026.7 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">親切に教えてもらってよかったです。いろいろな事ができてびっくりです。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">はじめて聞くことも多く、とても勉強になりました。講師やボランティアさんのお人柄が温かく、とてもいい時間でした。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">とても有意義なセミナーです。このような活動は引き続き続けてほしいです。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">情報リテラシーは非常に参考になりました。</p>
+          <p class="voice-src">2026.7 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">とても分かりやすかったです。AIが身近に感じた劇的な1日でした。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">アプリの整理にもChatGPTが役立つことをしれてよかった。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">フランクに話せて、思ったことをその場ですぐ質問できてよかったです。</p>
+          <p class="voice-src">2026.4 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">大変よい講座でたすかりました。スタッフ親切で感謝。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">面白かったです。使い方がよくわかりました。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">チャッピーが好きになりました。</p>
+          <p class="voice-src">2026.7 添乗員向け研修</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">これから公私ともに活用させて頂きます。</p>
+          <p class="voice-src">2026.7 添乗員向け研修</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">これから添乗業務にAIを活用して、業務をしていきたい。</p>
+          <p class="voice-src">2026.7 添乗員向け研修</p>
+        </div>
     </div>
-    <div style="max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:24px;">
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          初心者すぎて聞きにくいと思っていたことまで先に用意してくださり、とても丁寧に教えていただけました。機種の違いも一緒に寄り添って解明してくださり、とても実りの多い時間でした。
-        </p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          フランクに話せて、思ったことをその場ですぐ質問できてよかったです！
-        </p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          スマホは普段あまり使いこなせていないのですが、教えていただいた通りに話しかけたら、自分の体調のことまで丁寧に答えてくれて驚きました。家でも一人で続けてみようと思います。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 70代女性／2026年4月 西生涯学習センター</p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          とても私にはムリと思いましたが、スタッフの方の熱心な教え方に少しわかったような気がして、びっくりするやら嬉しいやら。家でも試してみようと思いました。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年6月 西生涯学習センター</p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          初めてのチャッピー体験でした。怖さがなくなりました。ありがとうございました。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年7月 西生涯学習センター</p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          個人情報の流出がこわくて今まであまり使えていませんでしたが、これからはAI情報リテラシーを守ってやってみます。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年7月 西生涯学習センター</p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          講師やボランティアさんのお人柄が温かく、とてもいい時間でした。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年6月 西生涯学習センター</p>
-      </div>
-      <div class="fade-in" style="position:relative;padding:28px 32px;background:var(--warm-bg-alt);border-radius:var(--radius) var(--radius) var(--radius) 4px;box-shadow:var(--shadow-soft);">
-        <span style="position:absolute;top:-16px;left:20px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--white);border:1.5px solid var(--primary-pale);border-radius:50%;box-shadow:var(--shadow-soft);color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-        <p style="font-size:0.95rem;color:var(--text);line-height:2;">
-          とても有意義なセミナーです。このような活動は、引き続き続けてほしいです。
-        </p>
-        <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">— 2026年8月 西生涯学習センター</p>
-      </div>
+  </div>
+
+  <div class="voices-lane">
+    <div class="voices-track voices-track-r">
+        <div class="voice-card is-alt">
+          <p class="voice-text">個人情報の流出がこわくて今まであまり使えていませんでしたが、これからはAI情報リテラシーを守ってやってみます。</p>
+          <p class="voice-src">2026.7 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">ぜひ活動を続けてください。とてもいい体験となりました。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">独学でAIについて学んでいましたが、無料の勉強会がたくさんあることを知り参加させていただきました。書類作成業務の効率化ができるよう今後も実践していきたいです。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">スタッフの方が手厚くて良かったです。</p>
+          <p class="voice-src">2026.7 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">スマホは普段あまり使いこなせていないのですが、教えていただいた通りに話しかけたら、自分の体調のことまで丁寧に答えてくれて驚きました。</p>
+          <p class="voice-src">2026.4 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">とても楽しく受講できました。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">初心者すぎて聞きにくいと思っていたことまで先に用意してくださり、とても丁寧に教えていただけました。</p>
+          <p class="voice-src">2026.4 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">今日はありがとうございました。とても親切に教えていただき感謝です。</p>
+          <p class="voice-src">2026.7 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">AIが身近に感じました。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">大変お世話になりました。スタッフの皆様、本当にありがとうございました。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">基本操作はできても「メニューにもどるには」などの疑問がありましたが、スタッフの方が細かく教えてくださったので助かりました。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">今まで簡単な使用をしていましたが「記憶して」「検索して」などキーワードや使い方がわかって良かったです。</p>
+          <p class="voice-src">2026.7 添乗員向け研修</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">わかりやすく、ためになる研修でした。</p>
+          <p class="voice-src">2026.7 添乗員向け研修</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">個人情報の流出がこわくて今まであまり使えていませんでしたが、これからはAI情報リテラシーを守ってやってみます。</p>
+          <p class="voice-src">2026.7 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">ぜひ活動を続けてください。とてもいい体験となりました。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">独学でAIについて学んでいましたが、無料の勉強会がたくさんあることを知り参加させていただきました。書類作成業務の効率化ができるよう今後も実践していきたいです。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">スタッフの方が手厚くて良かったです。</p>
+          <p class="voice-src">2026.7 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">スマホは普段あまり使いこなせていないのですが、教えていただいた通りに話しかけたら、自分の体調のことまで丁寧に答えてくれて驚きました。</p>
+          <p class="voice-src">2026.4 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">とても楽しく受講できました。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">初心者すぎて聞きにくいと思っていたことまで先に用意してくださり、とても丁寧に教えていただけました。</p>
+          <p class="voice-src">2026.4 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">今日はありがとうございました。とても親切に教えていただき感謝です。</p>
+          <p class="voice-src">2026.7 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">AIが身近に感じました。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">大変お世話になりました。スタッフの皆様、本当にありがとうございました。</p>
+          <p class="voice-src">2026.6 西生涯学習センター</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">基本操作はできても「メニューにもどるには」などの疑問がありましたが、スタッフの方が細かく教えてくださったので助かりました。</p>
+          <p class="voice-src">2026.8 西生涯学習センター</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-text">今まで簡単な使用をしていましたが「記憶して」「検索して」などキーワードや使い方がわかって良かったです。</p>
+          <p class="voice-src">2026.7 添乗員向け研修</p>
+        </div>
+        <div class="voice-card is-alt">
+          <p class="voice-text">わかりやすく、ためになる研修でした。</p>
+          <p class="voice-src">2026.7 添乗員向け研修</p>
+        </div>
     </div>
   </div>
 </section>
