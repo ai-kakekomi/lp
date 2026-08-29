@@ -1,0 +1,4 @@
+# 旧URL /tools/ を /apps/ へ。恒久リダイレクト（301）
+/tools      /apps/        301
+/tools/     /apps/        301
+/tools/*    /apps/:splat  301

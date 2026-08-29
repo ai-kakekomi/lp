@@ -1,3 +1,6 @@
 .vercel
 .claude
 .DS_Store
+
+# wrangler pages dev のローカルキャッシュ
+.wrangler/
