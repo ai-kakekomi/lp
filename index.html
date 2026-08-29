@@ -999,12 +999,23 @@ body {
 }
 .voice-card.is-alt { background: var(--warm-bg-alt); }
 .voice-text { margin: 0; font-size: 0.95rem; line-height: 2; color: var(--text); }
+
+/* 短い声は幅を詰めて文字を大きく、長い声は幅を広げて小さく。
+   同じ寸法が等間隔で流れると、それだけで単調に見える */
+.voice-card.is-short { flex: 0 0 250px; padding: 28px 30px; }
+.voice-card.is-short .voice-text { font-size: 1.18rem; line-height: 1.85; }
+.voice-card.is-long { flex: 0 0 440px; padding: 24px 30px; }
+.voice-card.is-long .voice-text { font-size: 0.92rem; }
 .voice-src { margin: 0; font-size: 0.8rem; color: var(--text-light); letter-spacing: 0.02em; }
 
 @media (max-width: 768px) {
   .voices-lane { padding: 20px 0; }
   .voices-track > .voice-card { margin-right: 14px; }
   .voice-card { flex: 0 0 268px; min-height: 214px; padding: 20px 22px; }
+  .voice-card.is-short { flex: 0 0 208px; padding: 22px 22px; }
+  .voice-card.is-long { flex: 0 0 300px; padding: 20px 22px; }
+  .voice-card.is-short .voice-text { font-size: 1.04rem; }
+  .voice-card.is-long .voice-text { font-size: 0.86rem; }
   .voice-text { font-size: 0.88rem; }
   .voice-src { font-size: 0.74rem; }
 }
@@ -1526,7 +1537,7 @@ details p { animation: fadeDown 0.3s ease; }
 
   <div class="voices-lane" style="margin-bottom:20px;">
     <div class="voices-track voices-track-l">
-        <div class="voice-card">
+        <div class="voice-card is-long">
           <p class="voice-text">とても私にはムリと思いましたが、スタッフの方の熱心な教え方に少しわかったような気がして、びっくりするやら嬉しいやら。家でも試してみようと思いました。</p>
           <p class="voice-src">2026.6 西生涯学習センター</p>
         </div>
@@ -1538,7 +1549,7 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">親切に教えてもらってよかったです。いろいろな事ができてびっくりです。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">はじめて聞くことも多く、とても勉強になりました。講師やボランティアさんのお人柄が温かく、とてもいい時間でした。</p>
           <p class="voice-src">2026.6 西生涯学習センター</p>
         </div>
@@ -1546,7 +1557,7 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">とても有意義なセミナーです。このような活動は引き続き続けてほしいです。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-short is-alt">
           <p class="voice-text">情報リテラシーは非常に参考になりました。</p>
           <p class="voice-src">2026.7 西生涯学習センター</p>
         </div>
@@ -1566,15 +1577,15 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">大変よい講座でたすかりました。スタッフ親切で感謝。</p>
           <p class="voice-src">2026.6 西生涯学習センター</p>
         </div>
-        <div class="voice-card">
+        <div class="voice-card is-short">
           <p class="voice-text">面白かったです。使い方がよくわかりました。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-short is-alt">
           <p class="voice-text">チャッピーが好きになりました。</p>
           <p class="voice-src">2026.7 添乗員向け研修</p>
         </div>
-        <div class="voice-card">
+        <div class="voice-card is-short">
           <p class="voice-text">これから公私ともに活用させて頂きます。</p>
           <p class="voice-src">2026.7 添乗員向け研修</p>
         </div>
@@ -1582,7 +1593,7 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">これから添乗業務にAIを活用して、業務をしていきたい。</p>
           <p class="voice-src">2026.7 添乗員向け研修</p>
         </div>
-        <div class="voice-card">
+        <div class="voice-card is-long">
           <p class="voice-text">とても私にはムリと思いましたが、スタッフの方の熱心な教え方に少しわかったような気がして、びっくりするやら嬉しいやら。家でも試してみようと思いました。</p>
           <p class="voice-src">2026.6 西生涯学習センター</p>
         </div>
@@ -1594,7 +1605,7 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">親切に教えてもらってよかったです。いろいろな事ができてびっくりです。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">はじめて聞くことも多く、とても勉強になりました。講師やボランティアさんのお人柄が温かく、とてもいい時間でした。</p>
           <p class="voice-src">2026.6 西生涯学習センター</p>
         </div>
@@ -1602,7 +1613,7 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">とても有意義なセミナーです。このような活動は引き続き続けてほしいです。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-short is-alt">
           <p class="voice-text">情報リテラシーは非常に参考になりました。</p>
           <p class="voice-src">2026.7 西生涯学習センター</p>
         </div>
@@ -1622,15 +1633,15 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">大変よい講座でたすかりました。スタッフ親切で感謝。</p>
           <p class="voice-src">2026.6 西生涯学習センター</p>
         </div>
-        <div class="voice-card">
+        <div class="voice-card is-short">
           <p class="voice-text">面白かったです。使い方がよくわかりました。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-short is-alt">
           <p class="voice-text">チャッピーが好きになりました。</p>
           <p class="voice-src">2026.7 添乗員向け研修</p>
         </div>
-        <div class="voice-card">
+        <div class="voice-card is-short">
           <p class="voice-text">これから公私ともに活用させて頂きます。</p>
           <p class="voice-src">2026.7 添乗員向け研修</p>
         </div>
@@ -1643,7 +1654,7 @@ details p { animation: fadeDown 0.3s ease; }
 
   <div class="voices-lane">
     <div class="voices-track voices-track-r">
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">個人情報の流出がこわくて今まであまり使えていませんでしたが、これからはAI情報リテラシーを守ってやってみます。</p>
           <p class="voice-src">2026.7 西生涯学習センター</p>
         </div>
@@ -1651,23 +1662,23 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">ぜひ活動を続けてください。とてもいい体験となりました。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">独学でAIについて学んでいましたが、無料の勉強会がたくさんあることを知り参加させていただきました。書類作成業務の効率化ができるよう今後も実践していきたいです。</p>
           <p class="voice-src">2026.6 西生涯学習センター</p>
         </div>
-        <div class="voice-card">
+        <div class="voice-card is-short">
           <p class="voice-text">スタッフの方が手厚くて良かったです。</p>
           <p class="voice-src">2026.7 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">スマホは普段あまり使いこなせていないのですが、教えていただいた通りに話しかけたら、自分の体調のことまで丁寧に答えてくれて驚きました。</p>
           <p class="voice-src">2026.4 西生涯学習センター</p>
         </div>
-        <div class="voice-card">
+        <div class="voice-card is-short">
           <p class="voice-text">とても楽しく受講できました。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">初心者すぎて聞きにくいと思っていたことまで先に用意してくださり、とても丁寧に教えていただけました。</p>
           <p class="voice-src">2026.4 西生涯学習センター</p>
         </div>
@@ -1675,7 +1686,7 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">今日はありがとうございました。とても親切に教えていただき感謝です。</p>
           <p class="voice-src">2026.7 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-short is-alt">
           <p class="voice-text">AIが身近に感じました。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
@@ -1683,19 +1694,19 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">大変お世話になりました。スタッフの皆様、本当にありがとうございました。</p>
           <p class="voice-src">2026.6 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">基本操作はできても「メニューにもどるには」などの疑問がありましたが、スタッフの方が細かく教えてくださったので助かりました。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card">
+        <div class="voice-card is-long">
           <p class="voice-text">今まで簡単な使用をしていましたが「記憶して」「検索して」などキーワードや使い方がわかって良かったです。</p>
           <p class="voice-src">2026.7 添乗員向け研修</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-short is-alt">
           <p class="voice-text">わかりやすく、ためになる研修でした。</p>
           <p class="voice-src">2026.7 添乗員向け研修</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">個人情報の流出がこわくて今まであまり使えていませんでしたが、これからはAI情報リテラシーを守ってやってみます。</p>
           <p class="voice-src">2026.7 西生涯学習センター</p>
         </div>
@@ -1703,23 +1714,23 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">ぜひ活動を続けてください。とてもいい体験となりました。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">独学でAIについて学んでいましたが、無料の勉強会がたくさんあることを知り参加させていただきました。書類作成業務の効率化ができるよう今後も実践していきたいです。</p>
           <p class="voice-src">2026.6 西生涯学習センター</p>
         </div>
-        <div class="voice-card">
+        <div class="voice-card is-short">
           <p class="voice-text">スタッフの方が手厚くて良かったです。</p>
           <p class="voice-src">2026.7 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">スマホは普段あまり使いこなせていないのですが、教えていただいた通りに話しかけたら、自分の体調のことまで丁寧に答えてくれて驚きました。</p>
           <p class="voice-src">2026.4 西生涯学習センター</p>
         </div>
-        <div class="voice-card">
+        <div class="voice-card is-short">
           <p class="voice-text">とても楽しく受講できました。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">初心者すぎて聞きにくいと思っていたことまで先に用意してくださり、とても丁寧に教えていただけました。</p>
           <p class="voice-src">2026.4 西生涯学習センター</p>
         </div>
@@ -1727,7 +1738,7 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">今日はありがとうございました。とても親切に教えていただき感謝です。</p>
           <p class="voice-src">2026.7 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-short is-alt">
           <p class="voice-text">AIが身近に感じました。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
@@ -1735,15 +1746,15 @@ details p { animation: fadeDown 0.3s ease; }
           <p class="voice-text">大変お世話になりました。スタッフの皆様、本当にありがとうございました。</p>
           <p class="voice-src">2026.6 西生涯学習センター</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-long is-alt">
           <p class="voice-text">基本操作はできても「メニューにもどるには」などの疑問がありましたが、スタッフの方が細かく教えてくださったので助かりました。</p>
           <p class="voice-src">2026.8 西生涯学習センター</p>
         </div>
-        <div class="voice-card">
+        <div class="voice-card is-long">
           <p class="voice-text">今まで簡単な使用をしていましたが「記憶して」「検索して」などキーワードや使い方がわかって良かったです。</p>
           <p class="voice-src">2026.7 添乗員向け研修</p>
         </div>
-        <div class="voice-card is-alt">
+        <div class="voice-card is-short is-alt">
           <p class="voice-text">わかりやすく、ためになる研修でした。</p>
           <p class="voice-src">2026.7 添乗員向け研修</p>
         </div>
