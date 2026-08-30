@@ -10,3 +10,7 @@
 [submodule "wiki"]
 	path = wiki
 	url = https://github.com/ai-kakekomi/wiki.git
+[submodule "apps/flyer-prompt"]
+	path = apps/flyer-prompt
+	url = https://github.com/ai-kakekomi/flyer-prompt-maker.git
+	branch = main
