@@ -1,0 +1,16 @@
+# AIかけこみ寺 ai-kakekomi.com
+#
+# 全ページ、すべてのクローラに開いている。検索にもAIの学習にも使ってよい。
+# 公開しているものは LP が CC BY 4.0 相当、かけこみ辞典が CC BY 4.0、
+# OSSツールが MIT。「AIの恩恵を、すべての人へ」なので、閉じる理由がない。
+#
+# ⚠️ Cloudflare 側でも robots.txt を自動生成している（Content Signals Policy）。
+#    本番の https://ai-kakekomi.com/robots.txt はこのファイルに
+#    Cloudflare の署名ブロックが足された形で配信される。
+#    push したら必ず本番を curl して、中身が消えていないか見ること。
+
+User-agent: *
+Allow: /
+
+Sitemap: https://ai-kakekomi.com/sitemap.xml
+Sitemap: https://ai-kakekomi.com/wiki/sitemap.xml
