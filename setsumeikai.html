@@ -280,6 +280,7 @@ form { display: flex; flex-direction: column; gap: 20px; }
 
 .field input[type="text"],
 .field input[type="email"],
+.field input[type="tel"],
 .field textarea {
   padding: 14px 18px;
   border: 2px solid rgba(255,255,255,0.2);
@@ -330,7 +331,7 @@ form { display: flex; flex-direction: column; gap: 20px; }
 
 .choice-body span { font-size: 0.83rem; color: rgba(255,255,255,0.7); }
 
-#dates {
+#dates, #guardian {
   display: none;
   flex-direction: column;
   gap: 14px;
@@ -339,7 +340,7 @@ form { display: flex; flex-direction: column; gap: 20px; }
   border-radius: var(--radius-sm);
 }
 
-#dates.show { display: flex; }
+#dates.show, #guardian.show { display: flex; }
 
 .dates-help {
   font-size: 0.85rem;
@@ -550,6 +551,40 @@ form { display: flex; flex-direction: column; gap: 20px; }
       </div>
 
       <div class="field">
+        <label>ご年齢 <span class="req">*必須</span></label>
+        <div class="choice-group">
+          <label class="choice">
+            <input type="radio" name="ご年齢" value="18歳以上" id="r-adult" required>
+            <span class="choice-body"><strong>18歳以上</strong></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="ご年齢" value="18歳未満" id="r-minor">
+            <span class="choice-body">
+              <strong>18歳未満</strong>
+              <span>保護者の方の緊急連絡先をうかがいます</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div id="guardian">
+        <p class="dates-help">
+          未成年の方には、<strong>万一のときにご連絡できる先</strong>をうかがっています。<br>
+          活動中の急なご連絡以外には使いません。保護者の方のご同席も歓迎です。
+        </p>
+        <div class="grid2">
+          <div class="field">
+            <label for="f-gname">保護者のお名前 <span class="req">*必須</span></label>
+            <input type="text" id="f-gname" name="保護者のお名前" placeholder="山田 花子">
+          </div>
+          <div class="field">
+            <label for="f-gtel">緊急連絡先（電話） <span class="req">*必須</span></label>
+            <input type="tel" id="f-gtel" name="緊急連絡先" placeholder="090-1234-5678">
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
         <label for="f-msg">ご質問・お聞きになりたいこと（任意）</label>
         <textarea id="f-msg" name="ご質問" placeholder="不安なこと、聞いておきたいことがあればどうぞ。当日お答えします。"></textarea>
       </div>
@@ -714,6 +749,38 @@ form { display: flex; flex-direction: column; gap: 20px; }
       setTimeout(function () { document.getElementById('f-name').focus(); }, 500);
     });
   }
+})();
+</script>
+
+<script>
+/* ============================================================
+ *  未成年のときだけ、緊急連絡先をうかがう
+ *  ------------------------------------------------------------
+ *  合同回のJSとは分けてある。あちらには return が2か所あり、
+ *  そこへ足すと「確定枠が無い期間だけ動かない」経路ができるため。
+ *
+ *  ⚠️ 隠れている入力に required が付いたままだと、ブラウザが
+ *     「入力してください」と言うのに欄が見えず、送信できなくなる。
+ *     表示と同時に付け、隠すときに外す。
+ * ============================================================ */
+(function () {
+  var minor = document.getElementById('r-minor');
+  var adult = document.getElementById('r-adult');
+  var box   = document.getElementById('guardian');
+  if (!minor || !adult || !box) { return; }
+
+  var needed = [document.getElementById('f-gname'), document.getElementById('f-gtel')];
+
+  function sync() {
+    var isMinor = minor.checked;
+    if (isMinor) { box.classList.add('show'); }
+    else { box.classList.remove('show'); }
+    needed.forEach(function (el) { if (el) { el.required = isMinor; } });
+  }
+
+  minor.addEventListener('change', sync);
+  adult.addEventListener('change', sync);
+  sync();
 })();
 </script>
 

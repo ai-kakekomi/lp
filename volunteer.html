@@ -869,6 +869,37 @@ body {
         </select>
       </div>
       <div style="display:flex;flex-direction:column;gap:6px;">
+        <label style="font-size:0.85rem;font-weight:500;color:rgba(255,255,255,0.9);">ご年齢 <span style="color:var(--accent-light);font-size:0.75rem;">*必須</span></label>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;padding:4px 2px;">
+          <label style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.92);font-size:0.95rem;cursor:pointer;">
+            <input type="radio" name="ご年齢" value="18歳以上" id="v-adult" required
+                   style="accent-color:var(--accent);width:18px;height:18px;">18歳以上
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.92);font-size:0.95rem;cursor:pointer;">
+            <input type="radio" name="ご年齢" value="18歳未満" id="v-minor"
+                   style="accent-color:var(--accent);width:18px;height:18px;">18歳未満
+          </label>
+        </div>
+      </div>
+
+      <div id="v-guardian" style="display:none;flex-direction:column;gap:16px;padding:20px;background:rgba(0,0,0,0.15);border-radius:var(--radius-sm);">
+        <p style="margin:0;font-size:0.85rem;color:rgba(255,255,255,0.75);line-height:1.8;">
+          未成年の方には、<b>万一のときにご連絡できる先</b>をうかがっています。<br>
+          活動中の急なご連絡以外には使いません。
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <label style="font-size:0.85rem;font-weight:500;color:rgba(255,255,255,0.9);">保護者のお名前 <span style="color:var(--accent-light);font-size:0.75rem;">*必須</span></label>
+            <input type="text" name="保護者のお名前" id="v-gname" placeholder="山田 花子" style="padding:14px 18px;border:2px solid rgba(255,255,255,0.35);border-radius:var(--radius-sm);background:rgba(255,255,255,0.95);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:0.95rem;backdrop-filter:blur(4px);">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <label style="font-size:0.85rem;font-weight:500;color:rgba(255,255,255,0.9);">緊急連絡先（電話） <span style="color:var(--accent-light);font-size:0.75rem;">*必須</span></label>
+            <input type="tel" name="緊急連絡先" id="v-gtel" placeholder="090-1234-5678" style="padding:14px 18px;border:2px solid rgba(255,255,255,0.35);border-radius:var(--radius-sm);background:rgba(255,255,255,0.95);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:0.95rem;backdrop-filter:blur(4px);">
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:6px;">
         <label style="font-size:0.85rem;font-weight:500;color:rgba(255,255,255,0.9);">メッセージ（任意）</label>
         <textarea name="message" placeholder="自己紹介、AIの活用経験、参加への想いなど、お気軽にどうぞ。" style="padding:14px 18px;border:2px solid rgba(255,255,255,0.35);border-radius:var(--radius-sm);background:rgba(255,255,255,0.95);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:0.95rem;min-height:100px;resize:vertical;backdrop-filter:blur(4px);"></textarea>
       </div>
@@ -916,6 +947,34 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+<script>
+/* ============================================================
+ *  未成年のときだけ、緊急連絡先をうかがう
+ *  ------------------------------------------------------------
+ *  ⚠️ 隠れている入力に required が付いたままだと、ブラウザが
+ *     「入力してください」と言うのに欄が見えず、送信できなくなる。
+ *     表示と同時に付け、隠すときに外す。
+ * ============================================================ */
+(function () {
+  var minor = document.getElementById('v-minor');
+  var adult = document.getElementById('v-adult');
+  var box   = document.getElementById('v-guardian');
+  if (!minor || !adult || !box) { return; }
+
+  var needed = [document.getElementById('v-gname'), document.getElementById('v-gtel')];
+
+  function sync() {
+    var isMinor = minor.checked;
+    box.style.display = isMinor ? 'flex' : 'none';
+    needed.forEach(function (el) { if (el) { el.required = isMinor; } });
+  }
+
+  minor.addEventListener('change', sync);
+  adult.addEventListener('change', sync);
+  sync();
+})();
 </script>
 
 </body>
