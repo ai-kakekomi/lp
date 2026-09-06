@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-24 08:44",
+  "generated": "2026-09-06 16:28",
   "stats": {
     "held_count": 7,
     "total_participants": 112
@@ -36,6 +36,20 @@
       "endorsement": "名古屋市教育委員会",
       "apply_url": "https://ai-kakekomi.com/apply.html?uid=akk-20261017",
       "capacity": 50
+    },
+    {
+      "uid": "akk-20261103",
+      "title": "スマホではじめてのAI体験｜AIかけこみ寺",
+      "ymd": "2026-11-03",
+      "date_label": "2026年11月3日（火）",
+      "time_label": "10:00〜16:00",
+      "doors_label": "9:30",
+      "place_label": "星が丘テラス（名古屋市千種区星が丘元町16-50）",
+      "access": "地下鉄東山線「星ケ丘」6番出口から徒歩2分",
+      "fee": "無料",
+      "bring": "スマホ",
+      "apply_required": false,
+      "endorsement": ""
     }
   ],
   "past": [
