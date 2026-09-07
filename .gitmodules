@@ -14,3 +14,7 @@
 	path = apps/flyer-prompt
 	url = https://github.com/ai-kakekomi/flyer-prompt-maker.git
 	branch = main
+[submodule "apps/markdown-practice"]
+	path = apps/markdown-practice
+	url = https://github.com/ai-kakekomi/markdown-practice.git
+	branch = main
