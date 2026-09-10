@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-06 16:28",
+  "generated": "2026-09-10 21:10",
   "stats": {
-    "held_count": 7,
+    "held_count": 8,
     "total_participants": 112
   },
   "upcoming": [
@@ -53,6 +53,10 @@
     }
   ],
   "past": [
+    {
+      "ym": "2026年9月",
+      "label": "シルバーフェスタ シニア求職者向けAI教室 ①"
+    },
     {
       "ym": "2026年8月",
       "label": "チャッピーと話そう！はじめてのAI体験教室",
