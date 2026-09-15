@@ -41,11 +41,15 @@ def is_verification(name):
     return name.startswith("google") and name.endswith(".html")
 
 def lastmod(path):
-    """そのファイルの最終コミット日。取れなければ空"""
+    """そのファイルの最終コミット日。submodule の中のファイルは、その submodule のリポジトリで引く。取れなければ空"""
     try:
+        # 一番近い .git（ディレクトリ or ファイル）を持つ親をリポジトリのルートとみなす
+        repo = path.parent
+        while repo != ROOT and not (repo / ".git").exists():
+            repo = repo.parent
         out = subprocess.run(
-            ["git", "log", "-1", "--format=%cs", "--", str(path.relative_to(ROOT))],
-            cwd=ROOT, capture_output=True, text=True, timeout=10)
+            ["git", "log", "-1", "--format=%cs", "--", str(path.relative_to(repo))],
+            cwd=repo, capture_output=True, text=True, timeout=10)
         return out.stdout.strip()
     except Exception:
         return ""
