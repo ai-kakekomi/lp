@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-19 14:27",
+  "generated": "2026-09-19 14:30",
   "stats": {
     "held_count": 9,
     "total_participants": 144
@@ -34,6 +34,22 @@
       "bring": "スマホ",
       "apply_required": false,
       "endorsement": ""
+    },
+    {
+      "uid": "akk-20261121",
+      "title": "チャッピーと話そう！はじめてのAI体験教室",
+      "ymd": "2026-11-21",
+      "date_label": "2026年11月21日（土）",
+      "time_label": "10:00〜12:00",
+      "doors_label": "9:30",
+      "place_label": "西生涯学習センター（名古屋市西区浄心1-1-45）",
+      "access": "地下鉄鶴舞線「浄心」下車 徒歩すぐ",
+      "fee": "無料",
+      "bring": "スマホ",
+      "apply_required": true,
+      "endorsement": "名古屋市教育委員会",
+      "apply_url": "https://ai-kakekomi.com/apply.html?uid=akk-20261121",
+      "capacity": 30
     }
   ],
   "past": [
