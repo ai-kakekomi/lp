@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-19 14:30",
+  "generated": "2026-09-19 14:34",
   "stats": {
     "held_count": 9,
     "total_participants": 144
@@ -49,7 +49,7 @@
       "apply_required": true,
       "endorsement": "名古屋市教育委員会",
       "apply_url": "https://ai-kakekomi.com/apply.html?uid=akk-20261121",
-      "capacity": 30
+      "capacity": 50
     }
   ],
   "past": [
