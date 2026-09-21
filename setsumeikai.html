@@ -652,6 +652,13 @@ form { display: flex; flex-direction: column; gap: 20px; }
     '2026-12-19'   // 西生涯学習センター 定期AI教室
   ];
 
+  /* 【土曜以外に臨時で開くときは EXTRA に1行足す】
+     休みが続いて次の土曜が遠くなるときの埋め合わせ。曜日も時刻も自由。
+     土曜の回と比べて、早いほうが出る。過ぎた行は残しておいても害は無い。 */
+  var EXTRA = [
+    { date: '2026-10-04', start: '10:00', end: '10:30' }   // 9/26（私用）・10/3（CfJ）と休みが続くので、日曜に臨時で開く
+  ];
+
   var WEEK = ['日', '月', '火', '水', '木', '金', '土'];
 
   /* 端末の時計が日本以外に合っていても、日本時間で数える */
@@ -665,22 +672,34 @@ form { display: flex; flex-direction: column; gap: 20px; }
     return d.getFullYear() + '-' + (m < 10 ? '0' + m : m) + '-' + (day < 10 ? '0' + day : day);
   }
 
-  /* いちばん近い、開ける土曜を探す。当日は終了時刻を過ぎたら次の週へ送る */
+  function minutes(hhmm) {
+    return Number(hhmm.split(':')[0]) * 60 + Number(hhmm.split(':')[1]);
+  }
+
+  /* いちばん近い、開ける回を探す。土曜の回と臨時の回（EXTRA）のうち早いほう。
+     当日は終了時刻を過ぎたら次へ送る */
   function findSlot() {
     var now = nowInJapan();
-    var endMinutes = Number(SLOT_END.split(':')[0]) * 60 + Number(SLOT_END.split(':')[1]);
+    var nowMinutes = now.getHours() * 60 + now.getMinutes();
 
     for (var i = 0; i < 120; i++) {
       var day = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
-      if (day.getDay() !== 6) continue;                    /* 土曜だけ */
-      if (SKIP.indexOf(ymd(day)) >= 0) continue;
-      if (i === 0 && (now.getHours() * 60 + now.getMinutes()) >= endMinutes) continue;
-      return day;
+      var key = ymd(day);
+      var start = null, end = null;
+      for (var j = 0; j < EXTRA.length; j++) {
+        if (EXTRA[j].date === key) { start = EXTRA[j].start; end = EXTRA[j].end; }
+      }
+      if (!start && day.getDay() === 6 && SKIP.indexOf(key) < 0) { start = SLOT_START; end = SLOT_END; }
+      if (!start) continue;
+      if (i === 0 && nowMinutes >= minutes(end)) continue;
+      return { day: day, start: start, end: end };
     }
-    return null;   /* 4か月先まで開ける土曜が無い。そのときは確定枠なしで出す */
+    return null;   /* 4か月先まで開ける回が無い。そのときは確定枠なしで出す */
   }
 
-  var slotDay   = findSlot();
+  var slot      = findSlot();
+  var slotDay   = slot ? slot.day : null;
+  if (slot) { SLOT_START = slot.start; SLOT_END = slot.end; }
   var slotLabel = slotDay
     ? (slotDay.getMonth() + 1) + '/' + slotDay.getDate() + '(' + WEEK[slotDay.getDay()] + ')'
     : null;
