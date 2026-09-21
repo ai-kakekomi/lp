@@ -10,7 +10,7 @@
 
 - HTML / CSS / JavaScript（vanilla）
 - ビルドステップなし
-- Vercel でホスティング（push で自動デプロイ）
+- Cloudflare Workers（静的アセット）でホスティング（`master` への push で自動デプロイ）
 
 ## ローカルで動かす
 

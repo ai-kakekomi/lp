@@ -24,9 +24,9 @@ cd lp
 1. `master` から作業ブランチを切る
 2. 変更を加え、ブラウザで動作確認
 3. PR を作成
-4. レビュー後マージ（Vercel が自動デプロイ）
+4. レビュー後マージ（Cloudflare が自動デプロイ）
 
 ### 技術スタック
 
 - HTML / CSS / JavaScript（vanilla）
-- Vercel でホスティング
+- Cloudflare Workers（静的アセット）でホスティング
