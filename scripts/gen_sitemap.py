@@ -69,9 +69,9 @@ def main():
         if p.name in SKIP or is_verification(p.name) or has_noindex(p):
             continue
         pages.append(p)
-    # apps/ と cfj/ は中まで潜る。apps/ の各ツールは submodule だが、
+    # apps/ と cfj/ と events/ は中まで潜る（events/ は手書きの催しページ）。apps/ の各ツールは submodule だが、
     # ツール側に sitemap は無いので LP がまとめて面倒を見る
-    for d in ("apps", "cfj"):
+    for d in ("apps", "cfj", "events"):
         for p in sorted((ROOT / d).rglob("*.html")):
             if p.name in SKIP or "node_modules" in p.parts or has_noindex(p):
                 continue
