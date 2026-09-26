@@ -141,7 +141,7 @@
   ]
 }
 </script>
-<!-- EVENTS_JSONLD:START この間は sync_lp.py が自動生成する。手で編集しない -->
+<!-- EVENTS_JSONLD:START 検索向けのイベント情報。手書き。告知カードを足したらここにも足す -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -329,6 +329,54 @@
     "availability": "https://schema.org/InStock",
     "url": "https://ai-kakekomi.com/",
     "validFrom": "2026-10-18T10:00:00+09:00"
+  },
+  "sponsor": {
+    "@type": "Organization",
+    "name": "名古屋市教育委員会"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "食品サークル AIセミナー「AIに聞くだけに終わっていませんか？」",
+  "startDate": "2026-11-20T13:30:00+09:00",
+  "endDate": "2026-11-20T16:30:00+09:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "description": "NPO法人食品サークル主催のAIセミナー。AIかけこみ寺 代表 伊藤一樹が基調講演。食品の現場のAI活用事例の紹介と交流会。参加費無料・先着順（11/13締切）。",
+  "image": [
+    "https://ai-kakekomi.com/ogp.png"
+  ],
+  "location": {
+    "@type": "Place",
+    "name": "吹上ホール（名古屋市中小企業振興会館）4階 第7会議室",
+    "address": {
+      "@type": "PostalAddress",
+      "postalCode": "464-0856",
+      "streetAddress": "千種区吹上二丁目6番3号",
+      "addressLocality": "名古屋市",
+      "addressRegion": "愛知県",
+      "addressCountry": "JP"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "NPO法人食品サークル"
+  },
+  "performer": {
+    "@type": "Organization",
+    "name": "AIかけこみ寺",
+    "url": "https://ai-kakekomi.com"
+  },
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY",
+    "availability": "https://schema.org/InStock",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSdwtAYL2HSDnGoBrfZQVxXQxU993KEr_Xeh0JOp6rWd_2h8wQ/viewform"
   },
   "sponsor": {
     "@type": "Organization",
@@ -1324,10 +1372,41 @@ details p { animation: fadeDown 0.3s ease; }
       <a href="#contact" class="hero-cta"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> お問い合わせ・講座のご相談</a>
     </div>
 
-    <!-- イベント告知：events-public.json から自動描画（scripts/sync_lp.py が生成） -->
+    <!-- イベント告知：手書き。1件＝.lp-ev 1つ。data-end（終了日時）を過ぎたカードはJSが隠す。
+         先頭に見えているカードに「次回開催」が付く。日付順に並べること -->
     <div id="lp-events" class="hero-events" style="scroll-margin-top:80px;">
-      <div style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid var(--accent);">
-        <span style="color:var(--text-light);font-size:0.9rem;">開催予定を読み込み中…</span>
+      <div class="lp-ev" data-end="2026-10-17T12:00" style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid #457B9D;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span class="lp-ev-label" style="padding:4px 12px;background:#457B9D;color:var(--white);font-size:0.75rem;font-weight:700;border-radius:20px;font-family:'Zen Maru Gothic',sans-serif;">開催予定</span></div>
+        <p style="font-family:'Zen Maru Gothic',sans-serif;font-size:1.1rem;font-weight:900;color:var(--primary);margin-bottom:12px;">チャッピーと話そう！はじめてのAI体験教室</p>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--text);"><span>📅 2026年10月17日（土） 10:00〜12:00</span><span>🕘 開場 9:30（開始30分前）</span><span>📍 西生涯学習センター 視聴覚室（名古屋市西区浄心1-1-45）</span><span>🚇 地下鉄鶴舞線「浄心」下車 徒歩すぐ</span></div>
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;"><span style="padding:4px 14px;background:var(--primary-pale);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;">参加無料</span><span style="padding:4px 14px;background:var(--warm-bg-alt);color:var(--text-light);font-size:0.8rem;font-weight:500;border-radius:20px;">📱 スマホ持参</span><span id="seat-akk-20261017" style="padding:4px 14px;background:var(--primary-pale);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;">お申込受付中</span><span style="padding:4px 14px;background:var(--white);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;border:1.5px solid var(--primary);">🏛️ 名古屋市教育委員会 後援</span></div>
+        <div id="applybtn-akk-20261017"><a href="https://ai-kakekomi.com/apply.html?uid=akk-20261017" target="_blank" rel="noopener" class="lp-ev-btn" style="display:inline-block;margin-top:18px;padding:15px 36px;background:#457B9D;color:var(--white);font-family:'Zen Maru Gothic',sans-serif;font-size:1.1rem;font-weight:900;border-radius:30px;text-decoration:none;box-shadow:var(--shadow-card);"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg> スマホでかんたん申込</a></div>
+      </div>
+      <div class="lp-ev" data-end="2026-11-03T16:00" style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid #457B9D;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span class="lp-ev-label" style="padding:4px 12px;background:#457B9D;color:var(--white);font-size:0.75rem;font-weight:700;border-radius:20px;font-family:'Zen Maru Gothic',sans-serif;">開催予定</span></div>
+        <p style="font-family:'Zen Maru Gothic',sans-serif;font-size:1.1rem;font-weight:900;color:var(--primary);margin-bottom:12px;">AIとおしゃべり体験（星ヶ丘ミライテラスマルシェに出店）</p>
+        <p style="font-size:0.92rem;color:var(--text);margin-bottom:12px;line-height:1.8;">マルシェのブースで、AIとおしゃべりを体験できます。お買い物のついでに、ふらっとお立ち寄りください。</p>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--text);"><span>📅 2026年11月3日（火・祝） 10:00〜16:00</span><span>📍 星が丘テラス（名古屋市千種区星が丘元町16-50）</span><span>🚇 地下鉄東山線「星ケ丘」6番出口から徒歩2分</span></div>
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;"><span style="padding:4px 14px;background:var(--primary-pale);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;">参加無料</span><span style="padding:4px 14px;background:var(--warm-bg-alt);color:var(--text-light);font-size:0.8rem;font-weight:500;border-radius:20px;">申込不要</span></div>
+      </div>
+      <div class="lp-ev" data-end="2026-11-20T16:30" style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid #457B9D;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span class="lp-ev-label" style="padding:4px 12px;background:#457B9D;color:var(--white);font-size:0.75rem;font-weight:700;border-radius:20px;font-family:'Zen Maru Gothic',sans-serif;">開催予定</span></div>
+        <p style="font-family:'Zen Maru Gothic',sans-serif;font-size:1.1rem;font-weight:900;color:var(--primary);margin-bottom:12px;">食品サークル AIセミナー（代表 伊藤が基調講演）</p>
+        <p style="font-size:0.92rem;color:var(--text);margin-bottom:12px;line-height:1.8;">「AIに聞くだけに終わっていませんか？ 食品の現場で“使い倒す”ための次の一手」。ふだんからAIを使っていて、もう一歩進みたい方へ。食品の現場のAI活用事例の紹介と、交流会もあります。</p>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--text);"><span>📅 2026年11月20日（金） 13:30〜16:30</span><span>🕘 開場 13:15</span><span>📍 吹上ホール4階 第7会議室（名古屋市千種区吹上2-6-3）</span><span>🚇 地下鉄桜通線「吹上」駅 徒歩5分</span></div>
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;"><span style="padding:4px 14px;background:var(--primary-pale);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;">参加無料</span><span style="padding:4px 14px;background:var(--warm-bg-alt);color:var(--text-light);font-size:0.8rem;font-weight:500;border-radius:20px;">中級者向け</span><span style="padding:4px 14px;background:var(--warm-bg-alt);color:var(--text-light);font-size:0.8rem;font-weight:500;border-radius:20px;">主催：NPO法人食品サークル</span><span style="padding:4px 14px;background:var(--white);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;border:1.5px solid var(--primary);">🏛️ 名古屋市教育委員会 後援</span></div>
+        <div><a href="https://docs.google.com/forms/d/e/1FAIpQLSdwtAYL2HSDnGoBrfZQVxXQxU993KEr_Xeh0JOp6rWd_2h8wQ/viewform" target="_blank" rel="noopener" class="lp-ev-btn" style="display:inline-block;margin-top:18px;padding:15px 36px;background:#457B9D;color:var(--white);font-family:'Zen Maru Gothic',sans-serif;font-size:1.1rem;font-weight:900;border-radius:30px;text-decoration:none;box-shadow:var(--shadow-card);"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg> 主催者のフォームで申込（11/13まで・先着順）</a></div>
+      </div>
+      <div class="lp-ev" data-end="2026-11-21T12:00" style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid #457B9D;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span class="lp-ev-label" style="padding:4px 12px;background:#457B9D;color:var(--white);font-size:0.75rem;font-weight:700;border-radius:20px;font-family:'Zen Maru Gothic',sans-serif;">開催予定</span></div>
+        <p style="font-family:'Zen Maru Gothic',sans-serif;font-size:1.1rem;font-weight:900;color:var(--primary);margin-bottom:12px;">チャッピーと話そう！はじめてのAI体験教室</p>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--text);"><span>📅 2026年11月21日（土） 10:00〜12:00</span><span>🕘 開場 9:30（開始30分前）</span><span>📍 西生涯学習センター（名古屋市西区浄心1-1-45）</span><span>🚇 地下鉄鶴舞線「浄心」下車 徒歩すぐ</span></div>
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;"><span style="padding:4px 14px;background:var(--primary-pale);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;">参加無料</span><span style="padding:4px 14px;background:var(--warm-bg-alt);color:var(--text-light);font-size:0.8rem;font-weight:500;border-radius:20px;">📱 スマホ持参</span><span id="seat-akk-20261121" style="padding:4px 14px;background:var(--primary-pale);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;">お申込受付中</span><span style="padding:4px 14px;background:var(--white);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;border:1.5px solid var(--primary);">🏛️ 名古屋市教育委員会 後援</span></div>
+        <div id="applybtn-akk-20261121"><a href="https://ai-kakekomi.com/apply.html?uid=akk-20261121" target="_blank" rel="noopener" class="lp-ev-btn" style="display:inline-block;margin-top:18px;padding:15px 36px;background:#457B9D;color:var(--white);font-family:'Zen Maru Gothic',sans-serif;font-size:1.1rem;font-weight:900;border-radius:30px;text-decoration:none;box-shadow:var(--shadow-card);"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg> スマホでかんたん申込</a></div>
+      </div>
+      <div id="lp-events-empty" style="display:none;padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid var(--accent);">
+        <p style="font-size:0.95rem;color:var(--text);margin-bottom:8px;">次回の開催日を調整中です。</p>
+        <p style="font-size:0.9rem;color:var(--text-light);">決まり次第このページでお知らせします。ご相談は <a href="mailto:info@ai-kakekomi.com" style="color:var(--primary);font-weight:700;">info@ai-kakekomi.com</a> までどうぞ。</p>
       </div>
     </div>
 
@@ -1341,7 +1420,7 @@ details p { animation: fadeDown 0.3s ease; }
   </div>
 </section>
 
-<!-- ===== 開催予定・実績（events-public.json 連動） ===== -->
+<!-- ===== 開催予定（手書きカード）・実績（events-public.json 連動） ===== -->
 <script>
 (function () {
   function init() {
@@ -1375,44 +1454,26 @@ details p { animation: fadeDown 0.3s ease; }
       .catch(function () { /* 取得失敗時は既定バッジ維持 */ });
   }
 
-  function renderUpcoming(evs) {
-    if (!evs.length) {
-      events.innerHTML = '<div style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid var(--accent);">'
-        + '<p style="font-size:0.95rem;color:var(--text);margin-bottom:8px;">次回の開催日を調整中です。</p>'
-        + '<p style="font-size:0.9rem;color:var(--text-light);">決まり次第このページでお知らせします。ご相談は <a href="mailto:info@ai-kakekomi.com" style="color:var(--primary);font-weight:700;">info@ai-kakekomi.com</a> までどうぞ。</p>'
-        + '</div>';
-      return;
-    }
-    events.innerHTML = evs.map(function (e, i) {
-      var first = i === 0;
-      var accent = first ? 'var(--accent)' : '#457B9D';
-      var label = first ? '次回開催' : '開催予定';
-      var b = [];
-      if (e.fee === '無料') b.push(badge('参加無料', 'var(--primary-pale)', 'var(--primary)', 700));
-      if (e.bring) b.push(badge('📱 ' + esc(e.bring) + '持参', 'var(--warm-bg-alt)', 'var(--text-light)', 500));
-      if (e.apply_required) {
-        b.push('<span id="seat-' + esc(e.uid) + '" style="padding:4px 14px;background:var(--primary-pale);color:var(--primary);font-size:0.8rem;font-weight:700;border-radius:20px;">お申込受付中</span>');
-      } else {
-        b.push(badge('申込不要', 'var(--warm-bg-alt)', 'var(--text-light)', 500));
-      }
-      if (e.endorsement) b.push(badge('🏛️ ' + esc(e.endorsement) + ' 後援', 'var(--white)', 'var(--primary)', 700, 'border:1.5px solid var(--primary);'));
-      var title = first ? '<p style="font-family:\'Zen Maru Gothic\',sans-serif;font-size:1.1rem;font-weight:900;color:var(--primary);margin-bottom:12px;">' + esc(e.title) + '</p>' : '';
-      var place = e.loc_url ? '<a href="' + esc(e.loc_url) + '" target="_blank" rel="noopener" style="color:inherit;">' + esc(e.place_label) + '</a>' : esc(e.place_label);
-      return '<div style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid ' + accent + ';">'
-        + '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">'
-        + '<span style="padding:4px 12px;background:' + accent + ';color:var(--white);font-size:0.75rem;font-weight:700;border-radius:20px;font-family:\'Zen Maru Gothic\',sans-serif;">' + label + '</span>'
-        + '</div>' + title
-        + '<div style="display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--text);">'
-        + '<span>📅 ' + esc(e.date_label) + ' ' + esc(e.time_label) + '</span>'
-        + '<span>🕘 開場 ' + esc(e.doors_label) + '（開始30分前）</span>'
-        + '<span>📍 ' + place + '</span>'
-        + (e.access ? '<span>🚇 ' + esc(e.access) + '</span>' : '')
-        + '</div>'
-        + '<div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;">' + b.join('') + '</div>'
-        + (e.apply_url ? '<div id="applybtn-' + esc(e.uid) + '"><a href="' + esc(e.apply_url) + '" target="_blank" rel="noopener" style="display:inline-block;margin-top:18px;padding:15px 36px;background:' + accent + ';color:var(--white);font-family:\'Zen Maru Gothic\',sans-serif;font-size:1.1rem;font-weight:900;border-radius:30px;text-decoration:none;box-shadow:var(--shadow-card);"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg> スマホでかんたん申込</a></div>' : '')
-        + '</div>';
-    }).join('');
-    evs.forEach(function (e) { if (e.apply_required && e.apply_url) updateSeats(e); });
+  // 開催予定のカードは手書き。終了したカードを隠し、先頭に「次回開催」を付け、自前申込の残席を反映する
+  function initUpcoming() {
+    var now = new Date();
+    var cards = [].slice.call(events.querySelectorAll('.lp-ev'));
+    var shown = cards.filter(function (c) {
+      var end = new Date(c.getAttribute('data-end') + ':00+09:00');
+      if (end < now) { c.style.display = 'none'; return false; }
+      return true;
+    });
+    if (!shown.length) { document.getElementById('lp-events-empty').style.display = ''; return; }
+    var first = shown[0];
+    first.style.borderLeftColor = 'var(--accent)';
+    var lbl = first.querySelector('.lp-ev-label');
+    if (lbl) { lbl.textContent = '次回開催'; lbl.style.background = 'var(--accent)'; }
+    var b = first.querySelector('.lp-ev-btn');
+    if (b) b.style.background = 'var(--accent)';
+    shown.forEach(function (c) {
+      var s = c.querySelector('[id^="seat-"]');
+      if (s) updateSeats({ uid: s.id.slice(5) });
+    });
   }
 
   function statTile(num, unit) {
@@ -1439,19 +1500,14 @@ details p { animation: fadeDown 0.3s ease; }
     track.innerHTML = stats + '<div style="display:flex;flex-direction:column;gap:12px;">' + rows + '</div>';
   }
 
+  if (events) initUpcoming();
+  if (!track) return;
   fetch('events-public.json?v=' + Date.now())
     .then(function (r) { return r.json(); })
     .then(function (feed) {
-      if (events) renderUpcoming((feed && feed.upcoming) || []);
       if (track) renderTrack(feed || {});
     })
     .catch(function () {
-      if (events) {
-        events.innerHTML = '<div style="padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);border-left:5px solid var(--accent);">'
-          + '<p style="font-size:0.95rem;color:var(--text);margin-bottom:8px;">開催予定の取得に失敗しました。</p>'
-          + '<p style="font-size:0.9rem;color:var(--text-light);">最新の予定は <a href="mailto:info@ai-kakekomi.com" style="color:var(--primary);font-weight:700;">info@ai-kakekomi.com</a> までお問い合わせください。</p>'
-          + '</div>';
-      }
       if (track) track.innerHTML = '';
     });
   }
