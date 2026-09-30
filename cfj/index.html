@@ -201,6 +201,26 @@ h2:first-child { margin-top: 0; }
 
 .cta .sub a { color: var(--primary); font-weight: 700; }
 
+.entry { margin-top: 18px; text-align: left; display: flex; flex-direction: column; gap: 14px; }
+.entry label { display: block; font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.entry label small { font-weight: 400; color: var(--text-light); margin-left: 4px; }
+.entry input[type=text], .entry input[type=email], .entry textarea {
+  width: 100%; box-sizing: border-box; font: inherit; font-size: 16px;
+  padding: 10px 12px; border: 1px solid #cfd8d2; border-radius: var(--radius-sm); background: var(--white); color: var(--text);
+}
+.entry textarea { min-height: 84px; resize: vertical; }
+.entry fieldset { border: 0; padding: 0; margin: 0; }
+.entry legend { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.entry .choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.entry .choices label { font-weight: 400; margin: 0; display: inline-flex; align-items: center; gap: 6px;
+  background: var(--white); border: 1px solid #cfd8d2; border-radius: 999px; padding: 8px 14px; cursor: pointer; font-size: 0.92rem; }
+.entry button {
+  align-self: center; border: 0; cursor: pointer; background: var(--accent); color: var(--white);
+  font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 1rem; padding: 12px 36px; border-radius: 999px;
+}
+.entry button:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+.entry .note { font-size: 0.8rem; color: var(--text-light); text-align: center; }
+
 .footer {
   padding: 28px 0;
   background: #1B4332;
@@ -299,10 +319,51 @@ h2:first-child { margin-top: 0; }
         </a>
       </div>
 
-      <div class="cta">
+      <div class="cta" id="entry">
         <p>AIかけこみ寺は、AIの恩恵をすべての人へ広めるために<br>全国展開を目指しています。<br>あなたの地域に<span>AIかけこみ寺の地域支部</span>を立ち上げてくれませんか？</p>
-        <a class="btn" href="/volunteer">ボランティア募集ページへ</a>
-        <span class="sub">ご相談・講師依頼は <a href="mailto:info@ai-kakekomi.com">info@ai-kakekomi.com</a> へお気軽に</span>
+
+        <form class="entry" action="https://formspree.io/f/xyknwzbw" method="POST">
+          <input type="hidden" name="_subject" value="【CfJ 支部エントリー】AIかけこみ寺">
+          <input type="hidden" name="source" value="CfJ Summit 2026">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;">
+          <div>
+            <label for="e-name">お名前</label>
+            <input id="e-name" type="text" name="name" required autocomplete="name">
+          </div>
+          <div>
+            <label for="e-area">地域 <small>都道府県・市町村</small></label>
+            <input id="e-area" type="text" name="area" required placeholder="例）静岡県浜松市">
+          </div>
+          <fieldset>
+            <legend>お立場</legend>
+            <div class="choices">
+              <label><input type="radio" name="role" value="自治体職員" required>自治体職員</label>
+              <label><input type="radio" name="role" value="NPO・団体">NPO・団体</label>
+              <label><input type="radio" name="role" value="エンジニア">エンジニア</label>
+              <label><input type="radio" name="role" value="個人">個人</label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>関わり方</legend>
+            <div class="choices">
+              <label><input type="radio" name="interest" value="支部を立ち上げたい" required>支部を立ち上げたい</label>
+              <label><input type="radio" name="interest" value="支部に参加したい">支部に参加したい</label>
+              <label><input type="radio" name="interest" value="まず話を聞きたい">まず話を聞きたい</label>
+            </div>
+          </fieldset>
+          <div>
+            <label for="e-email">メールアドレス</label>
+            <input id="e-email" type="email" name="email" required autocomplete="email">
+          </div>
+          <div>
+            <label for="e-msg">ひとこと <small>任意</small></label>
+            <textarea id="e-msg" name="message" placeholder="地域のようす、聞いてみたいことなど"></textarea>
+          </div>
+          <button type="submit">エントリーする</button>
+          <p class="note">代表の伊藤から、メールでご連絡します。</p>
+        </form>
+
+        <span class="sub">ボランティアとして参加したい方は <a href="/volunteer">ボランティア募集ページ</a>、ご相談・講師依頼は <a href="mailto:info@ai-kakekomi.com">info@ai-kakekomi.com</a> へ</span>
       </div>
 
     </div>
