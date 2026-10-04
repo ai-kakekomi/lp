@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-26 17:34",
+  "generated": "2026-10-04 21:57",
   "stats": {
     "held_count": 9,
     "total_participants": 145
@@ -39,6 +39,11 @@
     }
   ],
   "past": [
+    {
+      "ym": "2026年10月",
+      "label": "Code for Japan Summit 2026 で登壇「無料AI教室を全国へ」",
+      "note_url": "https://note.com/ai_kakekomi/n/nbc4e2ba2ac8b"
+    },
     {
       "ym": "2026年9月",
       "label": "チャッピーと話そう！はじめてのAI体験教室",
