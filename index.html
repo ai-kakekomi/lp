@@ -203,14 +203,14 @@
 {
   "@context": "https://schema.org",
   "@type": "Event",
-  "name": "AIとおしゃべり体験｜AIかけこみ寺",
+  "name": "AIとおしゃべり体験イベント",
   "url": "https://ai-kakekomi.com/events/marche-1103",
   "startDate": "2026-11-03T10:00:00+09:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "description": "AIとおしゃべり体験｜AIかけこみ寺。参加費無料。地下鉄東山線「星ケ丘」6番出口から徒歩2分。お持ちもの：スマホ。",
+  "description": "AIとおしゃべり体験イベント（星ヶ丘ミライテラスマルシェに出店）。参加費無料。地下鉄東山線「星ケ丘」6番出口から徒歩2分。お持ちもの：スマホ。",
   "image": [
-    "https://ai-kakekomi.com/ogp.png"
+    "https://ai-kakekomi.com/events/marche-1103-booth.jpg"
   ],
   "location": {
     "@type": "Place",
@@ -811,7 +811,19 @@ body {
 .lp-other .t { flex: 1; display: flex; flex-direction: column; gap: 2px; }
 .lp-other .t strong { font-size: 0.95rem; }
 .lp-other .t span { font-size: 0.8rem; color: var(--text-light); }
-.lp-other .go { color: var(--primary); font-size: 1.2rem; }
+.lp-other .go { flex: none; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--primary-pale); color: var(--primary); transition: background .2s, color .2s, transform .2s; }
+.lp-other .go svg { width: 18px; height: 18px; }
+.lp-other .t .more { margin-top: 4px; font-family: 'Zen Maru Gothic', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--primary); }
+/* リンクのあるカードだけ「押せる」見た目にする（div のカードは静かなまま） */
+a.lp-other { border: 1.5px solid var(--primary-pale); cursor: pointer; transition: border-color .2s, box-shadow .2s, transform .2s; -webkit-tap-highlight-color: transparent; }
+a.lp-other:hover, a.lp-other:focus-visible { border-color: var(--primary); box-shadow: var(--shadow-card); transform: translateY(-2px); }
+a.lp-other:hover .go, a.lp-other:focus-visible .go { background: var(--primary); color: var(--white); transform: translateX(3px); }
+a.lp-other:hover .more, a.lp-other:focus-visible .more { text-decoration: underline; text-underline-offset: 3px; }
+a.lp-other:active { transform: scale(0.98); }
+a.lp-other:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+div.lp-other { border: 1.5px solid transparent; }
+@media (max-width: 480px) { .lp-other { gap: 10px; padding: 14px 12px; } .lp-other .d { min-width: 44px; } .lp-other .go { width: 28px; height: 28px; } .lp-other .go svg { width: 15px; height: 15px; } }
+@media (prefers-reduced-motion: reduce) { a.lp-other, a.lp-other .go { transition: none; } a.lp-other:hover, a.lp-other:focus-visible, a.lp-other:active, a.lp-other:hover .go { transform: none; } }
 
 .hero-badges {
   display: flex;
@@ -1586,13 +1598,13 @@ details p { animation: fadeDown 0.3s ease; }
         <div class="lp-others-head">ほかのイベント</div>
         <a class="lp-other lp-ev" data-end="2026-11-03T16:00" href="events/marche-1103">
           <span class="d"><b>11/3</b><small>火・祝</small></span>
-          <span class="t"><strong>AIとおしゃべり体験</strong><span>星ヶ丘ミライテラスマルシェに出店（星が丘テラス）。10:00〜16:00・申込不要</span></span>
-          <span class="go" aria-hidden="true">›</span>
+          <span class="t"><strong>AIとおしゃべり体験イベント</strong><span>星ヶ丘ミライテラスマルシェに出店（星が丘テラス）。10:00〜16:00・申込不要</span><span class="more">くわしく見る</span></span>
+          <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
         <a class="lp-other lp-ev" data-end="2026-11-20T16:30" href="events/foodcircle-1120">
           <span class="d"><b>11/20</b><small>金</small></span>
-          <span class="t"><strong>食品サークル AIセミナー</strong><span>代表 伊藤が基調講演・中級者向け（吹上ホール）</span></span>
-          <span class="go" aria-hidden="true">›</span>
+          <span class="t"><strong>食品サークル AIセミナー</strong><span>代表 伊藤が基調講演・中級者向け（吹上ホール）</span><span class="more">くわしく見る</span></span>
+          <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
         <!-- 中村生涯学習センター（NESPA事業・共催）。申込はセンター受付。data-until を過ぎた文言はJSが隠し、data-from の文言を出す -->
         <div class="lp-other lp-ev" data-end="2026-11-23T11:30">
