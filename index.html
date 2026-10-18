@@ -204,6 +204,7 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "AIとおしゃべり体験｜AIかけこみ寺",
+  "url": "https://ai-kakekomi.com/events/marche-1103",
   "startDate": "2026-11-03T10:00:00+09:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -491,6 +492,44 @@
     "@type": "Organization",
     "name": "名古屋市教育委員会"
   }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "チャッピーと話そう！はじめてのAI体験教室（中村生涯学習センター）",
+  "startDate": "2026-11-23T10:00:00+09:00",
+  "endDate": "2026-11-23T11:30:00+09:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "description": "スマホでChatGPT（チャッピー）を実際に使い、AIとの対話を体験する教室。対象は一般（スマホをお持ちの方）。定員45名・受講無料。申込は中村生涯学習センターへ（往復はがき・名古屋市電子申請、10/22必着）。",
+  "image": [
+    "https://ai-kakekomi.com/ogp.png"
+  ],
+  "location": {
+    "@type": "Place",
+    "name": "中村生涯学習センター 視聴覚室",
+    "address": {
+      "@type": "PostalAddress",
+      "postalCode": "453-0044",
+      "streetAddress": "中村区鳥居通3-1-3",
+      "addressLocality": "名古屋市",
+      "addressRegion": "愛知県",
+      "addressCountry": "JP"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "名古屋市中村生涯学習センター"
+  },
+  "performer": {
+    "@type": "Organization",
+    "name": "AIかけこみ寺",
+    "url": "https://ai-kakekomi.com"
+  },
+  "isAccessibleForFree": true,
+  "maximumAttendeeCapacity": 45
 }
 </script>
 <!-- EVENTS_JSONLD:END -->
@@ -1545,15 +1584,21 @@ details p { animation: fadeDown 0.3s ease; }
       </section>
       <section class="lp-others" id="lp-others">
         <div class="lp-others-head">ほかのイベント</div>
-        <div class="lp-other lp-ev" data-end="2026-11-03T16:00">
+        <a class="lp-other lp-ev" data-end="2026-11-03T16:00" href="events/marche-1103">
           <span class="d"><b>11/3</b><small>火・祝</small></span>
           <span class="t"><strong>AIとおしゃべり体験</strong><span>星ヶ丘ミライテラスマルシェに出店（星が丘テラス）。10:00〜16:00・申込不要</span></span>
-        </div>
+          <span class="go" aria-hidden="true">›</span>
+        </a>
         <a class="lp-other lp-ev" data-end="2026-11-20T16:30" href="events/foodcircle-1120">
           <span class="d"><b>11/20</b><small>金</small></span>
           <span class="t"><strong>食品サークル AIセミナー</strong><span>代表 伊藤が基調講演・中級者向け（吹上ホール）</span></span>
           <span class="go" aria-hidden="true">›</span>
         </a>
+        <!-- 中村生涯学習センター（NESPA事業・共催）。申込はセンター受付。data-until を過ぎた文言はJSが隠し、data-from の文言を出す -->
+        <div class="lp-other lp-ev" data-end="2026-11-23T11:30">
+          <span class="d"><b>11/23</b><small>月・祝</small></span>
+          <span class="t"><strong>はじめてのAI体験教室（中村区）</strong><span>中村生涯学習センター。10:00〜11:30・無料・定員45名<span data-until="2026-10-22T23:59">。申込はセンターへ（往復はがき・名古屋市電子申請。10/22（木）必着、多いときは抽選）</span><span data-from="2026-10-22T23:59" hidden>（申込の受付は終わりました）</span></span></span>
+        </div>
       </section>
       <div id="lp-events-empty" style="display:none;padding:24px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-card);">
         <p style="font-size:0.95rem;color:var(--text);margin-bottom:8px;">次回の開催日を調整中です。</p>
@@ -1612,6 +1657,13 @@ details p { animation: fadeDown 0.3s ease; }
       if (end < now) { el.style.display = 'none'; return false; }
       return true;
     };
+    // 申込締切などで文言を切り替える（data-until を過ぎたら隠し、data-from を過ぎたら出す）
+    [].slice.call(events.querySelectorAll('[data-until]')).forEach(function (el) {
+      if (new Date(el.getAttribute('data-until') + ':00+09:00') < now) el.hidden = true;
+    });
+    [].slice.call(events.querySelectorAll('[data-from]')).forEach(function (el) {
+      if (new Date(el.getAttribute('data-from') + ':00+09:00') < now) el.hidden = false;
+    });
     var dates = [].slice.call(events.querySelectorAll('.lp-date')).filter(live);
     var others = [].slice.call(events.querySelectorAll('.lp-other')).filter(live);
     if (!dates.length) document.getElementById('lp-reg').style.display = 'none';
