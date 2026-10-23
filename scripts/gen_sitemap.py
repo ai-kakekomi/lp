@@ -71,7 +71,7 @@ def main():
         pages.append(p)
     # apps/ と cfj/ と events/ は中まで潜る（events/ は手書きの催しページ）。apps/ の各ツールは submodule だが、
     # ツール側に sitemap は無いので LP がまとめて面倒を見る
-    for d in ("apps", "cfj", "events"):
+    for d in ("apps", "cfj", "events", "disclosure"):
         for p in sorted((ROOT / d).rglob("*.html")):
             if p.name in SKIP or "node_modules" in p.parts or has_noindex(p):
                 continue

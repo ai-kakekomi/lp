@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>情報公開 | NPO法人AIかけこみ寺</title>
+<link rel="canonical" href="https://ai-kakekomi.com/disclosure/">
+<meta name="description" content="特定非営利活動法人AIかけこみ寺の情報公開ページ。団体の概要、経営体制、定款、帳簿の全件、活動実績を公開しています。">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2D6A4F;
+  --primary-light: #52B788;
+  --primary-pale: #D8F3DC;
+  --accent: #E76F51;
+  --warm-bg: #FDF8F0;
+  --warm-bg-alt: #FFF5E8;
+  --text: #2C2C2C;
+  --text-light: #5A5A5A;
+  --white: #FFFFFF;
+  --border: rgba(45,106,79,0.14);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.06);
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: var(--warm-bg);
+  line-height: 1.9;
+}
+
+.brand-bar {
+  background: var(--white);
+  border-bottom: 1px solid rgba(45,106,79,0.1);
+  padding: 16px 0;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+@media (min-width: 600px) { .container { padding: 0 24px; } }
+
+.brand {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.page-head {
+  padding: 48px 0 24px;
+  text-align: center;
+}
+.page-head h1 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+.page-head .updated { font-size: 0.85rem; color: var(--text-light); }
+
+main { padding-bottom: 56px; }
+
+.intro {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 32px;
+  font-size: 0.95rem;
+}
+.toc { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.9rem; }
+
+section { margin-bottom: 44px; scroll-margin-top: 16px; }
+section h2 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.25rem;
+  color: var(--primary);
+  border-left: 5px solid var(--primary-light);
+  padding-left: 12px;
+  margin-bottom: 14px;
+}
+section h3 { font-size: 1rem; color: var(--primary); margin: 22px 0 8px; }
+p { margin-bottom: 10px; }
+a { color: var(--primary); }
+.note { font-size: 0.82rem; color: var(--text-light); line-height: 1.7; }
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* 概要の表（左に見出し） */
+.info-table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+.info-table th, .info-table td { padding: 12px 16px; border-top: 1px solid var(--border); text-align: left; vertical-align: top; }
+.info-table tr:first-child th, .info-table tr:first-child td { border-top: none; }
+.info-table th { width: 9em; color: var(--primary); font-weight: 500; background: #F6FBF7; white-space: nowrap; }
+@media (max-width: 560px) {
+  .info-table th, .info-table td { display: block; width: auto; }
+  .info-table th { padding-bottom: 4px; border-top: 1px solid var(--border); }
+  .info-table td { border-top: none; padding-top: 4px; }
+}
+
+/* 数字のカード */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 18px; }
+.stat { background: var(--white); border-radius: var(--radius-sm); box-shadow: var(--shadow-card); padding: 14px 12px; text-align: center; }
+.stat-label { font-size: 0.8rem; color: var(--text-light); }
+.stat-value { font-size: 1.45rem; font-weight: 700; color: var(--primary); font-variant-numeric: tabular-nums; line-height: 1.4; }
+.stat-value.minus { color: var(--accent); }
+
+/* 一覧の表 */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; font-variant-numeric: tabular-nums; }
+.data-table th { background: var(--primary-pale); color: var(--primary); font-weight: 500; text-align: left; padding: 9px 12px; white-space: nowrap; }
+.data-table td { padding: 8px 12px; border-top: 1px solid var(--border); vertical-align: top; }
+.data-table .num { text-align: right; white-space: nowrap; }
+.data-table .nowrap { white-space: nowrap; }
+.data-table tr.group td { background: #F6FBF7; color: var(--primary); font-weight: 700; }
+.data-table tr.item td:first-child { padding-left: 28px; color: var(--text-light); }
+.data-table tr.total td { font-weight: 700; border-top: 2px solid var(--primary-light); }
+.tag { display: inline-block; font-size: 0.75rem; padding: 0 8px; border-radius: 10px; background: var(--primary-pale); color: var(--primary); white-space: nowrap; }
+.tag.in { background: #FDE8E1; color: #B4472C; }
+
+/* 帳簿明細: スマホでは1件ずつのカードにする */
+@media (max-width: 640px) {
+  .ledger thead { display: none; }
+  .ledger, .ledger tbody, .ledger tr, .ledger td { display: block; width: 100%; }
+  .ledger tr { border-top: 1px solid var(--border); padding: 10px 14px; }
+  .ledger td { border: none; padding: 0; }
+  .ledger td.l-date { font-size: 0.78rem; color: var(--text-light); }
+  .ledger td.l-cat { display: inline; font-size: 0.78rem; color: var(--text-light); }
+  .ledger td.l-cat + td.l-cat::before { content: "・"; }
+  .ledger td.l-desc { margin: 2px 0; }
+  .ledger td.num { text-align: right; font-weight: 700; }
+}
+
+.ledger-more { text-align: center; padding: 12px; border-top: 1px solid var(--border); }
+.btn {
+  display: inline-block;
+  padding: 8px 20px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+.btn.ghost { background: var(--white); color: var(--primary); border: 1px solid var(--primary); }
+
+.callout {
+  background: var(--primary-pale);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  font-size: 0.92rem;
+  color: var(--primary);
+}
+.audit { background: var(--warm-bg-alt); border-radius: var(--radius-sm); padding: 16px 20px; margin-top: 16px; font-size: 0.9rem; }
+
+.footer { padding: 32px 0; background: #1B4332; text-align: center; }
+.footer p { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+.footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="brand-bar">
+  <div class="container">
+    <a href="/" class="brand"><img src="/favicon-32x32.png" alt="" style="width:20px;height:20px;vertical-align:-0.22em;"> AIかけこみ寺</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="page-head">
+    <h1>情報公開</h1>
+    <p class="updated" id="updated">特定非営利活動法人AIかけこみ寺</p>
+  </div>
+
+  <main>
+    <div class="intro">
+      <p>AIかけこみ寺は、高齢の方やひとり親家庭など、AIにふれる機会の少ない方に向けて無料のAI教室を開いている非営利団体です。寄付や講座料をどう使ったかを誰でも確かめられるように、帳簿を全件公開しています。</p>
+      <nav class="toc">
+        <a href="#about">団体の概要</a>
+        <a href="#governance">経営体制</a>
+        <a href="#teikan">定款</a>
+        <a href="#finance">財務情報</a>
+        <a href="#activity">活動実績</a>
+        <a href="#reports">活動報告書・決算書</a>
+      </nav>
+    </div>
+
+    <section id="about">
+      <h2>団体の概要</h2>
+      <div class="card">
+        <table class="info-table">
+          <tr><th>正式名称</th><td>特定非営利活動法人AIかけこみ寺</td></tr>
+          <tr><th>法人番号</th><td>1180005021709</td></tr>
+          <tr><th>設立</th><td>2026年10月2日（NPO法人の設立登記。2026年9月29日 名古屋市認証）</td></tr>
+          <tr><th>活動の始まり</th><td>2025年12月に任意団体として活動を始め、2026年3月から無料AI教室を開いています</td></tr>
+          <tr><th>所在地</th><td>〒450-0002 愛知県名古屋市中村区名駅4丁目24番5号 第2森ビル401</td></tr>
+          <tr><th>事業年度</th><td>毎年4月1日から翌年3月31日まで（最初の事業年度は、設立の日から2027年3月31日まで）</td></tr>
+          <tr><th>所轄庁</th><td>名古屋市</td></tr>
+          <tr><th>主な活動</th><td>AIにふれる機会の少ない方に向けた無料のAI教室。困りごとから生まれた無料アプリの開発・公開</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="governance">
+      <h2>経営体制</h2>
+      <div class="card">
+        <table class="info-table">
+          <tr><th>理事長</th><td>1名</td></tr>
+          <tr><th>副理事長</th><td>1名</td></tr>
+          <tr><th>理事</th><td>1名</td></tr>
+          <tr><th>監事</th><td>1名</td></tr>
+        </table>
+      </div>
+      <p class="note" style="margin-top:10px;">役員は理事3名（理事長・副理事長を含む）と監事1名の計4名です。役員はすべて無報酬です（定款第19条）。</p>
+      <p>監事は理事とは別の立場から、法人の業務と財産（会計）の状況を監査します（定款第15条第4項）。決算に関する書類は、理事長が作成したのち監事の監査を受け、総会の議決を経て確定します（定款第45条）。</p>
+    </section>
+
+    <section id="teikan">
+      <h2>定款</h2>
+      <p>定款の全文を公開しています。</p>
+      <p><a class="btn ghost" href="/teikan">定款を見る</a></p>
+    </section>
+
+    <section id="finance">
+      <h2>財務情報</h2>
+      <p>帳簿を全件そのまま公開しています。金額・日付・勘定科目は帳簿のとおりです。費用は、NPO法人会計基準に沿って<b>事業費</b>（AI教室など目的の事業に直接かかる費用）と<b>管理費</b>（団体運営に共通する費用）に分けています。</p>
+      <p class="note">※ 取引先の企業名・団体名は「大手旅行会社様」などにぼかしています。個人名は載せていません。<br>※ 2026年10月1日までは任意団体として記帳したものです。法人の設立後も、同じ帳簿を引き継いで記帳しています。</p>
+
+      <div class="stats" id="acc-stats"></div>
+
+      <h3>収入の内訳</h3>
+      <div class="card table-wrap"><table class="data-table" id="acc-income"></table></div>
+
+      <h3>支出の内訳（事業費・管理費 × 勘定科目）</h3>
+      <div class="card table-wrap"><table class="data-table" id="acc-expense"></table></div>
+
+      <h3>帳簿明細（全件・新しい順）</h3>
+      <div class="card">
+        <div class="table-wrap">
+          <table class="data-table ledger">
+            <thead><tr><th>日付</th><th>区分</th><th>科目</th><th>摘要</th><th class="num">金額</th></tr></thead>
+            <tbody id="acc-tbody"><tr><td colspan="5">読み込み中…</td></tr></tbody>
+          </table>
+        </div>
+        <div class="ledger-more" id="ledger-more" hidden><button class="btn ghost" id="ledger-more-btn" type="button">すべて表示</button></div>
+      </div>
+      <p class="note" style="margin-top:8px;">データ: <a href="accounting.json">accounting.json</a>（この表と同じ内容）</p>
+
+      <div class="audit">
+        <p style="margin-bottom:8px;"><b>AIで確かめる</b>　帳簿の全件と確認のポイントをコピーします。ChatGPT・Claude・Gemini などのAIに貼り付ければ、どなたでも点検できます。</p>
+        <button class="btn" id="audit-copy-btn" type="button">AIで確かめる用にコピー</button>
+      </div>
+      <noscript><p class="note">表を見るには JavaScript を有効にしてください。データは <a href="accounting.json">accounting.json</a> でも見られます。</p></noscript>
+    </section>
+
+    <section id="activity">
+      <h2>活動実績</h2>
+      <div class="stats" id="act-stats"></div>
+      <div class="card table-wrap">
+        <table class="data-table">
+          <thead><tr><th>日付</th><th>教室</th><th class="num">参加</th></tr></thead>
+          <tbody id="act-tbody"><tr><td colspan="3">読み込み中…</td></tr></tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:8px;">開催済みで参加人数を記録している教室です。データ: <a href="activity.json">activity.json</a></p>
+    </section>
+
+    <section id="reports">
+      <h2>活動報告書・決算書</h2>
+      <div class="callout">
+        最初の事業年度（設立の日から2027年3月31日まで）が終わったら、事業報告書・活動計算書・貸借対照表・財産目録を、監事の監査と総会の議決を経て、このページで公開します。
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p style="font-size:0.82rem;opacity:0.85;">運営: 特定非営利活動法人AIかけこみ寺（法人番号 1180005021709）／「AIかけこみ寺」は商標登録出願中です。</p>
+    <p>© 2026 特定非営利活動法人AIかけこみ寺 All Rights Reserved.　<a href="/">トップへ戻る</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var yen = function (n) { return (n < 0 ? '−' : '') + '¥' + Math.abs(n).toLocaleString('ja-JP'); };
+  var esc = function (s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  };
+  var stat = function (label, value, cls) {
+    return '<div class="stat"><div class="stat-label">' + label + '</div><div class="stat-value ' + (cls || '') + '">' + value + '</div></div>';
+  };
+  var jpDate = function (ymd) {
+    var p = ymd.split('-');
+    return p[0] + '年' + Number(p[1]) + '月' + Number(p[2]) + '日';
+  };
+
+  // ===== 財務情報 =====
+  fetch('accounting.json?v=' + Date.now()).then(function (r) { return r.json(); }).then(function (data) {
+    var income = 0, expense = 0;
+    data.forEach(function (r) { income += r['収入'] || 0; expense += r['支出'] || 0; });
+    var balance = income - expense;
+    var first = data[0]['日付'], last = data[data.length - 1]['日付'];
+
+    document.getElementById('updated').textContent = '帳簿は' + jpDate(last) + 'の記帳分まで';
+    document.getElementById('acc-stats').innerHTML =
+      stat('収入合計', yen(income)) +
+      stat('支出合計', yen(expense), 'minus') +
+      stat('差引', yen(balance), balance < 0 ? 'minus' : '') +
+      stat('記帳件数', data.length + '件');
+
+    // 収入の内訳（科目ごと）
+    var inc = {};
+    data.forEach(function (r) { if (r['収入']) inc[r['科目']] = (inc[r['科目']] || 0) + r['収入']; });
+    var incHtml = '<thead><tr><th>科目</th><th class="num">金額</th></tr></thead><tbody>';
+    Object.keys(inc).sort(function (a, b) { return inc[b] - inc[a]; }).forEach(function (k) {
+      incHtml += '<tr><td>' + esc(k) + '</td><td class="num">' + yen(inc[k]) + '</td></tr>';
+    });
+    incHtml += '<tr class="total"><td>収入合計</td><td class="num">' + yen(income) + '</td></tr></tbody>';
+    document.getElementById('acc-income').innerHTML = incHtml;
+
+    // 支出の内訳（機能 × 科目）
+    var byFunc = {};
+    data.forEach(function (r) {
+      if (!r['支出']) return;
+      var fn = r['機能'] || '管理費', k = r['科目'] || '不明';
+      byFunc[fn] = byFunc[fn] || {};
+      byFunc[fn][k] = (byFunc[fn][k] || 0) + r['支出'];
+    });
+    var exHtml = '<thead><tr><th>区分・科目</th><th class="num">金額</th></tr></thead><tbody>';
+    ['事業費', '管理費'].forEach(function (fn) {
+      var items = byFunc[fn] || {};
+      var keys = Object.keys(items).sort(function (a, b) { return items[b] - items[a]; });
+      if (!keys.length) return;
+      var sub = keys.reduce(function (s, k) { return s + items[k]; }, 0);
+      exHtml += '<tr class="group"><td>' + fn + '</td><td class="num">' + yen(sub) + '</td></tr>';
+      keys.forEach(function (k) { exHtml += '<tr class="item"><td>' + esc(k) + '</td><td class="num">' + yen(items[k]) + '</td></tr>'; });
+    });
+    exHtml += '<tr class="total"><td>支出合計</td><td class="num">' + yen(expense) + '</td></tr></tbody>';
+    document.getElementById('acc-expense').innerHTML = exHtml;
+
+    // 帳簿明細（新しい順。最初は30件、ボタンで全件）
+    var rows = data.slice().reverse();
+    var renderLedger = function (n) {
+      document.getElementById('acc-tbody').innerHTML = rows.slice(0, n).map(function (r) {
+        var isIn = r['区分'] === '収入';
+        var kind = isIn ? '<span class="tag in">収入</span>' : '<span class="tag">' + esc(r['機能'] || '支出') + '</span>';
+        return '<tr>' +
+          '<td class="l-date nowrap">' + esc(r['日付']) + '</td>' +
+          '<td class="l-cat">' + kind + '</td>' +
+          '<td class="l-cat nowrap">' + esc(r['科目']) + '</td>' +
+          '<td class="l-desc">' + esc(r['摘要']) + '</td>' +
+          '<td class="num">' + (isIn ? '+' : '') + yen(r['収入'] || r['支出'] || 0) + '</td>' +
+          '</tr>';
+      }).join('');
+      document.getElementById('ledger-more').hidden = n >= rows.length;
+    };
+    renderLedger(30);
+    document.getElementById('ledger-more-btn').textContent = 'すべて表示（全' + rows.length + '件）';
+    document.getElementById('ledger-more-btn').addEventListener('click', function () { renderLedger(rows.length); });
+
+    // AIで確かめる用コピー
+    document.getElementById('audit-copy-btn').addEventListener('click', function () {
+      var csv = ['日付,区分,機能,科目,摘要,収入,支出'].concat(data.map(function (r) {
+        return [r['日付'], r['区分'], r['機能'] || '', r['科目'] || '', '"' + String(r['摘要']).replace(/"/g, '""') + '"', r['収入'] || '', r['支出'] || ''].join(',');
+      })).join('\n');
+      var prompt = '以下は特定非営利活動法人AIかけこみ寺の会計帳簿（全件）です。この団体の会計を点検してください。\n' +
+        '費用はNPO法人会計基準に沿って、機能別（事業費／管理費）×形態別の勘定科目で分けています。\n' +
+        '取引先の企業名・団体名はぼかしてあります。役員は無報酬です。\n\n' +
+        '確認してほしいこと:\n- 支出が団体の目的（無料AI教室）に沿っているか\n- 事業費・管理費の区分と勘定科目の分け方が正しいか\n- 不自然な支出や金額がないか\n- 改善できる点\n\n' +
+        '---\n' + csv + '\n---\n\n' +
+        '収入合計: ' + yen(income) + '\n支出合計: ' + yen(expense) + '\n記帳件数: ' + data.length + '件\n期間: ' + first + ' 〜 ' + last;
+      var btn = this;
+      var done = function () {
+        btn.textContent = 'コピーしました。AIに貼り付けてください';
+        setTimeout(function () { btn.textContent = 'AIで確かめる用にコピー'; }, 3000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(prompt).then(done, function () { alert('コピーできませんでした。accounting.json を直接ご覧ください。'); });
+      } else {
+        alert('このブラウザではコピーできません。accounting.json を直接ご覧ください。');
+      }
+    });
+  }).catch(function () {
+    document.getElementById('acc-tbody').innerHTML = '<tr><td colspan="5">帳簿を読み込めませんでした。<a href="accounting.json">accounting.json</a> を直接ご覧ください。</td></tr>';
+  });
+
+  // ===== 活動実績 =====
+  fetch('activity.json?v=' + Date.now()).then(function (r) { return r.json(); }).then(function (a) {
+    document.getElementById('act-stats').innerHTML =
+      stat('開いた教室', a.count + '回') +
+      stat('のべ参加者', a.total_participants.toLocaleString('ja-JP') + '名');
+    document.getElementById('act-tbody').innerHTML = a.classes.slice().reverse().map(function (c) {
+      return '<tr><td class="nowrap">' + esc(c.date_label) + '</td><td>' + esc(c.label) + '</td><td class="num">' + c.participants + '名</td></tr>';
+    }).join('');
+  }).catch(function () {
+    document.getElementById('act-tbody').innerHTML = '<tr><td colspan="3">活動実績を読み込めませんでした。</td></tr>';
+  });
+})();
+</script>
+</body>
+</html>
