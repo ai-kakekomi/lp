@@ -1460,32 +1460,38 @@ div.lp-other { border: 1.5px solid transparent; }
 
 /* ===== FOOTER ===== */
 .footer {
-  padding: 40px 0;
+  padding: 56px 0 32px;
   background: #1B4332;
-  text-align: center;
+  color: rgba(255,255,255,0.72);
 }
-
-.footer p {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.5);
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 3fr;
+  gap: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
 }
-
-.footer-links {
-  margin-top: 8px;
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-}
-
-.footer-links a {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.5);
+.footer-name { font-size: 1.25rem; font-weight: 700; color: #fff; letter-spacing: 0.04em; }
+.footer-tagline { font-size: 0.85rem; color: var(--primary-light); margin-top: 4px; }
+.footer-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.footer-col { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.footer-h { font-size: 0.75rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
+.footer-col a {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.8);
   text-decoration: none;
-  transition: color 0.3s ease;
+  white-space: nowrap;
+  transition: color 0.2s ease;
 }
-
-.footer-links a:hover {
-  color: var(--primary-light);
+.footer-col a:hover, .footer-col a:focus-visible { color: var(--primary-light); }
+.footer-bottom { padding-top: 20px; display: flex; flex-direction: column; gap: 4px; }
+.footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+.sp-br { display: none; }
+@media (max-width: 768px) {
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .footer-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
+  .footer-col a { white-space: normal; }
+  .sp-br { display: inline; }
 }
 
 /* ===== RESPONSIVE ===== */
@@ -2608,25 +2614,45 @@ details p { animation: fadeDown 0.3s ease; }
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="container">
-    <p style="font-size:0.82rem;opacity:0.85;">運営: 特定非営利活動法人AIかけこみ寺（法人番号 1180005021709）〒450-0002 名古屋市中村区名駅4丁目24番5号 第2森ビル401／「AIかけこみ寺」は商標登録出願中です。</p>
-    <p>© 2026 特定非営利活動法人AIかけこみ寺 All Rights Reserved.</p>
-    <div class="footer-links">
-      <a href="#mission">理念</a>
-      <a href="#about">団体概要</a>
-      <a href="#story">きっかけ</a>
-      <a href="#courses">講座一覧</a>
-      <a href="#profile">講師紹介</a>
-      <a href="#info">料金</a>
-      <a href="#faq">FAQ</a>
-      <a href="/volunteer">仲間募集</a>
-      <a href="/sdgs">SDGs</a>
-      <a href="/apps/">かけこみアプリ</a>
-      <a href="/wiki/">かけこみ辞典</a>
-      <a href="#contact">お問い合わせ</a>
-      <a href="/privacy">プライバシーポリシー</a>
-      <a href="/teikan">定款</a>
-      <a href="/disclosure/">情報公開</a>
-      <a href="https://github.com/ai-kakekomi/lp" target="_blank" rel="noopener">GitHub</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="footer-name">AIかけこみ寺</p>
+        <p class="footer-tagline">AIの恩恵を、すべての人へ。</p>
+      </div>
+      <nav class="footer-nav" aria-label="フッター">
+        <div class="footer-col">
+          <p class="footer-h">団体について</p>
+          <a href="#mission">理念</a>
+          <a href="#about">団体概要</a>
+          <a href="#story">きっかけ</a>
+          <a href="#profile">講師紹介</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-h">教室</p>
+          <a href="#courses">講座一覧</a>
+          <a href="#info">料金</a>
+          <a href="#faq">よくある質問</a>
+          <a href="#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-h">いっしょに</p>
+          <a href="/volunteer">仲間募集</a>
+          <a href="/sdgs">SDGs</a>
+          <a href="/apps/">かけこみアプリ</a>
+          <a href="/wiki/">かけこみ辞典</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-h">公開している情報</p>
+          <a href="/disclosure/">情報公開</a>
+          <a href="/teikan">定款</a>
+          <a href="/privacy">プライバシーポリシー</a>
+          <a href="https://github.com/ai-kakekomi/lp" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>特定非営利活動法人AIかけこみ寺（法人番号 1180005021709）<br class="sp-br">〒450-0002 名古屋市中村区名駅4丁目24番5号 第2森ビル401</p>
+      <p>「AIかけこみ寺」は商標登録出願中です。　© 2026 特定非営利活動法人AIかけこみ寺</p>
     </div>
   </div>
 </footer>
