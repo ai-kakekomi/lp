@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご寄附のお願い | AIかけこみ寺</title>
+<link rel="canonical" href="https://ai-kakekomi.com/kifu">
+<meta name="description" content="特定非営利活動法人ＡＩかけこみ寺へのご寄附のご案内。いただいたお金は、教室の現場（講師・サポーターの謝金と交通費、会場）とAIの利用料にだけ使い、帳簿はすべて公開しています。">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2D6A4F;
+  --primary-light: #52B788;
+  --primary-pale: #D8F3DC;
+  --accent: #E76F51;
+  --accent-light: #F4A261;
+  --warm-bg: #FDF8F0;
+  --warm-bg-alt: #FFF5E8;
+  --text: #2C2C2C;
+  --text-light: #5A5A5A;
+  --white: #FFFFFF;
+  --shadow-soft: 0 4px 24px rgba(45, 106, 79, 0.08);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.06);
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: var(--warm-bg);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-label {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+/* ===== HEADER NAV ===== */
+.site-header {
+  background: var(--white);
+  padding: 16px 0;
+  box-shadow: var(--shadow-soft);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header-logo {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.site-header-logo span {
+  color: var(--accent);
+}
+
+.site-header-back {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 8px 18px;
+  border: 1.5px solid var(--primary-pale);
+  border-radius: 40px;
+  transition: all 0.3s ease;
+}
+
+.site-header-back:hover {
+  background: var(--primary-pale);
+}
+
+/* ===== PAGE HERO ===== */
+.page-hero {
+  padding: 80px 24px 60px;
+  text-align: center;
+  background: var(--white);
+}
+
+.page-hero .section-title {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin-bottom: 20px;
+}
+
+.page-hero p {
+  font-size: 1rem;
+  color: var(--text-light);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 2;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 40px 0;
+  background: #1B4332;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.footer-links {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--primary-light);
+}
+.kifu-section { padding: 64px 0; }
+.kifu-cards { display: flex; flex-direction: column; gap: 28px; max-width: 760px; margin: 0 auto; }
+.kifu-card { padding: 36px 40px; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-card); }
+.kifu-card h2 { font-family: 'Zen Maru Gothic', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--primary); margin-bottom: 14px; }
+.kifu-card p, .kifu-card li { font-size: 0.95rem; color: var(--text-light); line-height: 2; }
+.kifu-card ul { padding-left: 1.2em; }
+.kifu-card a { color: var(--primary); font-weight: 700; }
+.kifu-number { font-family: 'Zen Maru Gothic', sans-serif; font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 900; color: var(--accent); line-height: 1.4; }
+.kifu-bank { margin-top: 8px; border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+.kifu-bank th, .kifu-bank td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--primary-pale); vertical-align: top; }
+.kifu-bank th { width: 7.5em; color: var(--primary); font-weight: 700; white-space: nowrap; }
+.kifu-bank td { color: var(--text); word-break: break-all; }
+.kifu-note { margin-top: 14px; font-size: 0.85rem !important; }
+@media (max-width: 768px) {
+  .kifu-card { padding: 28px 22px; }
+  .kifu-bank th { width: 6em; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="site-header-logo">AI<span>かけこみ寺</span></a>
+    <a href="/" class="site-header-back">← トップに戻る</a>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">Donation</div>
+    <h1 class="section-title">ご寄附のお願い</h1>
+    <p>AIかけこみ寺は、AIの恩恵をすべての人へ届けるために、無料のAI教室を地域で開いています。講師もサポーターも、ボランティアです。ご寄附は、教室を1回でも多く開くために使わせていただきます。</p>
+  </div>
+</section>
+
+<section class="kifu-section">
+  <div class="container">
+    <div class="kifu-cards">
+
+      <div class="kifu-card">
+        <h2>使い道は、現場とAIだけ</h2>
+        <ul>
+          <li>現場: 講師・サポーターの謝金と交通費、会場、機材</li>
+          <li>AI: 事務をAIで回すための利用料</li>
+        </ul>
+        <p>職員は雇わず、事務所も持ちません。役員報酬もありません。お金の出入りは、1件ずつ <a href="/disclosure/">情報公開</a> のページで見られます。</p>
+      </div>
+
+      <div class="kifu-card">
+        <h2>教室1回を開くのに、約4万円</h2>
+        <p class="kifu-number">4万円で、約20人に</p>
+        <p>講師とサポーターの謝金・交通費、会場費を合わせた目安です。そばに座って、ひとりひとりの手元を見ながら教えています。</p>
+      </div>
+
+      <div class="kifu-card">
+        <h2>お振込先</h2>
+        <table class="kifu-bank">
+          <tr><th>銀行</th><td>GMOあおぞらネット銀行（金融機関コード 0310）</td></tr>
+          <tr><th>支店</th><td>法人営業部（支店番号 101）</td></tr>
+          <tr><th>口座</th><td>普通 2705717</td></tr>
+          <tr><th>名義</th><td>特定非営利活動法人ＡＩかけこみ寺<br>トクヒ）エーアイカケコミデラ</td></tr>
+        </table>
+        <p class="kifu-note">お振込のあと、お名前とご住所を <a href="#" class="js-mail">メール</a> でお知らせいただければ、受領証をお送りします。お名前の公開を希望されない方は、その旨を書き添えてください。</p>
+        <p class="kifu-note">当法人は認定NPO法人ではないため、個人のご寄附は寄附金控除の対象になりません。法人のご寄附は、一般寄附金として損金算入の枠内で扱われます。</p>
+      </div>
+
+      <div class="kifu-card">
+        <h2>企業・団体の方へ</h2>
+        <p>社会貢献のご予算からのご寄附、社員の方の講師ボランティア、会議室や機材のご提供など、形はご相談に応じます。<a href="index.html#contact">お問い合わせ</a> か <a href="#" class="js-mail">メール</a> でお気軽にご連絡ください。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2026 特定非営利活動法人ＡＩかけこみ寺 All Rights Reserved.</p>
+    <div class="footer-links">
+      <a href="/">トップ</a>
+      <a href="index.html#contact">お問い合わせ</a>
+      <a href="/volunteer">仲間募集</a>
+      <a href="/disclosure/">情報公開</a>
+      <a href="https://github.com/ai-kakekomi/lp" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// メールアドレスは組み立てて出す（index.html と同じ）
+(function() {
+  var u = 'info', d = 'ai-kakekomi.com';
+  document.querySelectorAll('.js-mail').forEach(function(el) { el.href = 'mailto:' + u + '@' + d; el.textContent = u + '@' + d; });
+})();
+</script>
+
+</body>
+</html>
