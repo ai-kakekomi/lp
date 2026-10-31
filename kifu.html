@@ -157,12 +157,13 @@ body {
   color: var(--primary-light);
 }
 /* ===== 寄附ページ ===== */
-.kh { background: var(--white); padding: 56px 24px 64px; text-align: center; }
+:root { --kifu-w: 60rem; }
+.kh { background: var(--white); padding: 56px 0 64px; text-align: center; }
 .kh-label { font-family: 'Zen Maru Gothic', sans-serif; font-size: .85rem; font-weight: 700; color: var(--primary-light); letter-spacing: .15em; margin-bottom: 10px; }
 .kh h1 { font-family: 'Zen Maru Gothic', sans-serif; font-weight: 900; color: var(--primary); font-size: clamp(1.7rem, 5.4vw, 2.8rem); line-height: 1.45; margin-bottom: 18px; }
 .kh h1 em { font-style: normal; color: var(--accent); }
 .kh-lead { max-width: 640px; margin: 0 auto 28px; color: var(--text-light); font-size: 1rem; line-height: 2; text-align: left; }
-.kh-img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 80%; max-width: 860px; margin: 0 auto 32px; border-radius: var(--radius); box-shadow: var(--shadow-card); }
+.kh-img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 80%; max-width: var(--kifu-w); margin: 0 auto 32px; border-radius: var(--radius); box-shadow: var(--shadow-card); }
 .kh-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .kbtn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 40px; font-weight: 700; text-decoration: none; font-size: .98rem; transition: transform .2s ease, box-shadow .2s ease; }
 .kbtn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(231,111,81,.25); }
@@ -178,28 +179,28 @@ body {
 .kifu-head p { color: var(--text-light); line-height: 2; }
 
 /* 3つの約束 */
-.promises { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.promise { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-card); padding: 32px 28px; }
+.promises { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: var(--kifu-w); margin: 0 auto; }
+.promise { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-card); padding: 32px 22px; }
 .promise { text-align: center; }
 .promise ul { text-align: left; display: inline-block; }
 .promise-icon { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 18px; }
 .promise-icon.is-coral { background: #FCE9E3; color: #C2512F; }
 .promise-icon.is-green { background: var(--primary-pale); color: var(--primary); }
 .promise-icon.is-honey { background: #FFEBC9; color: #A0601A; }
-.promise h3 { font-family: 'Zen Maru Gothic', sans-serif; font-weight: 900; color: var(--primary); font-size: 1.2rem; line-height: 1.55; margin-bottom: 12px; word-break: keep-all; }
+.promise h3 { font-family: 'Zen Maru Gothic', sans-serif; font-weight: 900; color: var(--primary); font-size: 1.2rem; line-height: 1.55; margin-bottom: 12px; word-break: keep-all; word-break: auto-phrase; }
 .promise p { text-align: left; }
 .promise p, .promise li { font-size: .93rem; color: var(--text-light); line-height: 1.95; }
 .promise ul { padding-left: 1.1em; margin-top: 6px; }
 
 /* 届き方 */
-.flow-img { display: block; width: 100%; height: auto; max-width: 860px; margin: 0 auto 28px; border-radius: var(--radius); }
+.flow-img { display: block; width: 100%; height: auto; max-width: var(--kifu-w); margin: 0 auto 28px; border-radius: var(--radius); }
 .impact { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; max-width: 860px; margin: 0 auto; }
 .impact > div { flex: 1 1 240px; background: var(--white); border-radius: var(--radius-sm); padding: 22px 24px; box-shadow: var(--shadow-soft); }
 .impact b { display: block; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 900; color: var(--accent); font-size: clamp(1.4rem, 4vw, 1.8rem); line-height: 1.4; }
 .impact span { font-size: .9rem; color: var(--text-light); }
 
 /* いまの帳簿 */
-.ledger { max-width: 760px; margin: 0 auto; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-card); overflow: hidden; }
+.ledger { max-width: var(--kifu-w); margin: 0 auto; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-card); overflow: hidden; }
 .ledger-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 24px; background: var(--primary); color: var(--white); flex-wrap: wrap; }
 .ledger-top b { font-family: 'Zen Maru Gothic', sans-serif; font-size: 1.05rem; }
 .ledger-top span { font-size: .82rem; opacity: .85; }
@@ -215,7 +216,7 @@ body {
 .ledger-foot a { color: var(--primary); font-weight: 700; }
 
 /* 振込先 */
-.kifu-cards { display: flex; flex-direction: column; gap: 28px; max-width: 760px; margin: 0 auto; }
+.kifu-cards { display: flex; flex-direction: column; gap: 28px; max-width: var(--kifu-w); margin: 0 auto; }
 .kifu-card { padding: 36px 40px; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-card); }
 .kifu-card h2 { font-family: 'Zen Maru Gothic', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--primary); margin-bottom: 14px; }
 .kifu-card p, .kifu-card li { font-size: .95rem; color: var(--text-light); line-height: 2; }
@@ -227,24 +228,24 @@ body {
 .kifu-note { margin-top: 14px; font-size: .85rem !important; }
 
 /* 企業・団体 */
-.ways { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+.ways { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: var(--kifu-w); margin: 0 auto; }
 .way { background: var(--white); border-radius: var(--radius-sm); padding: 24px 26px; box-shadow: var(--shadow-soft); border-top: 4px solid var(--primary-light); }
 .way h3 { font-family: 'Zen Maru Gothic', sans-serif; font-weight: 900; color: var(--primary); font-size: 1.08rem; margin-bottom: 8px; }
 .way p { font-size: .9rem; color: var(--text-light); line-height: 1.9; }
-.ways-rule { max-width: 900px; margin: 28px auto 0; padding: 22px 26px; border-radius: var(--radius-sm); background: var(--white); border: 1.5px dashed var(--primary-light); font-size: .9rem; color: var(--text-light); line-height: 1.9; }
+.ways-rule { max-width: var(--kifu-w); margin: 28px auto 0; padding: 22px 26px; border-radius: var(--radius-sm); background: var(--white); border: 1.5px dashed var(--primary-light); font-size: .9rem; color: var(--text-light); line-height: 1.9; }
 .ways-rule b { color: var(--primary); }
 .ways-cta { text-align: center; margin-top: 32px; }
 .ways-cta p { margin-top: 12px; font-size: .88rem; color: var(--text-light); }
 .ways-cta p a { color: var(--primary); font-weight: 700; }
 
-@media (max-width: 1000px) {
-  .promises { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
+@media (max-width: 64em) {
+  .promises { grid-template-columns: 1fr; }
 }
 @media (max-width: 860px) {
   .ways { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
-  .kh { padding: 40px 16px 48px; }
+  .kh { padding: 40px 0 48px; }
   .kifu-section { padding: 56px 0; }
   .kifu-card { padding: 28px 22px; }
   .kifu-bank th { width: 6em; }
@@ -273,7 +274,7 @@ body {
   <div class="container">
     <div class="kh-label">ご寄附のお願い</div>
     <h1>AIの恩恵を<br><em>すべての人へ</em>届けるために</h1>
-    <p class="kh-lead">AIは、使い方次第で暮らしを助ける力になります。でも、その恩恵はまだ一部の人にしか届いていません。AIかけこみ寺は、だれもが気軽に聞ける無料のAI教室を、地域の公民館や生涯学習センターで開いています。ご寄附で、この教室をもっと多くの地域へ広げる仲間になっていただけませんか？</p>
+    <p class="kh-lead">AIは、使い方次第で暮らしを助ける力になります。でも、その恩恵はまだ一部の人にしか届いていません。AIかけこみ寺は、誰もが気軽に聞ける無料のAI教室を、慈善事業として地域の公民館や生涯学習センターで開いています。ご寄附で、この教室をもっと多くの地域へ広げる仲間になっていただけませんか？</p>
     <img class="kh-img" src="kifu-hero.webp" width="1536" height="1024" alt="公民館の教室で、ボランティアとAIのロボットが、おじいさん、おばあさん、親子にスマホの使い方を教えている水彩のイラスト">
     <div class="kh-cta">
       <a class="kbtn is-main" href="#furikomi"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>振込先を見る</a>

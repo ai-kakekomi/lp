@@ -100,7 +100,7 @@
           "name": "講座の費用はどのくらいですか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "個人の方は無料でご参加いただけます。一般の方が参加できる講座は、主催が自治体・社協・市民団体のどれでも、謝金の規定があればその額で、ご予算がなければ無料でお受けします。会員・職員だけが参加する研修は、ご予算に応じて承ります（目安2万円）。交通費は、名古屋市外の場合、講師1名分の実費をお願いしています。サポートメンバーの交通費は、ご予算に応じてご相談させてください（なくても伺います）。"
+            "text": "AIかけこみ寺は慈善事業として活動しているので、個人の方は無料でご参加いただけます。一般の方が参加できる講座は、主催が自治体・社協・市民団体のどれでも、謝金の規定があればその額で、ご予算がなければ無料でお受けします。会員・職員だけが参加する研修は、ご予算に応じて承ります（目安2万円）。交通費は、名古屋市外の場合、講師1名分の実費をお願いしています。サポートメンバーの交通費は、ご予算に応じてご相談させてください（なくても伺います）。"
           }
         },
         {
@@ -627,6 +627,15 @@ body {
   display: inline-block;
 }
 
+.hero-org {
+  margin: 0 0 2px;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--primary);
+}
+
 .hero h1 {
   font-family: 'Zen Maru Gothic', sans-serif;
   font-size: clamp(2.2rem, 6vw, 3.6rem);
@@ -703,7 +712,7 @@ body {
   font-family: 'Zen Maru Gothic', sans-serif;
   font-weight: 700;
   font-size: 1.15rem;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .hero-cta-sub {
@@ -1070,10 +1079,12 @@ div.lp-other { border: 1.5px solid transparent; }
 .story-item::before {
   content: '';
   position: absolute;
-  left: -34px;
-  top: 8px;
-  width: 14px;
-  height: 14px;
+  /* 縦線（left 12px・幅3px）の中心に、丸の中心をそろえる。丸は枠込みで20px */
+  box-sizing: border-box;
+  left: -36.5px;
+  top: calc(0.8 * 1.1rem - 10px);
+  width: 20px;
+  height: 20px;
   background: var(--white);
   border: 3px solid var(--primary-light);
   border-radius: 50%;
@@ -1091,10 +1102,16 @@ div.lp-other { border: 1.5px solid transparent; }
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--primary);
+  line-height: 1.6;
   margin-bottom: 8px;
   display: flex;
-  align-items: center;
+  /* 見出しが2行に折れても、アイコンと丸は1行目の高さにそろえる */
+  align-items: flex-start;
   gap: 10px;
+}
+
+.story-item h4 .story-icon {
+  margin-top: calc((1.6em - 44px) / 2);
 }
 
 .story-item p {
@@ -1107,6 +1124,21 @@ div.lp-other { border: 1.5px solid transparent; }
   color: var(--text);
   font-weight: 500;
 }
+
+.story-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+.story-icon.is-coral { background: #FCE9E3; color: #C2512F; }
+.story-icon.is-honey { background: #FFEBC9; color: #A0601A; }
+.story-icon.is-green { background: var(--primary-pale); color: var(--primary); }
+.story-icon.is-blue { background: #E3EEF9; color: #2F5F93; }
+.story-icon.is-torii { background: #FCE9E3; color: #C9472A; }
 
 .story-cta {
   text-align: center;
@@ -1241,18 +1273,26 @@ div.lp-other { border: 1.5px solid transparent; }
   gap: 4px;
 }
 
-/* ===== 参加者の声：横に流れる ===== */
+/* ===== 参加者の声：似顔絵の見出しと、手紙のカードが横に流れる ===== */
+.voices { padding: 56px 0 60px; background: var(--warm-bg-alt); overflow: hidden; }
+.voices-head { text-align: center; margin-bottom: 28px; }
+.voices-faces { display: block; width: min(440px, 86%); height: auto; margin: 0 auto 4px; }
+.voices-head .section-title span { color: #C2512F; }
+.voices-head p { margin: 0; font-size: 0.98rem; line-height: 1.9; color: var(--text-light); }
+.sp-br { display: none; }
+@media (max-width: 600px) { .sp-br { display: inline; } }
+
 .voices-lane {
   overflow: hidden;
-  /* 上下に余白がないと、カードの影がレーンの縁で切られて平らに見える */
-  padding: 24px 0;
+  /* 上の余白は、カードの右上の手紙の印と傾きが切れないように広めにとる */
+  padding: 30px 0 26px;
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
 }
 /* 余白は gap ではなくカードの margin-right で持つ。
    gap だと 1セット分の幅と translateX(-50%) が gap の半分ずれ、毎周ガタつく */
 .voices-track { display: flex; gap: 0; width: max-content; will-change: transform; }
-.voices-track > .voice-card { margin-right: 20px; }
+.voices-track > .voice-card { margin-right: 24px; }
 .voices-track-l { animation: voices-slide-l 70s linear infinite; }
 .voices-track-r { animation: voices-slide-r 84s linear infinite; }
 .voices-lane:hover .voices-track { animation-play-state: paused; }
@@ -1261,30 +1301,48 @@ div.lp-other { border: 1.5px solid transparent; }
 @media (prefers-reduced-motion: reduce) { .voices-track { animation: none; } }
 
 .voice-card {
+  position: relative;
   flex: 0 0 340px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 14px;
-  min-height: 244px;
-  padding: 24px 28px;
-  background: var(--warm-bg);
-  border-radius: var(--radius) var(--radius) var(--radius) 4px;
-  box-shadow: var(--shadow-soft);
+  min-height: 236px;
+  padding: 28px 28px 22px;
+  background: var(--white);
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(120, 80, 40, 0.10);
+  transform: rotate(-1deg);
 }
-.voice-card.is-alt { background: var(--warm-bg-alt); }
-.voice-text { margin: 0; font-size: 0.95rem; line-height: 2; color: var(--text); }
+/* 便箋の色と傾きを少しずつ変えて、手紙が並んでいるように見せる */
+.voice-card:nth-child(3n+2) { background: #FFFBEF; transform: rotate(0.8deg); }
+.voice-card:nth-child(3n) { background: #F3FBF4; transform: rotate(-0.4deg); }
+.voice-card:nth-child(4n) { transform: rotate(1deg); }
+.voice-card.is-alt { background: #FFFBEF; }
+/* 右上の手紙の印 */
+.voice-card::after {
+  content: '';
+  position: absolute;
+  top: -16px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23C2512F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E") center / 20px no-repeat;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.voice-text { margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 1rem; line-height: 1.9; color: var(--text); }
 
 /* 短い声は幅を詰めて文字を大きく、長い声は幅を広げて小さく。
    同じ寸法が等間隔で流れると、それだけで単調に見える */
-.voice-card.is-short { flex: 0 0 250px; padding: 28px 30px; }
-.voice-card.is-short .voice-text { font-size: 1.18rem; line-height: 1.85; }
-.voice-card.is-long { flex: 0 0 440px; padding: 24px 30px; }
-.voice-card.is-long .voice-text { font-size: 0.92rem; }
+.voice-card.is-short { flex: 0 0 250px; padding: 30px 30px 22px; }
+.voice-card.is-short .voice-text { font-size: 1.2rem; line-height: 1.8; }
+.voice-card.is-long { flex: 0 0 440px; padding: 28px 30px 22px; }
+.voice-card.is-long .voice-text { font-size: 0.95rem; }
 .voice-src { margin: 0; font-size: 0.8rem; color: var(--text-light); letter-spacing: 0.02em; }
 
 @media (max-width: 768px) {
-  .voices-lane { padding: 20px 0; }
+  .voices-lane { padding: 28px 0 22px; }
   .voices-track > .voice-card { margin-right: 14px; }
   .voice-card { flex: 0 0 268px; min-height: 214px; padding: 20px 22px; }
   .voice-card.is-short { flex: 0 0 208px; padding: 22px 22px; }
@@ -1667,10 +1725,11 @@ details p { animation: fadeDown 0.3s ease; }
 <section class="hero">
   <div class="container">
     <div class="hero-icon"><img src="Hero_transparent_no_char.png" alt="AIかけこみ寺 ロゴ" style="width:min(640px, 70vw);height:auto;filter:drop-shadow(0 8px 24px rgba(45,106,79,0.25));"></div>
+    <p class="hero-org">NPO法人</p>
     <h1>AI<span>かけこみ寺</span></h1>
     <p class="hero-tagline">AIのこと、気軽に聞ける場所ができました。</p>
     <div class="hero-cta-row">
-      <a href="#contact" class="hero-cta"><span class="hero-cta-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><span class="hero-cta-text"><span class="hero-cta-title">お問い合わせ・講座のご相談</span><span class="hero-cta-sub">教室の依頼・取材・ご質問</span></span><svg class="hero-cta-arrow" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      <a href="#contact" class="hero-cta"><span class="hero-cta-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><span class="hero-cta-text"><span class="hero-cta-title">お問い合わせ</span><span class="hero-cta-sub">教室の依頼・取材・ご質問</span></span><svg class="hero-cta-arrow" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
       <a href="/kifu" class="hero-cta is-kifu"><span class="hero-cta-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span><span class="hero-cta-text"><span class="hero-cta-title">ご寄附で応援する</span><span class="hero-cta-sub">使い道はすべて公開しています</span></span><svg class="hero-cta-arrow" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
     </div>
 
@@ -1835,11 +1894,11 @@ details p { animation: fadeDown 0.3s ease; }
 </script>
 
 <!-- ===== VOICES ===== -->
-<section style="padding:52px 0 56px;background:var(--white);overflow:hidden;">
-  <div class="container" style="text-align:center;margin-bottom:44px;">
-    <div class="section-label fade-in">VOICES</div>
-    <div class="section-title fade-in">参加者の声</div>
-    <p class="fade-in" style="margin:0;font-size:0.98rem;line-height:1.9;color:var(--text-light);">教室のあとにお書きいただいたアンケートから、そのまま載せています。</p>
+<section class="voices" id="voices">
+  <div class="container voices-head">
+    <img class="voices-faces fade-in" src="voices-faces.webp" width="900" height="435" alt="" loading="lazy">
+    <h2 class="section-title fade-in">教室のあとに<span>温かい声</span>が<br class="sp-br">たくさん届いています</h2>
+    <p class="fade-in">教室のあとにお書きいただいたアンケートから、そのまま載せています。</p>
   </div>
 
   <div class="voices-lane" style="margin-bottom:20px;">
@@ -2140,25 +2199,29 @@ details p { animation: fadeDown 0.3s ease; }
     <div class="story-header">
       <div class="section-label fade-in">OUR STORY</div>
       <div class="section-title fade-in">AIかけこみ寺を始めたきっかけ</div>
-      <p class="section-subtitle fade-in">「なぜ、エンジニアがこの活動を？」<br>よく聞かれるので、正直にお話しします。</p>
+      <p class="section-subtitle fade-in">「なぜ、この活動を始めたのですか？」<br>よく聞かれるので、正直にお話しします。</p>
     </div>
     <div class="story-content">
       <div class="story-timeline fade-in">
         <div class="story-item">
-          <h4><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:38px;height:38px;background:var(--primary-pale);border-radius:50%;color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span> AIの進化スピードに、危機感を覚えました</h4>
-          <p>半導体エンジニアとして最先端の技術に触れる中で、AIの進化が<strong>想像をはるかに超えるスピード</strong>で進んでいることを日々実感していました。これは一部の技術者だけの話ではなく、<strong>すべての人の働き方、暮らし方、人生設計に関わる変化</strong>だと感じました。</p>
+          <h4><span class="story-icon is-coral"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span> AIの進化スピードに、危機感を覚えました</h4>
+          <p>代表は半導体エンジニアです。最先端の技術に触れる中で、AIの進化が<strong>想像をはるかに超えるスピード</strong>で進んでいることを日々実感していました。これは一部の技術者だけの話ではなく、<strong>すべての人の働き方、暮らし方、人生設計に関わる変化</strong>だと感じました。</p>
         </div>
         <div class="story-item">
-          <h4><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:38px;height:38px;background:var(--primary-pale);border-radius:50%;color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> でも、届いていない人がいる</h4>
+          <h4><span class="story-icon is-honey"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> でも、届いていない人がいる</h4>
           <p>ニュースでは「AIがすごい」「仕事がなくなる」と騒がれる一方、<strong>実際に何がどう変わるのかを丁寧に教えてくれる場所がない</strong>。特に、普段テクノロジーに触れる機会の少ない方々にとって、AIは「よくわからない、怖いもの」のままでした。</p>
         </div>
         <div class="story-item">
-          <h4><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:38px;height:38px;background:var(--primary-pale);border-radius:50%;color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span> 「自分がやるしかない」と思いました</h4>
-          <p>技術を知っている人間が、<strong>わかりやすい言葉で、安心できる場所で、直接伝える</strong>。それが今いちばん必要なことだと確信しました。大げさな話ではなく、ただ「知らないから不安」を「知ったから大丈夫」に変えたい。その一心で、この活動を始めました。</p>
+          <h4><span class="story-icon is-green"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span> 「自分がやるしかない」と思いました</h4>
+          <p>技術を知っている人間が、<strong>わかりやすい言葉で、安心できる場所で、直接伝える</strong>。それが今一番必要なことだと確信しました。大げさな話ではなく、ただ「知らないから不安」を「知ったから大丈夫」に変えたい。その一心で、この活動を始めました。</p>
         </div>
         <div class="story-item">
-          <h4><span style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:38px;height:38px;background:var(--primary-pale);border-radius:50%;color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18v-7"/><path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M3 22h18"/><path d="M6 18v-7"/></svg></span> だから「かけこみ寺」</h4>
+          <h4><span class="story-icon is-torii"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 1 6.3 5H1.5c.9 1.1 2.1 1.7 3.5 1.7h14c1.4 0 2.6-.6 3.5-1.7h-4.8Zm0 2.3L9.3 5h5.4Z"/><rect x="3.4" y="6.6" width="17.2" height="1.5" rx=".3"/><rect x="11.3" y="8" width="1.4" height="2.2"/><rect x="3.8" y="10.1" width="16.4" height="1.3" rx=".3"/><path d="M6.8 8h1.4l-.1 14.5H6.5Z"/><path d="M15.8 8h1.4l.3 14.5h-1.6Z"/></svg></span> だから「かけこみ寺」</h4>
           <p>困ったとき、不安なとき、誰かに聞きたいとき。<strong>気軽に駆け込める場所</strong>でありたい。商品を売りつけたり、難しい話で煙に巻いたりはしません。ただ、あなたの「わからない」に寄り添う場所です。</p>
+        </div>
+        <div class="story-item">
+          <h4><span class="story-icon is-blue"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span> 仲間とともに全国へ</h4>
+          <p>この思いに共感した<strong>講師やサポーターのボランティアの仲間</strong>が集まり、2026年10月に<strong>NPO法人</strong>になりました。いまは名古屋で無料のAI教室を続けながら、東京や福島でも地域のかけこみ寺の準備を進めています。ひとりでは届けられない場所にも、仲間とともに届けていきます。</p>
         </div>
       </div>
       <div class="story-cta fade-in">
@@ -2185,7 +2248,7 @@ details p { animation: fadeDown 0.3s ease; }
       <div class="course-card fade-in">
         <div class="course-head">
           <span class="course-icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-          <span style="display:inline-flex;gap:6px;"><span class="course-tag is-hot">いちばん人気</span><span class="course-tag">シニア歓迎</span></span>
+          <span style="display:inline-flex;gap:6px;"><span class="course-tag is-hot">人気</span><span class="course-tag">シニア歓迎</span></span>
         </div>
         <h3>チャッピーと話そう！<br>はじめてのAI体験教室</h3>
         <p>ChatGPT（チャッピー）をゼロからやさしく解説。献立の相談やお知らせ作成、調べもの、翻訳など、暮らしがちょっと便利になる使い方を実際の画面で体感できます。お手持ちのスマホだけでOK、手ぶらでも大丈夫です。</p>
@@ -2395,7 +2458,7 @@ details p { animation: fadeDown 0.3s ease; }
     <div style="text-align:center;margin-bottom:56px;">
       <div class="section-label fade-in">PRICING</div>
       <div class="section-title fade-in">料金について</div>
-      <p class="section-subtitle fade-in" style="margin-left:auto;margin-right:auto;">AIかけこみ寺は、NPO法人（特定非営利活動法人）です。<br>一般の方が参加できる講座は、ご予算がなくてもお受けします。<br>会員・職員向けの研修は、ご予算に応じて承ります。</p>
+      <p class="section-subtitle fade-in" style="margin-left:auto;margin-right:auto;">AIかけこみ寺は、慈善事業として無料のAI教室を開くNPO法人です。<br>一般の方が参加できる講座は、ご予算がなくてもお受けします。<br>会員・職員向けの研修は、ご予算に応じて承り、謝金は無料の教室に使います。</p>
     </div>
 
     <!-- 料金3区分＋対応エリアカード -->
@@ -2487,7 +2550,7 @@ details p { animation: fadeDown 0.3s ease; }
           <span style="display:flex;align-items:center;gap:10px;"><span style="display:inline-flex;flex-shrink:0;color:var(--primary);"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></span> 費用はどのくらいですか？</span><span style="font-size:1.4rem;line-height:1;color:var(--primary);transition:transform 0.3s;">＋</span>
         </summary>
         <p style="margin-top:16px;font-size:0.95rem;color:var(--text-light);line-height:1.9;">
-          個人の方は無料でご参加いただけます。一般の方が参加できる講座は、主催が自治体・社協・市民団体のどれでも、謝金の規定があればその額で、ご予算がなければ無料でお受けします。会員・職員だけが参加する研修は、ご予算に応じて承ります（目安2万円）。交通費は、名古屋市外の場合、講師1名分の実費をお願いしています。サポートメンバーの交通費は、ご予算に応じてご相談させてください（なくても伺います）。いただいた謝金は、無料の市民向けAI教室の運営に大切に使わせていただきます。まずはお気軽にご相談ください（2026年10月14日 改定）。
+          AIかけこみ寺は慈善事業として活動しているので、個人の方は無料でご参加いただけます。一般の方が参加できる講座は、主催が自治体・社協・市民団体のどれでも、謝金の規定があればその額で、ご予算がなければ無料でお受けします。会員・職員だけが参加する研修は、ご予算に応じて承ります（目安2万円）。交通費は、名古屋市外の場合、講師1名分の実費をお願いしています。サポートメンバーの交通費は、ご予算に応じてご相談させてください（なくても伺います）。いただいた謝金は、無料の市民向けAI教室の運営に大切に使わせていただきます。まずはお気軽にご相談ください（2026年10月14日 改定）。
         </p>
       </details>
       <details class="fade-in" style="background:var(--white);border-radius:var(--radius-sm);padding:24px 28px;box-shadow:var(--shadow-soft);cursor:pointer;">
