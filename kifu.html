@@ -249,6 +249,24 @@ body {
 .kf-status { margin-top: 12px; font-size: .9rem !important; }
 @media (max-width: 600px) { .kf-grid { grid-template-columns: 1fr; } }
 
+.kf-address { border: 0; margin: 0; padding: 0; min-width: 0; }
+.kf-address legend { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; padding: 0; font-weight: 700; font-size: .92rem; color: var(--text); }
+.kf-address > .kf-hint { margin: 0 0 10px; }
+.kf-addr-row { display: grid; grid-template-columns: 13em minmax(0, 1fr); gap: 6px 12px; align-items: center; margin-top: 10px; }
+.kf-sub { font-size: .85rem; font-weight: 700; color: var(--text-light); }
+.kf-addr-row input { width: 100%; box-sizing: border-box; min-height: 48px; padding: 10px 14px; font: inherit; font-size: 1rem; color: var(--text); background: var(--warm-bg); border: 1.5px solid #E2D8C8; border-radius: 12px; }
+.kf-addr-row input:focus { outline: none; border-color: var(--primary-light); box-shadow: 0 0 0 3px rgba(82,183,136,.25); background: var(--white); }
+.kf-addr-row input::placeholder { color: #A39A8C; }
+#kf-postal { max-width: 12em; }
+/* 町名まで入ったのに番地が空のときは、番地の欄を目立たせる */
+.kf-banchi.is-needed input { border-color: #E76F51; background: #FFF6F2; box-shadow: 0 0 0 3px rgba(231,111,81,.18); }
+.kf-banchi.is-needed .kf-sub { color: #9A3B26; }
+.kf-error { grid-column: 2; margin: 0; font-size: .82rem !important; line-height: 1.6 !important; color: #9A3B26 !important; font-weight: 700; }
+@media (max-width: 600px) {
+  .kf-addr-row { grid-template-columns: 1fr; }
+  .kf-error { grid-column: 1; }
+}
+
 /* 企業・団体 */
 .ways { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: var(--kifu-w); margin: 0 auto; }
 .way { background: var(--white); border-radius: var(--radius-sm); padding: 24px 26px; box-shadow: var(--shadow-soft); border-top: 4px solid var(--primary-light); }
@@ -376,22 +394,34 @@ body {
           <tr><th>口座</th><td>普通 2705717</td></tr>
           <tr><th>名義</th><td>特定非営利活動法人ＡＩかけこみ寺<br>トクヒ）エーアイカケコミデラ</td></tr>
         </table>
-        <p class="kifu-note"><b>お振込のあと、下の <a href="#renraku">お振込のご連絡</a> から、お名前とご住所をお知らせいただけますか？</b>お知らせいただいた方には、受領証をお送りします。</p>
+        <p class="kifu-note"><b>お振込のあと、下の <a href="#renraku">お振込の連絡のお願い</a> から、お名前とご住所をお知らせいただけますか？</b>お知らせいただいた方には、受領証をお送りします。</p>
         <p class="kifu-note">当法人はまだ認定NPO法人ではないため、個人のご寄附は寄附金控除の対象になりません。2028年度の認定をめざしています。法人のご寄附は、一般寄附金として損金算入の枠内で扱われます。</p>
       </div>
       <form class="kifu-card kifu-form" id="renraku" novalidate>
-        <h2>お振込のご連絡</h2>
-        <p class="kifu-form-lead">ご住所は任意ですが、当法人が認定NPO法人をめざすために必要です。番地まででかまいません（建物名・部屋番号は不要です）。</p>
+        <h2>お振込の連絡のお願い</h2>
+        <p class="kifu-form-lead">AIかけこみ寺は、AIの恩恵を広めるために、寄附者が税金の控除を受けられる「認定NPO法人」を目指しています。認定を得るには、3,000円以上の寄附者のお名前とご住所が、年平均100人以上必要です。任意になりますが、ご協力をお願い申し上げます。</p>
         <div class="kf-grid">
           <div class="kf-field kf-wide">
             <label for="kf-name">お名前<span class="kf-req">必須</span></label>
             <input id="kf-name" name="name" type="text" autocomplete="name" maxlength="60" required>
           </div>
-          <div class="kf-field kf-wide">
-            <label for="kf-address">ご住所<span class="kf-opt">任意</span></label>
-            <input id="kf-address" name="address" type="text" autocomplete="street-address" maxlength="120" placeholder="例）〇〇県〇〇市〇〇町1-2-3">
-            <p class="kf-hint">番地まで。建物名・部屋番号は不要です</p>
-          </div>
+          <fieldset class="kf-field kf-wide kf-address" aria-describedby="kf-address-hint">
+            <legend>ご住所<span class="kf-opt">任意</span></legend>
+            <p class="kf-hint" id="kf-address-hint">郵便番号を入れると、町名まで自動で入ります。続けて番地を入れてください（建物名・部屋番号は不要です）。</p>
+            <div class="kf-addr-row">
+              <label class="kf-sub" for="kf-postal">郵便番号</label>
+              <input id="kf-postal" name="postal_code" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="8" placeholder="例）451-0000">
+            </div>
+            <div class="kf-addr-row">
+              <label class="kf-sub" for="kf-address">都道府県・市区町村・町名</label>
+              <input id="kf-address" name="address" type="text" autocomplete="address-level1 address-level2 address-line1" maxlength="120" placeholder="例）〇〇県〇〇市〇〇町">
+            </div>
+            <div class="kf-addr-row kf-banchi">
+              <label class="kf-sub" for="kf-banchi">番地</label>
+              <input id="kf-banchi" name="banchi" type="text" autocomplete="address-line2" maxlength="40" placeholder="例）1-2-3、三丁目5番">
+              <p class="kf-error" id="kf-banchi-error" hidden></p>
+            </div>
+          </fieldset>
           <div class="kf-field">
             <label for="kf-date">お振込日<span class="kf-req">必須</span></label>
             <input id="kf-date" name="paid_on" type="date" required>
@@ -511,14 +541,81 @@ body {
   }).catch(function() { cnt.textContent = '帳簿は情報公開のページで見られます'; });
 })();
 
-// お振込のご連絡: 送信の仕組みができるまでは、送らずに案内だけ出す
+// お振込の連絡: 郵便番号から町名まで自動で入れ、番地の書き忘れを防ぎ、Supabase の受付口（submit_donation_notice）へ送る
 (function() {
+  var SUPABASE_URL = 'https://uzavspfdkfwrefwbdbrd.supabase.co';
+  var SUPABASE_KEY = '';  // publishable key（公開してよい鍵）。空のあいだは送らずに、メールでの連絡を案内する
   var f = document.getElementById('renraku');
   if (!f) return;
+  var postal = f.querySelector('#kf-postal'), town = f.querySelector('#kf-address'), banchi = f.querySelector('#kf-banchi');
+  var bRow = f.querySelector('.kf-banchi'), bErr = f.querySelector('#kf-banchi-error'), st = f.querySelector('.kf-status');
+  var autoFilled = '';
+
+  // 郵便番号が7桁そろったら、zipcloud（日本郵便のデータ）で町名まで引く。送るのは郵便番号だけ
+  postal.addEventListener('input', function() {
+    var z = postal.value.replace(/[０-９]/g, function(c) { return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); }).replace(/[^0-9]/g, '');
+    if (z.length !== 7) return;
+    fetch('https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + z).then(function(r) { return r.json(); }).then(function(d) {
+      if (!d.results || !d.results.length) return;
+      var a = d.results[0], v = a.address1 + a.address2 + a.address3;
+      if (town.value === '' || town.value === autoFilled) { town.value = v; autoFilled = v; }
+      checkBanchi();
+      // 町名まで引けない郵便番号（「以下に掲載がない場合」）は、町名から続けて入れてもらう
+      if (a.address3) { banchi.focus(); } else { town.focus(); town.setSelectionRange(town.value.length, town.value.length); }
+    }).catch(function() {});
+  });
+
+  // 番地: 町名まで入っていて番地が空なら、欄を目立たせる。数字が1つも無ければ注意を出す
+  function checkBanchi(showError) {
+    var t = town.value.trim(), b = banchi.value.trim(), msg = '';
+    bRow.classList.toggle('is-needed', t !== '' && b === '');
+    if (showError) {
+      if (t !== '' && b === '') msg = '番地を入れてください。認定の申請には番地までの住所が必要です。';
+      else if (t === '' && b !== '') msg = '都道府県・市区町村・町名も入れてください。';
+      else if (b !== '' && !/[0-9０-９一二三四五六七八九十〇]/.test(b)) msg = '番地を数字で入れてください（例: 1-2-3）。';
+    }
+    bErr.textContent = msg;
+    bErr.hidden = msg === '';
+    return msg === '';
+  }
+  town.addEventListener('input', function() { checkBanchi(false); });
+  banchi.addEventListener('input', function() { checkBanchi(false); });
+  banchi.addEventListener('blur', function() { checkBanchi(true); });
+
   f.addEventListener('submit', function(e) {
     e.preventDefault();
-    var st = f.querySelector('.kf-status');
-    st.textContent = 'このフォームは準備中です。お手数ですが、info@ai-kakekomi.com までメールでお知らせいただけますか？';
+    if (!checkBanchi(true)) { banchi.focus(); return; }
+    var need = [['#kf-name', 'お名前'], ['#kf-date', 'お振込日'], ['#kf-amount', '金額'], ['#kf-kana', 'お振込名義']];
+    for (var k = 0; k < need.length; k++) {
+      var el = f.querySelector(need[k][0]);
+      if (!el.value.trim()) { st.textContent = need[k][1] + 'を入れてください。'; el.focus(); return; }
+    }
+    if (!SUPABASE_KEY) {
+      st.textContent = 'このフォームは準備中です。お手数ですが、info@ai-kakekomi.com までメールでお知らせいただけますか？';
+      return;
+    }
+    var btn = f.querySelector('.kf-submit');
+    btn.disabled = true;
+    st.textContent = '送信しています…';
+    fetch(SUPABASE_URL + '/rest/v1/rpc/submit_donation_notice', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY },
+      body: JSON.stringify({
+        p_name: f.querySelector('#kf-name').value, p_postal_code: postal.value || null,
+        p_address: town.value || null, p_banchi: banchi.value || null,
+        p_paid_on: f.querySelector('#kf-date').value, p_amount: parseInt(f.querySelector('#kf-amount').value, 10),
+        p_payer_kana: f.querySelector('#kf-kana').value, p_email: f.querySelector('#kf-email').value || null,
+        p_website: f.querySelector('#kf-website').value || null
+      })
+    }).then(function(r) {
+      if (!r.ok) throw new Error(r.status);
+      f.reset();
+      autoFilled = '';
+      checkBanchi(false);
+      st.textContent = 'お知らせいただき、ありがとうございました。大切に保管します。';
+    }).catch(function() {
+      st.textContent = '送信できませんでした。お手数ですが、info@ai-kakekomi.com までメールでお知らせいただけますか？';
+    }).then(function() { btn.disabled = false; });
   });
 })();
 </script>
