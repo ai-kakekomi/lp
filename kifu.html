@@ -406,19 +406,19 @@ body {
             <input id="kf-name" name="name" type="text" autocomplete="name" maxlength="60" required>
           </div>
           <fieldset class="kf-field kf-wide kf-address" aria-describedby="kf-address-hint">
-            <legend>ご住所<span class="kf-opt">任意</span></legend>
-            <p class="kf-hint" id="kf-address-hint">郵便番号を入れると、町名まで自動で入ります。続けて番地を入れてください（建物名・部屋番号は不要です）。</p>
+            <legend>ご住所<span class="kf-req">必須</span></legend>
+            <p class="kf-hint" id="kf-address-hint">認定の申請には、番地までのご住所が必要です。郵便番号を入れると、町名まで自動で入ります。続けて番地を入れてください（建物名・部屋番号は不要です）。</p>
             <div class="kf-addr-row">
               <label class="kf-sub" for="kf-postal">郵便番号</label>
               <input id="kf-postal" name="postal_code" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="8" placeholder="例）451-0000">
             </div>
             <div class="kf-addr-row">
               <label class="kf-sub" for="kf-address">都道府県・市区町村・町名</label>
-              <input id="kf-address" name="address" type="text" autocomplete="address-level1 address-level2 address-line1" maxlength="120" placeholder="例）〇〇県〇〇市〇〇町">
+              <input id="kf-address" name="address" type="text" autocomplete="address-level1 address-level2 address-line1" maxlength="120" placeholder="例）〇〇県〇〇市〇〇町" required>
             </div>
             <div class="kf-addr-row kf-banchi">
               <label class="kf-sub" for="kf-banchi">番地</label>
-              <input id="kf-banchi" name="banchi" type="text" autocomplete="address-line2" maxlength="40" placeholder="例）1-2-3、三丁目5番">
+              <input id="kf-banchi" name="banchi" type="text" autocomplete="address-line2" maxlength="40" placeholder="例）1-2-3、三丁目5番" required>
               <p class="kf-error" id="kf-banchi-error" hidden></p>
             </div>
           </fieldset>
@@ -570,8 +570,8 @@ body {
     var t = town.value.trim(), b = banchi.value.trim(), msg = '';
     bRow.classList.toggle('is-needed', t !== '' && b === '');
     if (showError) {
-      if (t !== '' && b === '') msg = '番地を入れてください。認定の申請には番地までの住所が必要です。';
-      else if (t === '' && b !== '') msg = '都道府県・市区町村・町名も入れてください。';
+      if (t === '') msg = 'ご住所（都道府県・市区町村・町名）を入れてください。';
+      else if (b === '') msg = '番地を入れてください。認定の申請には番地までのご住所が必要です。';
       else if (b !== '' && !/[0-9０-９一二三四五六七八九十〇]/.test(b)) msg = '番地を数字で入れてください（例: 1-2-3）。';
     }
     bErr.textContent = msg;
@@ -584,7 +584,7 @@ body {
 
   f.addEventListener('submit', function(e) {
     e.preventDefault();
-    if (!checkBanchi(true)) { banchi.focus(); return; }
+    if (!checkBanchi(true)) { (town.value.trim() ? banchi : town).focus(); return; }
     var need = [['#kf-name', 'お名前'], ['#kf-date', 'お振込日'], ['#kf-amount', '金額'], ['#kf-kana', 'お振込名義']];
     for (var k = 0; k < need.length; k++) {
       var el = f.querySelector(need[k][0]);
