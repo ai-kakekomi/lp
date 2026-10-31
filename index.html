@@ -651,42 +651,134 @@ body {
   margin-bottom: 40px;
 }
 
+.hero-cta-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .hero-cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 16px 40px;
-  background: var(--primary);
-  color: var(--white);
-  font-family: 'Zen Maru Gothic', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
+  gap: 14px;
+  width: 400px;
+  max-width: 100%;
+  min-height: 88px;
+  box-sizing: border-box;
+  padding: 12px 22px 12px 16px;
+  border-radius: 18px;
+  background: var(--primary-pale);
+  color: #1B4332;
+  border: 2px solid #8FD1A8;
+  box-shadow: 0 5px 0 #8FD1A8, 0 10px 24px rgba(45, 106, 79, 0.16);
   text-decoration: none;
-  border-radius: 60px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(45, 106, 79, 0.3);
+  text-align: left;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
   position: relative;
   z-index: 1;
 }
 
-.hero-cta:hover {
-  background: var(--primary-light);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(45, 106, 79, 0.35);
-}
-
-/* 第二の選択肢用（アウトライン） */
-.hero-cta.is-secondary {
+.hero-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   background: var(--white);
   color: var(--primary);
-  border: 2px solid var(--primary);
-  box-shadow: 0 4px 16px rgba(45, 106, 79, 0.12);
+  flex-shrink: 0;
 }
 
-.hero-cta.is-secondary:hover {
-  background: var(--primary-pale);
+.hero-cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.hero-cta-title {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  white-space: nowrap;
+}
+
+.hero-cta-sub {
+  font-size: 0.82rem;
   color: var(--primary);
-  box-shadow: 0 8px 24px rgba(45, 106, 79, 0.18);
+}
+
+.hero-cta-arrow {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  padding: 7px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 #8FD1A8, 0 14px 28px rgba(45, 106, 79, 0.2);
+}
+
+.hero-cta:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #8FD1A8, 0 4px 10px rgba(45, 106, 79, 0.14);
+}
+
+.hero-cta:focus-visible {
+  outline: 3px solid var(--primary-light);
+  outline-offset: 3px;
+}
+
+/* 寄附: 淡いコーラルの面。文字 #9A3B26（5.9:1）、ハートはコーラル */
+.hero-cta.is-kifu {
+  background: #FCE9E3;
+  color: #9A3B26;
+  border-color: #F2AE99;
+  box-shadow: 0 5px 0 #F2AE99, 0 10px 24px rgba(194, 81, 47, 0.16);
+}
+
+.hero-cta.is-kifu .hero-cta-icon { color: var(--accent); }
+.hero-cta.is-kifu .hero-cta-sub { color: #9A3B26; }
+.hero-cta.is-kifu .hero-cta-arrow { background: #C2512F; color: var(--white); }
+
+.hero-cta.is-kifu:hover {
+  box-shadow: 0 7px 0 #F2AE99, 0 14px 28px rgba(194, 81, 47, 0.2);
+}
+
+.hero-cta.is-kifu:active {
+  box-shadow: 0 1px 0 #F2AE99, 0 4px 10px rgba(194, 81, 47, 0.14);
+}
+
+@media (max-width: 480px) {
+  .hero-cta { width: 100%; min-height: 80px; gap: 12px; padding: 10px 16px 10px 12px; }
+  .hero-cta-icon { width: 46px; height: 46px; }
+  .hero-cta-title { font-size: 1.02rem; }
+}
+
+.hero > .container { width: 100%; }
+
+@media (max-width: 400px) {
+  .hero-cta-arrow { display: none; }
+  .hero-cta-title { font-size: 0.95rem; }
+  .hero-cta { gap: 10px; padding: 10px 12px 10px 10px; }
+  .hero-cta-icon { width: 42px; height: 42px; }
+}
+
+@media (max-width: 340px) {
+  .hero-cta-title { white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta { transition: none; }
+  .hero-cta:hover, .hero-cta:active { transform: none; }
 }
 
 /* ===== 料金・エリアカード ===== */
@@ -1577,9 +1669,9 @@ details p { animation: fadeDown 0.3s ease; }
     <div class="hero-icon"><img src="Hero_transparent_no_char.png" alt="AIかけこみ寺 ロゴ" style="width:min(640px, 70vw);height:auto;filter:drop-shadow(0 8px 24px rgba(45,106,79,0.25));"></div>
     <h1>AI<span>かけこみ寺</span></h1>
     <p class="hero-tagline">AIのこと、気軽に聞ける場所ができました。</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="#contact" class="hero-cta"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> お問い合わせ・講座のご相談</a>
-      <a href="/kifu" class="hero-cta is-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> ご寄附で応援する</a>
+    <div class="hero-cta-row">
+      <a href="#contact" class="hero-cta"><span class="hero-cta-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><span class="hero-cta-text"><span class="hero-cta-title">お問い合わせ・講座のご相談</span><span class="hero-cta-sub">教室の依頼・取材・ご質問</span></span><svg class="hero-cta-arrow" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      <a href="/kifu" class="hero-cta is-kifu"><span class="hero-cta-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span><span class="hero-cta-text"><span class="hero-cta-title">ご寄附で応援する</span><span class="hero-cta-sub">使い道はすべて公開しています</span></span><svg class="hero-cta-arrow" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
     </div>
 
     <!-- 開催予定：手書き（案A）。定期教室の日付は .lp-date、ほかの催しは .lp-other。
