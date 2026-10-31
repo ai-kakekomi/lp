@@ -1666,6 +1666,10 @@ div.lp-other { border: 1.5px solid transparent; }
     padding: 32px 24px;
     text-align: center;
   }
+  /* 長い紹介文は、中央揃えだと行末がばらついて読みにくいので左揃え */
+  .profile-info p:not(.profile-role) {
+    text-align: left;
+  }
   .profile-avatar {
     margin: 0 auto;
     width: 140px;
@@ -2835,5 +2839,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+<script type="module" src="/js/nice-wrap.js"></script>
 </body>
 </html>
