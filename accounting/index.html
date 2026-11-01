@@ -308,6 +308,11 @@
 
     <div class="acc-summary" id="acc-summary"></div>
 
+    <h2>収入の内訳</h2>
+    <div class="acc-table-wrap">
+      <table class="acc-table acc-statement" id="acc-income"></table>
+    </div>
+
     <h2>活動計算書（経常費用の内訳）</h2>
     <p class="acc-note" style="margin-top:0;margin-bottom:14px;">
       NPO法人会計基準に沿って、費用を<b>事業費</b>（AI教室など目的事業に直接かかる費用）と<b>管理費</b>（団体運営の共通費）に区分し、勘定科目ごとに集計しています。
@@ -401,6 +406,16 @@
   });
   stHtml += `<tr class="st-total"><td>経常費用計</td><td class="num">${yen(grandTotal)}</td></tr>`;
   document.getElementById('acc-statement').innerHTML = stHtml;
+
+  // 収入の内訳（科目ごと）
+  const inc = {};
+  data.forEach(r => { if (r['収入']) inc[r['科目']] = (inc[r['科目']] || 0) + r['収入']; });
+  let incHtml = '';
+  Object.entries(inc).sort((a, b) => b[1] - a[1]).forEach(([k, v]) => {
+    incHtml += `<tr class="st-item"><td>${k}</td><td class="num">${yen(v)}</td></tr>`;
+  });
+  incHtml += `<tr class="st-total"><td>収入合計</td><td class="num">${yen(totalIncome)}</td></tr>`;
+  document.getElementById('acc-income').innerHTML = incHtml;
 
   // Table
   const tbody = document.getElementById('acc-tbody');
