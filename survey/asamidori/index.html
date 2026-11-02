@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>アンケート | AIかけこみ寺</title>
+<link rel="icon" href="/favicon.ico">
+<style>
+/* 11/4 あさみどりの会 ボランティアスクールのアンケート。スマホで QR から開く前提。
+   送り先は Supabase の survey_responses（ログインなし・送るだけ。読めるのは管理者だけ） */
+:root { --primary:#2D6A4F; --primary-2:#52B788; --pale:#D8F3DC; --accent:#E76F51; --bg:#FDF8F0; --ink:#1F2A24; --muted:#5B6660; --line:#D9D4C8; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic UI",sans-serif; font-size:16px; line-height:1.6; }
+main { max-width:560px; margin:0 auto; padding:24px 16px 48px; }
+.brand { font-size:13px; font-weight:700; color:var(--primary); }
+h1 { font-size:22px; margin:4px 0 8px; }
+.lead { color:var(--muted); font-size:14px; margin:0 0 20px; }
+fieldset { border:0; margin:0 0 14px; padding:16px; background:#fff; border-radius:12px; border:1px solid var(--line); }
+legend { float:left; width:100%; padding:0; margin-bottom:10px; font-weight:700; }
+legend .n { display:inline-flex; width:24px; height:24px; border-radius:50%; background:var(--primary); color:#fff; font-size:13px; align-items:center; justify-content:center; margin-right:6px; }
+legend small { font-weight:400; color:var(--muted); }
+.opts { clear:both; display:flex; flex-direction:column; gap:8px; }
+.opts.row { flex-direction:row; flex-wrap:wrap; }
+label.o { display:flex; align-items:center; gap:10px; padding:10px 12px; border:1px solid var(--line); border-radius:10px; cursor:pointer; }
+label.o:has(input:checked) { border-color:var(--primary); background:var(--pale); }
+.opts.row label.o { flex:1 1 auto; justify-content:center; }
+input[type=radio], input[type=checkbox] { width:20px; height:20px; accent-color:var(--primary); margin:0; flex:none; }
+.grid { clear:both; display:flex; flex-direction:column; gap:10px; }
+.grid .item { border-top:1px solid var(--line); padding-top:10px; }
+.grid .item:first-child { border-top:0; padding-top:0; }
+.grid .q { font-size:15px; margin-bottom:6px; }
+.grid .opts { flex-direction:row; }
+.grid label.o { flex:1; justify-content:center; padding:8px; font-size:14px; }
+input[type=text], textarea { width:100%; font:inherit; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; }
+textarea { min-height:120px; clear:both; display:block; }
+button { width:100%; font:inherit; font-weight:700; font-size:17px; padding:14px; border:0; border-radius:999px; background:var(--primary); color:#fff; cursor:pointer; }
+button:disabled { opacity:.5; }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline:3px solid var(--primary-2); outline-offset:2px; }
+.err { color:var(--accent); font-size:14px; margin:8px 0 0; min-height:1em; }
+.done { text-align:center; padding:48px 16px; }
+.done h2 { color:var(--primary); }
+.done a { color:var(--primary); font-weight:700; }
+</style>
+</head>
+<body>
+<main>
+<div id="form-wrap">
+  <div class="brand">AIかけこみ寺</div>
+  <h1>ボランティアスクール アンケート</h1>
+  <p class="lead">今日はありがとうございました。名前は聞きません。1〜2分で終わります。</p>
+
+  <form id="f">
+    <fieldset>
+      <legend><span class="n">1</span>ふだん、AI（ChatGPT など）をどのくらい使っていますか？</legend>
+      <div class="opts">
+        <label class="o"><input type="radio" name="use" value="ほぼ毎日">ほぼ毎日</label>
+        <label class="o"><input type="radio" name="use" value="週に何回か">週に何回か</label>
+        <label class="o"><input type="radio" name="use" value="たまに">たまに</label>
+        <label class="o"><input type="radio" name="use" value="使ったことがない">使ったことがない</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="n">2</span>今日のお話は、いかがでしたか？</legend>
+      <div class="opts">
+        <label class="o"><input type="radio" name="sat" value="5">満足</label>
+        <label class="o"><input type="radio" name="sat" value="4">やや満足</label>
+        <label class="o"><input type="radio" name="sat" value="3">ふつう</label>
+        <label class="o"><input type="radio" name="sat" value="2">やや不満</label>
+        <label class="o"><input type="radio" name="sat" value="1">不満</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="n">3</span>今日の内容は、わかりましたか？</legend>
+      <div class="grid" id="grid"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="n">4</span>これからやってみようと思うものは？ <small>（いくつでも）</small></legend>
+      <div class="opts">
+        <label class="o"><input type="checkbox" name="try" value="困りごとをAIに相談してみる">困りごとをAIに相談してみる</label>
+        <label class="o"><input type="checkbox" name="try" value="AIの答えを、ほかの方法でも確かめる">AIの答えを、ほかの方法でも確かめる</label>
+        <label class="o"><input type="checkbox" name="try" value="書き出した困りごとで、PDCAを1周回す">書き出した困りごとで、PDCAを1周回す</label>
+        <label class="o"><input type="checkbox" name="try" value="友だちや家族に、今日の話を伝える">友だちや家族に、今日の話を伝える</label>
+        <input type="text" name="try_other" placeholder="その他（自由に）" maxlength="200">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="n">5</span>AIかけこみ寺の活動（無料のAI教室のボランティア）に興味はありますか？</legend>
+      <div class="opts">
+        <label class="o"><input type="radio" name="vol" value="参加してみたい">参加してみたい</label>
+        <label class="o"><input type="radio" name="vol" value="話を聞いてみたい">話を聞いてみたい</label>
+        <label class="o"><input type="radio" name="vol" value="今は考えていない">今は考えていない</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="n">6</span>ご意見・ご感想 <small>（よかったこと、わかりにくかったことなど）</small></legend>
+      <textarea name="comment" maxlength="2000"></textarea>
+    </fieldset>
+
+    <button type="submit" id="btn">送る</button>
+    <p class="err" id="err" role="alert"></p>
+  </form>
+</div>
+
+<div id="done" class="done" hidden>
+  <h2>送りました。ありがとうございました！</h2>
+  <p>ボランティアに興味があれば、こちらから気軽にどうぞ。</p>
+  <p><a href="/volunteer">ボランティアのご案内</a></p>
+</div>
+</main>
+
+<script>
+(function () {
+  var SURVEY = "asamidori-20261104";
+  var URL = "https://uzavspfdkfwrefwbdbrd.supabase.co/rest/v1/survey_responses";
+  var KEY = "sb_publishable_VBrTwdAWFtRk8E6Ig5p-zA_0y7iaWN1"; /* 公開用の鍵。送ることしかできない（RLS） */
+  var ITEMS = ["AIが得意なこと・苦手なこと", "AIの答えをうのみにせず、確かめること", "AIに入れてはいけない情報",
+    "AIに頼りすぎない（活用と依存のバランス）", "AIでPDCAサイクルを回すこと", "身の回りの困りごとに、AIを使うこと"];
+
+  var grid = document.getElementById("grid");
+  ITEMS.forEach(function (t, i) {
+    var d = document.createElement("div"); d.className = "item";
+    d.innerHTML = '<div class="q"></div><div class="opts">' +
+      '<label class="o"><input type="radio" name="u' + i + '" value="よくわかった">よくわかった</label>' +
+      '<label class="o"><input type="radio" name="u' + i + '" value="まだよくわからない">まだよくわからない</label></div>';
+    d.querySelector(".q").textContent = t;
+    grid.appendChild(d);
+  });
+
+  var f = document.getElementById("f"), btn = document.getElementById("btn"), err = document.getElementById("err");
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = function (n) { var x = f.querySelector('input[name="' + n + '"]:checked'); return x ? x.value : null; };
+    var understood = {};
+    ITEMS.forEach(function (t, i) { understood[t] = v("u" + i); });
+    var answers = {
+      use: v("use"), satisfaction: v("sat") ? Number(v("sat")) : null, understood: understood,
+      try: Array.prototype.map.call(f.querySelectorAll('input[name="try"]:checked'), function (x) { return x.value; }),
+      try_other: f.try_other.value.trim(), volunteer: v("vol"), comment: f.comment.value.trim()
+    };
+    var empty = !answers.use && !answers.satisfaction && !answers.volunteer && !answers.comment && !answers.try.length;
+    if (empty) { err.textContent = "どれか1つでも答えてから送ってください。"; return; }
+    btn.disabled = true; btn.textContent = "送っています…"; err.textContent = "";
+    fetch(URL, {
+      method: "POST",
+      headers: { "apikey": KEY, "Content-Type": "application/json", "Prefer": "return=minimal" },
+      body: JSON.stringify({ survey_id: SURVEY, answers: answers })
+    }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      document.getElementById("form-wrap").hidden = true;
+      document.getElementById("done").hidden = false;
+      window.scrollTo(0, 0);
+    }).catch(function () {
+      btn.disabled = false; btn.textContent = "送る";
+      err.textContent = "送れませんでした。電波のよいところで、もう一度「送る」を押してください。";
+    });
+  });
+})();
+</script>
+</body>
+</html>
