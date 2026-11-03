@@ -31,7 +31,7 @@ input[type=radio], input[type=checkbox] { width:20px; height:20px; accent-color:
 .grid .item:first-child { border-top:0; padding-top:0; }
 .grid .q { font-size:15px; margin-bottom:6px; }
 .grid .opts { flex-direction:row; }
-.grid label.o { flex:1; justify-content:center; padding:8px; font-size:14px; }
+.grid label.o { flex:1 1 0; min-width:0; flex-direction:column; justify-content:center; gap:4px; padding:8px 4px; font-size:14px; line-height:1.35; text-align:center; }
 input[type=text], textarea { width:100%; font:inherit; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; }
 textarea { min-height:120px; clear:both; display:block; }
 button { width:100%; font:inherit; font-weight:700; font-size:17px; padding:14px; border:0; border-radius:999px; background:var(--primary); color:#fff; cursor:pointer; }
@@ -48,57 +48,43 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline:3px 
 <div id="form-wrap">
   <div class="brand">AIかけこみ寺</div>
   <h1>ボランティアスクール アンケート</h1>
-  <p class="lead">今日はありがとうございました。名前は聞きません。1〜2分で終わります。</p>
+  <p class="lead">今日はありがとうございました。名前は聞きません。2分ほどで終わります。</p>
 
   <form id="f">
     <fieldset>
       <legend><span class="n">1</span>ふだん、AI（ChatGPT など）をどのくらい使っていますか？</legend>
-      <div class="opts">
-        <label class="o"><input type="radio" name="use" value="ほぼ毎日">ほぼ毎日</label>
-        <label class="o"><input type="radio" name="use" value="週に何回か">週に何回か</label>
-        <label class="o"><input type="radio" name="use" value="たまに">たまに</label>
-        <label class="o"><input type="radio" name="use" value="使ったことがない">使ったことがない</label>
-      </div>
+      <div class="opts"><label class="o"><input type="radio" name="use" value="ほぼ毎日">ほぼ毎日</label><label class="o"><input type="radio" name="use" value="週に数回">週に数回</label><label class="o"><input type="radio" name="use" value="月に数回">月に数回</label><label class="o"><input type="radio" name="use" value="使ったことがない">使ったことがない</label></div>
     </fieldset>
 
     <fieldset>
-      <legend><span class="n">2</span>今日のお話は、いかがでしたか？</legend>
-      <div class="opts">
-        <label class="o"><input type="radio" name="sat" value="5">満足</label>
-        <label class="o"><input type="radio" name="sat" value="4">やや満足</label>
-        <label class="o"><input type="radio" name="sat" value="3">ふつう</label>
-        <label class="o"><input type="radio" name="sat" value="2">やや不満</label>
-        <label class="o"><input type="radio" name="sat" value="1">不満</label>
-      </div>
+      <legend><span class="n">2</span>今日のボランティアスクールは、いかがでしたか？</legend>
+      <div class="opts"><label class="o"><input type="radio" name="sat" value="5">満足</label><label class="o"><input type="radio" name="sat" value="4">やや満足</label><label class="o"><input type="radio" name="sat" value="3">ふつう</label><label class="o"><input type="radio" name="sat" value="2">やや不満</label><label class="o"><input type="radio" name="sat" value="1">不満</label></div>
     </fieldset>
 
     <fieldset>
-      <legend><span class="n">3</span>今日の内容は、わかりましたか？</legend>
+      <legend><span class="n">3</span>次の話は、わかりましたか？</legend>
       <div class="grid" id="grid"></div>
     </fieldset>
 
     <fieldset>
-      <legend><span class="n">4</span>これからやってみようと思うものは？ <small>（いくつでも）</small></legend>
-      <div class="opts">
-        <label class="o"><input type="checkbox" name="try" value="困りごとをAIに相談してみる">困りごとをAIに相談してみる</label>
-        <label class="o"><input type="checkbox" name="try" value="AIの答えを、ほかの方法でも確かめる">AIの答えを、ほかの方法でも確かめる</label>
-        <label class="o"><input type="checkbox" name="try" value="書き出した困りごとで、PDCAを1周回す">書き出した困りごとで、PDCAを1周回す</label>
-        <label class="o"><input type="checkbox" name="try" value="友だちや家族に、今日の話を伝える">友だちや家族に、今日の話を伝える</label>
+      <legend><span class="n">4</span>一番心に残った話は？ <small>（1つ）</small></legend>
+      <div class="opts" id="best"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="n">5</span>ハンズオン（ワークシートとグループワーク）について</legend>
+      <div class="grid"><div class="item"><div class="q">時間は</div><div class="opts row"><label class="o"><input type="radio" name="ho_time" value="ちょうどよい">ちょうどよい</label><label class="o"><input type="radio" name="ho_time" value="短い">短い</label><label class="o"><input type="radio" name="ho_time" value="長い">長い</label></div></div><div class="item"><div class="q">グループでのダメ出しは</div><div class="opts row"><label class="o"><input type="radio" name="ho_review" value="役に立った">役に立った</label><label class="o"><input type="radio" name="ho_review" value="ふつう">ふつう</label><label class="o"><input type="radio" name="ho_review" value="役に立たなかった"><span>役に立た<br>なかった</span></label></div></div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="n">6</span>帰ってから、やってみようと思うことは？ <small>（いくつでも）</small></legend>
+      <div class="opts"><label class="o"><input type="checkbox" name="try" value="今夜、PDCAの計画を残す">今夜、PDCAの計画を残す</label><label class="o"><input type="checkbox" name="try" value="やってみる日をカレンダーに入れる">やってみる日をカレンダーに入れる</label><label class="o"><input type="checkbox" name="try" value="助けたい人のことを、AIと一緒にもっと調べる">助けたい人のことを、AIと一緒にもっと調べる</label><label class="o"><input type="checkbox" name="try" value="家族や友だちに、今日の話を伝える">家族や友だちに、今日の話を伝える</label>
         <input type="text" name="try_other" placeholder="その他（自由に）" maxlength="200">
       </div>
     </fieldset>
 
     <fieldset>
-      <legend><span class="n">5</span>AIかけこみ寺の活動（無料のAI教室のボランティア）に興味はありますか？</legend>
-      <div class="opts">
-        <label class="o"><input type="radio" name="vol" value="参加してみたい">参加してみたい</label>
-        <label class="o"><input type="radio" name="vol" value="話を聞いてみたい">話を聞いてみたい</label>
-        <label class="o"><input type="radio" name="vol" value="今は考えていない">今は考えていない</label>
-      </div>
-    </fieldset>
-
-    <fieldset>
-      <legend><span class="n">6</span>ご意見・ご感想 <small>（よかったこと、わかりにくかったことなど）</small></legend>
+      <legend><span class="n">7</span>ご意見・ご感想 <small>（よかったこと、わかりにくかったことなど）</small></legend>
       <textarea name="comment" maxlength="2000"></textarea>
     </fieldset>
 
@@ -109,8 +95,6 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline:3px 
 
 <div id="done" class="done" hidden>
   <h2>送りました。ありがとうございました！</h2>
-  <p>ボランティアに興味があれば、こちらから気軽にどうぞ。</p>
-  <p><a href="/volunteer">ボランティアのご案内</a></p>
 </div>
 </main>
 
@@ -119,17 +103,26 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline:3px 
   var SURVEY = "asamidori-20261104";
   var URL = "https://uzavspfdkfwrefwbdbrd.supabase.co/rest/v1/survey_responses";
   var KEY = "sb_publishable_VBrTwdAWFtRk8E6Ig5p-zA_0y7iaWN1"; /* 公開用の鍵。送ることしかできない（RLS） */
-  var ITEMS = ["AIが得意なこと・苦手なこと", "AIの答えをうのみにせず、確かめること", "AIに入れてはいけない情報",
-    "AIに頼りすぎない（活用と依存のバランス）", "AIでPDCAサイクルを回すこと", "身の回りの困りごとに、AIを使うこと"];
+  /* スライドの見出しと同じ言葉にそろえる（11/3 代表） */
+  var ITEMS = ["AIリテラシー信号機（赤・黄・青）", "活用と依存のバランス", "簡単じゃないことに挑戦しよう",
+    "相手のことを、相手以上に理解しようとする", "いま見えていないものを探す", "AIでPDCAサイクルを回す"];
+  var LEVELS = ["よくわかった", "だいたいわかった", "わからなかった"];
+  var LEVEL_HTML = ["よく<br>わかった", "だいたい<br>わかった", "わから<br>なかった"];
 
   var grid = document.getElementById("grid");
   ITEMS.forEach(function (t, i) {
     var d = document.createElement("div"); d.className = "item";
-    d.innerHTML = '<div class="q"></div><div class="opts">' +
-      '<label class="o"><input type="radio" name="u' + i + '" value="よくわかった">よくわかった</label>' +
-      '<label class="o"><input type="radio" name="u' + i + '" value="まだよくわからない">まだよくわからない</label></div>';
+    d.innerHTML = '<div class="q"></div><div class="opts">' + LEVELS.map(function (l, j) {
+      return '<label class="o"><input type="radio" name="u' + i + '" value="' + l + '"><span>' + LEVEL_HTML[j] + '</span></label>';
+    }).join("") + '</div>';
     d.querySelector(".q").textContent = t;
     grid.appendChild(d);
+  });
+  var best = document.getElementById("best");
+  ["AIかけこみ寺の活動"].concat(ITEMS, ["その他"]).forEach(function (t) {
+    var l = document.createElement("label"); l.className = "o";
+    l.innerHTML = '<input type="radio" name="best">'; l.firstChild.value = t;
+    l.appendChild(document.createTextNode(t)); best.appendChild(l);
   });
 
   var f = document.getElementById("f"), btn = document.getElementById("btn"), err = document.getElementById("err");
@@ -141,9 +134,10 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline:3px 
     var answers = {
       use: v("use"), satisfaction: v("sat") ? Number(v("sat")) : null, understood: understood,
       try: Array.prototype.map.call(f.querySelectorAll('input[name="try"]:checked'), function (x) { return x.value; }),
-      try_other: f.try_other.value.trim(), volunteer: v("vol"), comment: f.comment.value.trim()
+      try_other: f.try_other.value.trim(), best: v("best"), hands_on_time: v("ho_time"), hands_on_review: v("ho_review"),
+      comment: f.comment.value.trim()
     };
-    var empty = !answers.use && !answers.satisfaction && !answers.volunteer && !answers.comment && !answers.try.length;
+    var empty = !answers.use && !answers.satisfaction && !answers.best && !answers.comment && !answers.try.length;
     if (empty) { err.textContent = "どれか1つでも答えてから送ってください。"; return; }
     btn.disabled = true; btn.textContent = "送っています…"; err.textContent = "";
     fetch(URL, {
