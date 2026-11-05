@@ -1,8 +1,8 @@
 {
-  "generated": "2026-10-31 17:33",
+  "generated": "2026-11-05 20:43",
   "stats": {
-    "held_count": 12,
-    "total_participants": 186
+    "held_count": 13,
+    "total_participants": 198
   },
   "upcoming": [
     {
@@ -55,6 +55,14 @@
     }
   ],
   "past": [
+    {
+      "ym": "2026年11月",
+      "label": "あさみどりの会 第82回ボランティアスクール 講演「AIとの付き合い方」"
+    },
+    {
+      "ym": "2026年11月",
+      "label": "星ヶ丘ミライテラスマルシェ 出店（AI体験デモ）"
+    },
     {
       "ym": "2026年10月",
       "label": "ひとり親向けAI教室（ファミリーステーションRin共催）",
