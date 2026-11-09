@@ -546,7 +546,7 @@ body {
 // お振込の連絡: RPCへ直接送る。公開キー以外の鍵をここに置かない。
 (function() {
   var SUPABASE_URL = 'https://uzavspfdkfwrefwbdbrd.supabase.co';
-  var SUPABASE_KEY = '';  // publishable key。空のあいだは送信しない
+  var SUPABASE_KEY = 'sb_publishable_VBrTwdAWFtRk8E6Ig5p-zA_0y7iaWN1';  // publishable key（公開用。internal の wrangler.jsonc と同じ）。空にすると送信を止められる
   var f = document.getElementById('renraku');
   if (!f) return;
   var postal = f.querySelector('#kf-postal'), town = f.querySelector('#kf-address'), banchi = f.querySelector('#kf-banchi');
