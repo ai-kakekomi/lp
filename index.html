@@ -1724,6 +1724,7 @@ details p { animation: fadeDown 0.3s ease; }
 .fade-in:nth-child(2) { animation-delay: 0.1s; }
 .fade-in:nth-child(3) { animation-delay: 0.2s; }
 .fade-in:nth-child(4) { animation-delay: 0.3s; }
+.track-card{transition:transform .15s,box-shadow .15s}.track-card:hover,.track-card:focus-visible{transform:translateY(-2px);box-shadow:0 6px 18px rgba(45,106,79,.15)}@media (prefers-reduced-motion:reduce){.track-card{transition:none}.track-card:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -1873,13 +1874,20 @@ details p { animation: fadeDown 0.3s ease; }
       + statTile(s.held_count, '回 開催') + statTile(s.total_participants, '名 が参加') + '</div>';
     var past = feed.past || [];
     var rows = past.map(function (p) {
-      var report = p.note_url
-        ? '<a href="' + esc(p.note_url) + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;margin-left:10px;padding:2px 10px;border:1.5px solid #41C9B4;border-radius:16px;font-size:0.78rem;font-weight:700;color:#41C9B4;text-decoration:none;white-space:nowrap;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg> 開催レポート</a>'
-        : '';
-      return '<div style="display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:center;padding:18px 24px;background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);">'
-        + '<span style="font-size:0.9rem;font-weight:700;color:var(--primary);">' + esc(p.ym) + '</span>'
-        + '<span style="font-size:0.95rem;color:var(--text);font-weight:500;">' + esc(p.label) + report + '</span>'
-        + '</div>';
+      /* 案C（11/18 代表）: 1行目に開催地と年月、2行目に名前。レポートがあるカードは全体がリンク */
+      var meta = '<span style="font-size:0.75rem;font-weight:700;color:#B5452A;letter-spacing:0.04em;">'
+        + (p.area ? esc(p.area) + '<span style="color:#5F6B66;font-weight:500;">　' + esc(p.ym) + '</span>' : '<span style="color:#5F6B66;font-weight:500;">' + esc(p.ym) + '</span>')
+        + '</span>';
+      var body = '<span style="display:flex;flex-direction:column;gap:4px;min-width:0;">' + meta
+        + '<span style="font-size:1rem;font-weight:700;color:var(--text);line-height:1.6;">' + esc(p.label) + '</span></span>';
+      var base = 'display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:16px 24px;background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);';
+      if (p.note_url) {
+        return '<a class="track-card" href="' + esc(p.note_url) + '" target="_blank" rel="noopener" style="' + base + 'text-decoration:none;color:inherit;">'
+          + body
+          + '<span style="display:inline-flex;align-items:center;gap:4px;font-size:0.82rem;font-weight:700;color:var(--primary);white-space:nowrap;">レポート<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>'
+          + '</a>';
+      }
+      return '<div style="' + base + '">' + body + '<span></span></div>';
     }).join('');
     track.innerHTML = stats + '<div style="display:flex;flex-direction:column;gap:12px;">' + rows + '</div>';
   }

@@ -1,24 +1,24 @@
 {
-  "generated": "2026-11-18 18:19",
+  "generated": "2026-11-18 19:22",
   "count": 14,
   "total_participants": 205,
   "classes": [
     {
       "date": "2026-03-15",
       "date_label": "2026年3月15日（日）",
-      "label": "第1回 AI教室（名古屋・ナディアパーク）",
+      "label": "第1回 AI教室",
       "participants": 2
     },
     {
       "date": "2026-04-25",
       "date_label": "2026年4月25日（土）",
-      "label": "第2回 AI体験教室（西生涯学習センター）",
+      "label": "第2回 AI体験教室",
       "participants": 6
     },
     {
       "date": "2026-05-23",
       "date_label": "2026年5月23日（土）",
-      "label": "AI体験教室（中村生涯学習センター）",
+      "label": "AI体験教室",
       "participants": 6
     },
     {
@@ -48,7 +48,7 @@
     {
       "date": "2026-09-10",
       "date_label": "2026年9月10日（木）",
-      "label": "シルバーフェスタ シニア求職者向けAI教室 ①",
+      "label": "シルバーフェスタ シニア求職者向けAI教室",
       "participants": 10
     },
     {
@@ -60,7 +60,7 @@
     {
       "date": "2026-10-14",
       "date_label": "2026年10月14日（水）",
-      "label": "シルバーフェスタ シニア求職者向けAI教室 ②",
+      "label": "シルバーフェスタ シニア求職者向けAI教室",
       "participants": 6
     },
     {
@@ -84,7 +84,7 @@
     {
       "date": "2026-11-18",
       "date_label": "2026年11月18日（水）",
-      "label": "シルバーフェスタ シニア求職者向けAI教室 ③",
+      "label": "シルバーフェスタ シニア求職者向けAI教室",
       "participants": 7
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-18 18:19",
+  "generated": "2026-11-18 19:22",
   "stats": {
     "held_count": 14,
     "total_participants": 205
@@ -57,81 +57,97 @@
   "past": [
     {
       "ym": "2026年11月",
-      "label": "シルバーフェスタ シニア求職者向けAI教室 ③",
+      "label": "シルバーフェスタ シニア求職者向けAI教室",
+      "area": "春日井市",
       "note_url": "https://note.com/ai_kakekomi/n/n1073cb6bd3c8"
     },
     {
       "ym": "2026年11月",
       "label": "あさみどりの会 第82回ボランティアスクール 講演「AIとの付き合い方」",
+      "area": "名古屋市千種区",
       "note_url": "https://note.com/ai_kakekomi/n/na2c254ad1a42"
     },
     {
       "ym": "2026年11月",
       "label": "星ヶ丘ミライテラスマルシェ 出店（AI体験デモ）",
+      "area": "名古屋市千種区",
       "note_url": "https://note.com/ai_kakekomi/n/n4168d366ff96"
     },
     {
       "ym": "2026年10月",
       "label": "ひとり親向けAI教室（ファミリーステーションRin共催）",
+      "area": "日進市",
       "note_url": "https://note.com/ai_kakekomi/n/n7033d285c33c"
     },
     {
       "ym": "2026年10月",
       "label": "チャッピーと話そう！はじめてのAI体験教室",
+      "area": "名古屋市西区",
       "note_url": "https://note.com/ai_kakekomi/n/n7033d285c33c"
     },
     {
       "ym": "2026年10月",
-      "label": "シルバーフェスタ シニア求職者向けAI教室 ②"
+      "label": "シルバーフェスタ シニア求職者向けAI教室",
+      "area": "江南市"
     },
     {
       "ym": "2026年10月",
       "label": "Code for Japan Summit 2026 で登壇「無料AI教室を全国へ」",
+      "area": "東京都千代田区",
       "note_url": "https://note.com/ai_kakekomi/n/nbc4e2ba2ac8b"
     },
     {
       "ym": "2026年9月",
       "label": "チャッピーと話そう！はじめてのAI体験教室",
+      "area": "名古屋市西区",
       "note_url": "https://note.com/ai_kakekomi/n/nc71c1fc3293e"
     },
     {
       "ym": "2026年9月",
-      "label": "シルバーフェスタ シニア求職者向けAI教室 ①",
+      "label": "シルバーフェスタ シニア求職者向けAI教室",
+      "area": "半田市",
       "note_url": "https://note.com/ai_kakekomi/n/n734068e3a9f1"
     },
     {
       "ym": "2026年8月",
       "label": "チャッピーと話そう！はじめてのAI体験教室",
+      "area": "名古屋市西区",
       "note_url": "https://note.com/ai_kakekomi/n/n31082a881fa5"
     },
     {
       "ym": "2026年7月",
       "label": "チャッピーと話そう！はじめてのAI体験教室",
+      "area": "名古屋市西区",
       "note_url": "https://note.com/ai_kakekomi/n/nfa7de1e07ae1"
     },
     {
       "ym": "2026年7月",
       "label": "阪急交通社 添乗員向けAI教室",
+      "area": "名古屋市中村区",
       "note_url": "https://note.com/ai_kakekomi/n/n4814d51cfd9e"
     },
     {
       "ym": "2026年6月",
       "label": "チャッピーと話そう！はじめてのAI体験教室",
+      "area": "名古屋市西区",
       "note_url": "https://note.com/ai_kakekomi/n/n2913f3472ab3"
     },
     {
       "ym": "2026年5月",
-      "label": "AI体験教室（中村生涯学習センター）",
+      "label": "AI体験教室",
+      "area": "名古屋市中村区",
       "note_url": "https://note.com/ai_kakekomi/n/n176930e8666a"
     },
     {
       "ym": "2026年4月",
-      "label": "第2回 AI体験教室（西生涯学習センター）",
+      "label": "第2回 AI体験教室",
+      "area": "名古屋市西区",
       "note_url": "https://note.com/ai_kakekomi/n/n717a228abb92"
     },
     {
       "ym": "2026年3月",
-      "label": "第1回 AI教室（名古屋・ナディアパーク）",
+      "label": "第1回 AI教室",
+      "area": "名古屋市中区",
       "note_url": "https://note.com/ai_kakekomi/n/n1e9fbdbd70ae"
     }
   ]
