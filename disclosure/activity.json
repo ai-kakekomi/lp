@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-16 23:25",
-  "count": 13,
-  "total_participants": 198,
+  "generated": "2026-11-18 15:46",
+  "count": 14,
+  "total_participants": 205,
   "classes": [
     {
       "date": "2026-03-15",
@@ -80,6 +80,12 @@
       "date_label": "2026年11月4日（水）",
       "label": "あさみどりの会 第82回ボランティアスクール 講演「AIとの付き合い方」",
       "participants": 12
+    },
+    {
+      "date": "2026-11-18",
+      "date_label": "2026年11月18日（水）",
+      "label": "シルバーフェスタ シニア求職者向けAI教室 ③",
+      "participants": 7
     }
   ]
 }
