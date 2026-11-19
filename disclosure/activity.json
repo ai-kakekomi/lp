@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-18 19:22",
-  "count": 14,
-  "total_participants": 205,
+  "generated": "2026-11-19 18:36",
+  "count": 15,
+  "total_participants": 246,
   "classes": [
     {
       "date": "2026-03-15",
@@ -86,6 +86,12 @@
       "date_label": "2026年11月18日（水）",
       "label": "シルバーフェスタ シニア求職者向けAI教室",
       "participants": 7
+    },
+    {
+      "date": "2026-11-19",
+      "date_label": "2026年11月19日（木）",
+      "label": "愛知県国際交流協会「国際交流・多文化共生コーディネーター講座」で講座",
+      "participants": 41
     }
   ]
 }

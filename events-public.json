@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-18 19:22",
+  "generated": "2026-11-19 18:36",
   "stats": {
-    "held_count": 14,
-    "total_participants": 205
+    "held_count": 15,
+    "total_participants": 246
   },
   "upcoming": [
     {
@@ -55,6 +55,11 @@
     }
   ],
   "past": [
+    {
+      "ym": "2026年11月",
+      "label": "愛知県国際交流協会「国際交流・多文化共生コーディネーター講座」で講座",
+      "area": "名古屋市中区"
+    },
     {
       "ym": "2026年11月",
       "label": "シルバーフェスタ シニア求職者向けAI教室",
