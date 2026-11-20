@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-20 08:12",
+  "generated": "2026-11-20 20:20",
   "stats": {
     "held_count": 15,
-    "total_participants": 246
+    "total_participants": 302
   },
   "upcoming": [
     {
@@ -55,6 +55,11 @@
     }
   ],
   "past": [
+    {
+      "ym": "2026年11月",
+      "label": "NPO法人食品サークルのAIセミナーで基調講演",
+      "area": "名古屋市千種区"
+    },
     {
       "ym": "2026年11月",
       "label": "愛知県国際交流協会「国際交流・多文化共生コーディネーター講座」で講座",

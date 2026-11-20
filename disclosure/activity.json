@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-20 08:12",
-  "count": 15,
-  "total_participants": 246,
+  "generated": "2026-11-20 20:20",
+  "count": 16,
+  "total_participants": 302,
   "classes": [
     {
       "date": "2026-03-15",
@@ -92,6 +92,12 @@
       "date_label": "2026年11月19日（木）",
       "label": "愛知県国際交流協会「国際交流・多文化共生コーディネーター講座」で講座",
       "participants": 41
+    },
+    {
+      "date": "2026-11-20",
+      "date_label": "2026年11月20日（金）",
+      "label": "NPO法人食品サークルのAIセミナーで基調講演",
+      "participants": 56
     }
   ]
 }
