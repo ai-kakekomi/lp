@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-21 07:34",
-  "count": 16,
-  "total_participants": 302,
+  "generated": "2026-11-21 14:10",
+  "count": 17,
+  "total_participants": 328,
   "classes": [
     {
       "date": "2026-03-15",
@@ -98,6 +98,12 @@
       "date_label": "2026年11月20日（金）",
       "label": "NPO法人食品サークルのAIセミナーで基調講演",
       "participants": 56
+    },
+    {
+      "date": "2026-11-21",
+      "date_label": "2026年11月21日（土）",
+      "label": "チャッピーと話そう！はじめてのAI体験教室",
+      "participants": 26
     }
   ]
 }

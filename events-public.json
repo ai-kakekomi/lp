@@ -1,26 +1,10 @@
 {
-  "generated": "2026-11-21 07:34",
+  "generated": "2026-11-21 14:10",
   "stats": {
-    "held_count": 15,
-    "total_participants": 302
+    "held_count": 16,
+    "total_participants": 328
   },
   "upcoming": [
-    {
-      "uid": "akk-20261121",
-      "title": "チャッピーと話そう！はじめてのAI体験教室",
-      "ymd": "2026-11-21",
-      "date_label": "2026年11月21日（土）",
-      "time_label": "10:00〜11:30",
-      "doors_label": "9:30",
-      "place_label": "西生涯学習センター（名古屋市西区浄心1-1-45）",
-      "access": "地下鉄鶴舞線「浄心」下車 徒歩すぐ",
-      "fee": "無料",
-      "bring": "スマホ",
-      "apply_required": true,
-      "endorsement": "名古屋市教育委員会",
-      "apply_url": "https://ai-kakekomi.com/apply.html?uid=akk-20261121",
-      "capacity": 50
-    },
     {
       "uid": "akk-20261219",
       "title": "チャッピーと話そう！はじめてのAI体験教室",
@@ -55,6 +39,11 @@
     }
   ],
   "past": [
+    {
+      "ym": "2026年11月",
+      "label": "チャッピーと話そう！はじめてのAI体験教室",
+      "area": "名古屋市西区"
+    },
     {
       "ym": "2026年11月",
       "label": "NPO法人食品サークルのAIセミナーで基調講演",
