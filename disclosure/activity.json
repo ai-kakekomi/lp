@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-23 20:00",
+  "generated": "2026-11-23 20:02",
   "count": 18,
-  "total_participants": 369,
+  "total_participants": 370,
   "classes": [
     {
       "date": "2026-03-15",
@@ -109,7 +109,7 @@
       "date": "2026-11-23",
       "date_label": "2026年11月23日（月）",
       "label": "企業・団体向けAI研修",
-      "participants": 41
+      "participants": 42
     }
   ]
 }
