@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-21 14:10",
+  "generated": "2026-11-23 20:00",
   "stats": {
-    "held_count": 16,
-    "total_participants": 328
+    "held_count": 17,
+    "total_participants": 369
   },
   "upcoming": [
     {
@@ -39,6 +39,11 @@
     }
   ],
   "past": [
+    {
+      "ym": "2026年11月",
+      "label": "企業・団体向けAI研修",
+      "area": "名古屋市中村区"
+    },
     {
       "ym": "2026年11月",
       "label": "チャッピーと話そう！はじめてのAI体験教室",

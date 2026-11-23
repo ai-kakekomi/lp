@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-21 14:10",
-  "count": 17,
-  "total_participants": 328,
+  "generated": "2026-11-23 20:00",
+  "count": 18,
+  "total_participants": 369,
   "classes": [
     {
       "date": "2026-03-15",
@@ -104,6 +104,12 @@
       "date_label": "2026年11月21日（土）",
       "label": "チャッピーと話そう！はじめてのAI体験教室",
       "participants": 26
+    },
+    {
+      "date": "2026-11-23",
+      "date_label": "2026年11月23日（月）",
+      "label": "企業・団体向けAI研修",
+      "participants": 41
     }
   ]
 }
